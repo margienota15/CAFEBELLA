@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Booking Receipt</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Domine&display=swap" rel="stylesheet">
+
+<!-- PDF LIBRARY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+body {
+    font-family: 'Domine', serif;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* RECEIPT */
+.receipt {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 400px;
+    height: 560px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    color: #114500;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 6px solid #114500;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #114500;
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* DIVIDER */
+.line {
+    border-top: 1px dashed #114500;
+    margin: 10px 0;
+}
+
+.details {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#total {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* QR SMALL */
+#qrImg {
+    width: 90px;
+    height: 90px;
+}
+
+.qr {
+    text-align: center;
+}
+
+button {
+    background: #114500;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Domine', serif;
+}
+
+button:hover {
+    background: #0d3600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="receipt" id="receipt">
+
+    <div>
+        <img src="IMAGES/Cafebella.jpg" class="logo">
+        <h2>Booking Receipt</h2>
+
+        <div class="line"></div>
+
+        <div class="details" id="details"></div>
+    </div>
+
+    <div>
+        <div class="line"></div>
+
+        <div id="total"></div>
+
+        <p style="text-align:center;">Thank you! 🎉</p>
+
+        <div class="qr">
+            <img id="qrImg">
+        </div>
+
+        <button onclick="downloadPDF()">⬇ Download Receipt</button>
+    </div>
+
+</div>
+
+<script>
+
+// ✅ AUTO GENERATE REFERENCE
+function generateReference() {
+    return 'REF-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+}
+
+// SHOW RECEIPT
+function showReceipt(data) {
+
+    const receipt = document.getElementById("receipt");
+    const details = document.getElementById("details");
+
+    // AUTO REF IF NONE
+    if (!data.reference) {
+        data.reference = generateReference();
+    }
+
+    details.innerHTML = "";
+
+    if (data.service) details.innerHTML += `<p>Service: ${data.service}</p>`;
+    if (data.date) details.innerHTML += `<p>Date: ${data.date}</p>`;
+    if (data.time) details.innerHTML += `<p>Time: ${data.time}</p>`;
+    if (data.guests) details.innerHTML += `<p>Guests: ${data.guests}</p>`;
+    if (data.location) details.innerHTML += `<p>Location: ${data.location}</p>`;
+    if (data.payment) details.innerHTML += `<p>Payment Method: ${data.payment}</p>`;
+
+    // CASH ONLY
+    if (data.payment && data.payment.toLowerCase() === "cash") {
+        details.innerHTML += `<p>Reference #: ${data.reference}</p>`;
+    }
+
+    document.getElementById("total").innerHTML =
+        `Total Amount: ₱${data.total}`;
+
+    document.getElementById("qrImg").src =
+        `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${data.reference}`;
+
+    receipt.style.display = "flex";
+}
+
+// ✅ REAL PDF DOWNLOAD
+function downloadPDF() {
+    const element = document.getElementById("receipt");
+
+    html2pdf().from(element).save("CafeBella_Receipt.pdf");
+}
+showReceipt({
+  service: serviceValue,
+  date: dateValue,
+  time: timeValue,
+  guests: guestsValue,
+  location: locationValue,
+  payment: paymentValue,
+  total: totalValue
+});
+</script>
+
+</body>
+</html>

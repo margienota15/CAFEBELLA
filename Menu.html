@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Bella Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body { font-family: 'Domine', serif; background:#f2f2f2; }
+html { scroll-behavior:smooth; }
+
+/* TOPBAR */
+.topbar {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 60px;
+}
+
+.topbar-center {
+  flex: 1;
+  text-align: center;
+  color: #114500;
+  font-size: 13px;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.topbar-right img {
+  width: 18px;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #114500;
+  display: flex;
+  align-items: center;
+  padding: 15px 60px;
+
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  list-style: none;
+}
+
+.nav-menu a {
+   color: white;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+.nav-menu a.active::after {
+  width: 100%;
+}
+
+/* NAVBAR HOVER ANIMATION */
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* MENU BUTTONS */
+.menu-categories {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:18px;
+  margin:50px 20px;
+}
+.cat-btn {
+  padding:12px 20px;
+  border:2px solid #114500;
+  background:white;
+  color:#114500;
+  border-radius:25px;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:20px;
+  font-weight:600;
+}
+.cat-btn:hover { background:#114500; color:white; transform:translateY(-2px); }
+.cat-btn.active { background:#114500; color:white; }
+
+/* GRID */
+.menu-grid { width:90%; margin:auto; display:grid; gap:25px; }
+.menu-group { display:none; grid-template-columns:repeat(3, 1fr); gap:25px; animation:fadeIn 0.5s ease; }
+.menu-group.active { display:grid; }
+.menu-card2 {
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:15px;
+  transition:0.4s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+.menu-card2 img { width:100%; height:240px; object-fit:cover; }
+.menu-card2 h3 { margin:12px 0 5px; color:#114500; font-size:20px; }
+.menu-card2 p { font-size:18px; }
+.menu-card2:hover { transform:translateY(-10px) scale(1.04); }
+
+@media (max-width:768px){ .menu-group { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:480px){ .menu-group { grid-template-columns:1fr; } }
+
+/* ADDONS */
+.addons {
+  margin-top:20px;
+  padding:15px;
+  text-align:center;
+  color:#114500;
+  font-size:14px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  background: #eee;
+  padding: 40px 60px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* CAFE BELLA LOGO */
+.footer-logo img {
+  width: 120px;
+  height: 120px;        
+  border-radius: 50%;    
+  object-fit: cover;      
+}
+
+/* COLOUMNS */
+.footer-col {
+  font-size: 13px;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  color: #114500;
+}
+
+.footer-col p,
+.footer-col a {
+  display: block;
+  color: #114500;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  color: #114500;
+}
+
+/* GCASH LOGO */
+.gcash img {
+  width: 40px;
+  height: 40px;         
+  border-radius: 50%;    
+  object-fit: cover;      
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class = "header-wrapper">
+  <div class="topbar">
+    <div class="topbar-center">
+    Free delivery around Molino. Order now.
+    </div>
+
+  <div class="topbar-right">
+    <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+    <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"></a>
+   </div>
+</div>
+
+<!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-logo">
+      <img src="IMAGES/Cafebella.jpg">
+  </div>
+
+    <ul class="nav-menu">
+      <li><a href="LandingPage.html" >Home</a></li>
+      <li><a href="Menu.html" class="active">Menu</a></li>
+      <li><a href="Package.html">Packages</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#">FAQs</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- MENU CATEGORIES -->
+<div class="menu-categories">
+  <button class="cat-btn active" onclick="showMenu('friedrice', this)">Fried Rice</button>
+  <button class="cat-btn" onclick="showMenu('sizzling', this)">Sizzling</button>
+  <button class="cat-btn" onclick="showMenu('noodles', this)">Noodles</button>
+  <button class="cat-btn" onclick="showMenu('snacks', this)">Snacks</button>
+  <button class="cat-btn" onclick="showMenu('coffee', this)">Coffee</button>
+  <button class="cat-btn" onclick="showMenu('noncoffee', this)">Non-Coffee</button>
+  <button class="cat-btn" onclick="showMenu('matchaR', this)">Matcha</button>
+  <button class="cat-btn" onclick="showMenu('matchaP', this)">Matcha Premium</button>
+</div>
+
+<!-- MENU GRID -->
+<div class="menu-grid">
+<!-- Fried Rice -->
+<div class="menu-group active" id="friedrice">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Kimchi Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Shitake Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Spam Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Seafood Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Adobo Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Delimondo Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Sisig Fried Rice</h3><p>Solo : ₱95 / Double : ₱130</p></div>
+</div>
+
+<!-- Sizzling -->
+<div class="menu-group" id="sizzling">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>S1 Hungarian Sausage</h3><p>₱99</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>S2 Sizzling Spam</h3><p>₱99</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>S3 Sizzling Fried Chicken</h3><p>₱149</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>S4 Sizzling Porkchop</h3><p>₱149</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>S5 Sizzling Sisig</h3><p>₱139</p></div>
+</div>
+
+<!-- Noodles -->
+<div class="menu-group" id="noodles">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>CSN 1 Cheesy Spicy Noodles with Nori</h3><p>₱129</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>CSN 2 Cheesy Spicy Noodles with Egg and Nori</h3><p>₱139</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>CSN 3 Cheesy Spicy Noodles with Egg, Nori and Spam</h3><p>₱159</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>CSN 4 Cheesy Spicy Noodles with Egg, Nori and Hungarian Sausage</h3><p>₱169</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>CSN 5 Cheesy Spicy Noodles with Nori and Chicken Katsu</h3><p>₱179</p></div>
+</div>
+
+<!-- Snacks -->
+<div class="menu-group" id="snacks">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Hungarian Sandwich Overload</h3><p>₱75</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Extreme Hungarian Sandwich (wrapped in bacon, topped with caramelized onions)</h3><p>₱99</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Regular Fries</h3><p>₱55</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Overload Nachos</h3><p>₱110</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Cheesy Bacon Fries</h3><p>₱110</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Muffins</h3><p>₱75</p></div>
+</div>
+
+<!-- Coffee -->
+<div class="menu-group" id="coffee">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Americano</h3><p>₱80 / ₱99</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Summer Americano</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Cafe Latte</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Caramel Latte</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Vanilla Latte</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Hazelnut Latte</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>White Mocha</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Mocha</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Pistachio Latte</h3><p>₱120 / ₱145</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Biscoff Latte</h3><p>₱120 / ₱145</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Dirty Matcha</h3><p>₱120 / ₱145</p></div>
+</div>
+
+<!-- Non-Coffee -->
+<div class="menu-group" id="noncoffee">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Milky Chocolate</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Milky Oreo</h3><p>₱90 / ₱115</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Strawberry Milk</h3><p>₱90 / ₱115</p></div>
+</div>
+
+<!-- Matcha Regular -->
+<div class="menu-group" id="matchaR">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Oreo Matcha</h3><p>₱120 / ₱145</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Matcha Latte</h3><p>₱120 / ₱145</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Strawberry Matcha</h3><p>₱120 / ₱145</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Biscoff Matcha</h3><p>₱120 / ₱145</p></div>
+</div>
+
+<!-- Matcha Premium -->
+<div class="menu-group" id="matchaP">
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Classic Matcha Latte</h3><p>₱170</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Agave Oat Matcha</h3><p>₱180</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Berry Matcha</h3><p>₱180</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Spanish Matcha</h3><p>₱170</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Hojicha Latte</h3><p>₱170</p></div>
+  <div class="menu-card2"><img src="IMAGES/foodpic.jpg"><h3>Berry Hojicha</h3><p>₱190</p></div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+  <div class="footer-top">
+
+    <div class="footer-logo">
+      <img src="IMAGES/Cafebella.jpg">
+      <p>Kape lang saglit<br>tapos laban ulit.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#">Menu</a>
+      <a href="#">Event Packages</a>
+      <a href="#">Feedback</a>
+      <a href="#">Location</a>
+      <a href="#">FAQ's</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Coffee Booth</a>
+      <a href="#">Matcha Booth</a>
+      <a href="#">Tattoo Event</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">Contact Our Team</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Socials</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Tiktok</a>
+    </div>
+
+    <div class="footer-col gcash">
+      <h4>We accept</h4>
+      <img src="IMAGES/GCash.png">
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Cafe BELLA. All rights reserved.
+  </div>
+
+</div>
+</div>
+
+<script>
+function showMenu(category, button) {
+  // Hide all menu groups
+  document.querySelectorAll('.menu-group').forEach(group => group.classList.remove('active'));
+  // Remove active from all buttons
+  document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+
+  // Show selected group and button
+  document.getElementById(category).classList.add('active');
+  button.classList.add('active');
+
+  // Update add-ons
+  let addonsText = document.getElementById("addons-text");
+  let addons = [];
+
+  if(document.getElementById("friedrice").classList.contains("active")){
+    addons.push("Egg - ₱25 | Spam - ₱30 | Chicken Katsu - ₱75 | Siomai - ₱35 | Hungarian Sausage - ₱65");
+  }
+  if(document.getElementById("sizzling").classList.contains("active")){
+    addons.push("Plain Rice - ₱20");
+  }
+  if(document.getElementById("noodles").classList.contains("active")){
+    addons.push("Egg - ₱25 | Spam - ₱30 | Sausage - ₱65 | Nori - ₱50 | Carbonara Sauce - ₱30 | Cheese Sauce - ₱25");
+  }
+  if(document.getElementById("matchaP").classList.contains("active")){
+    addons.push("2g Matcha Powder - ₱40 | Almond Milk - ₱40");
+  }
+
+  addonsText.innerHTML = addons.join(" | ");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book Your Event</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Domine', serif;
+  background: #f2f2f2;
+  color: #114500;
+}
+
+/* ================= TOPBAR ================= */
+.topbar {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 60px;
+}
+
+.topbar-center {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.topbar-right img {
+  width: 18px;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  background: #114500;
+  display: flex;
+  align-items: center;
+  padding: 15px 60px;
+}
+
+.nav-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  list-style: none;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* ================= FORM ================= */
+.container {
+  width: 850px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.container h1 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.card {
+  border: 2px solid #114500;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 20px;
+  background: #eee;
+  text-align: left;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px 25px; /* top/bottom 10px, left/right 15px para may indent */
+  border-radius: 25px;
+  border: 2px solid #114500;
+  margin-bottom: 15px;
+  font-family: 'Domine', serif;
+  font-size: 20px;
+}
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+/* ================= SERVICES ================= */
+.services {
+  display: flex;
+  gap: 15px;
+}
+
+.service-box {
+  flex: 1;
+  border: 2px solid #114500;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.service-box:hover {
+  background: #114500;
+  color: white;
+  transform: scale(1.05);
+}
+
+.service-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.total {
+  margin-top: 20px;
+  border: 2px solid #114500;
+  border-radius: 25px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ================= BUTTON ================= */
+
+.booking-title {
+  font-family: 'Domine', serif; /* same font */
+  font-size: 18px;              /* same size */
+  color: #114500;               /* same color */
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.book-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: white;           /* base background same sa services hover */
+  color: #114500;              /* text color same sa services hover */
+  border: 2px solid #114500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Domine', serif;
+  font-weight: 600;
+  transform: translateY(0) scale(1); /* initial state */
+  box-shadow: 0 0 0 rgba(0,0,0,0);   /* no shadow initially */
+}
+
+/* Hover style same as services */
+.book-btn:hover {
+  background: #114500;
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.book-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.booked-date {
+  background: #ccc !important;
+  color: #888 !important;
+  cursor: not-allowed !important;
+}
+
+/* ================= EVENT LAYOUT ================= */
+.event-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.calendar-box #calendar {
+  margin-top: 5px;
+  max-width: 300px;  /* limits calendar width if needed */
+}
+
+/* RIGHT SIDE */
+.event-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LABEL STYLE (same theme) */
+.section-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* INPUT + SELECT SAME STYLE */
+.event-fields input,
+.event-fields select {
+  width: 100%;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid #114500;
+  font-family: 'Domine', serif;
+}
+/* ================= EVENT LAYOUT ================= */
+.event-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* LEFT CALENDAR */
+.calendar-box {
+  flex: 1;
+}
+
+.calendar-box #calendar {
+  margin-top: 10px;
+}
+
+/* RIGHT SIDE */
+.event-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LABEL STYLE (same theme) */
+.section-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* INPUT + SELECT SAME STYLE */
+.event-fields input,
+.event-fields select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #114500;
+  font-family: 'Domine', serif;
+}
+
+/* ================= EVENT LAYOUT ================= */
+.event-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+#calendar {
+  border: 2px solid #114500;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+}
+
+/* LEFT CALENDAR */
+/* CENTER calendar header (label + input) */
+.calendar-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* center horizontally */
+}
+
+.calendar-box #calendar {
+  margin-top: 10px;
+}
+
+/* ================= CALENDAR DESIGN ================= */
+
+/* Main calendar container */
+.flatpickr-calendar {
+  font-family: 'Domine', serif;
+  border: 2px solid #114500;
+  border-radius: 15px;
+  box-shadow: none;
+}
+
+/* Header (month + year) */
+.flatpickr-months {
+  background: #114500;
+  color: white;
+  border-radius: 13px 13px 0 0;
+}
+
+/* Month text */
+.flatpickr-current-month {
+  color: white !important;   /* pwede mo palitan */
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Weekdays */
+.flatpickr-weekdays {
+  background: #e6f0e6;
+}
+
+.flatpickr-weekday {
+  color: #114500;
+  font-weight: 600;
+}
+
+/* Days */
+.flatpickr-day {
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+/* Hover effect */
+.flatpickr-day:hover {
+  background: #cce5cc !important;
+  color: #114500 !important;
+  font-weight: 600;
+}
+
+/* Selected day */
+.flatpickr-day.selected {
+  background: #114500;
+  color: white;
+}
+
+/* Today */
+.flatpickr-day.today {
+  border: 2px solid #114500;
+}
+
+/* Calendar arrows */
+.flatpickr-prev-month,
+.flatpickr-next-month {
+  color: white !important;   /* arrow color */
+  fill: white !important;    /* for SVG */
+}
+/* Disabled/booked */
+.booked-date {
+  background: #ccc !important;
+  color: #888 !important;
+  cursor: not-allowed !important;
+}
+
+
+#calendar {
+  margin-top: 5px;
+  padding: 8px;
+}
+/* RIGHT SIDE */
+.event-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LABEL STYLE (same theme) */
+.section-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* INPUT + SELECT SAME STYLE */
+.event-fields div {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-fields input,
+.event-fields select {
+  height: 45px;
+  line-height: 45px;
+}
+/* SELECT TIME */
+#event-time::-webkit-calendar-picker-indicator {
+  transform: translateX(-5px);
+}
+
+#event-time {
+    padding: 0 10px 0 40px;
+}
+
+#event-time::-webkit-calendar-picker-indicator {
+  position: relative;
+  right: 10px;   /* ilayo sa gilid */
+  cursor: pointer;
+}
+/* NUMBER OF GUESTS */
+#guest-count {
+  height: 45px;
+  padding: 0 30px 0 40px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: url("https://cdn-icons-png.flaticon.com/512/32/32195.png") no-repeat right 15px center;
+  background-size: 14px;
+}
+
+/* EVENT ADDRESS */
+#event-location {
+  padding: 10px 25px;
+}
+.event-fields > div:first-child {
+  margin-top: 100px; /* o kahit anong value para pantay sa calendar */
+}
+
+textarea {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 15px;
+  border: 2px solid #114500;
+  font-family: 'Domine', serif;
+  resize: none;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+/* PAYMENT */
+.payment-options {
+  display: flex;
+  gap: 15px;
+}
+
+.payment-box {
+  flex: 1;
+  border: 2px solid #114500;
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.payment-box input {
+  display: none;
+}
+
+.payment-box:hover {
+  background: #114500;
+  color: white;
+}
+
+.payment-box input:checked + span {
+  font-weight: bold;
+}
+
+.payment-box input:checked + span::before {
+  content: "✔ ";
+}
+/* ================= FOOTER ================= */
+.footer {
+  background: #eee;
+  padding: 40px 60px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* CAFE BELLA LOGO */
+.footer-logo img {
+  width: 120px;
+  height: 120px;        
+  border-radius: 50%;    
+  object-fit: cover;      
+}
+
+/* COLOUMNS */
+.footer-col {
+  font-size: 13px;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  color: #114500;
+}
+
+.footer-col p,
+.footer-col a {
+  display: block;
+  color: #114500;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  color: #114500;
+}
+
+/* GCASH LOGO */
+.gcash img {
+  width: 40px;
+  height: 40px;         
+  border-radius: 50%;    
+  object-fit: cover;      
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-center">
+    Free delivery around Molino. Order now.
+  </div>
+
+  <div class="topbar-right">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="nav-logo">
+    <img src="IMAGES/Cafebella.jpg">
+  </div>
+
+  <ul class="nav-menu">
+      <li><a href="LandingPage.html">Home</a></li>
+      <li><a href="Menu.html">Menu</a></li>
+      <li><a href="Package.html" class="active">Packages</a></li>
+      <li><a href="#">Location</a></li>
+      <li><a href="#">FAQs</a></li>
+  </ul>
+</div>
+
+<!-- FORM -->
+<div class="container">
+  <h1>Book your event</h1>
+  <div class="subtitle">
+    Fill out the form and we’ll confirm within 24 hours
+  </div>
+
+  <div class="card">
+    <div class="section-title">Customer Details</div>
+
+    <label>Full Name</label>
+    <input type="text" 
+       placeholder="Enter your Full Name" 
+       required 
+       pattern="[A-Za-z\s]+" 
+       title="Please enter your full name using letters only">
+
+    <label>Email Address</label>
+      <input type="email" placeholder="example@hotmail.com" required 
+       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+       title="Please enter a valid email, e.g., example@hotmail.com">
+    <div class="row">
+      <div style="flex:1;">
+        <label>Facebook / Messenger</label>
+        <input type="text" 
+       placeholder="@username" 
+       pattern="^@[\w]+$" 
+       title="Enter a valid username starting with @" 
+       required 
+       style="text-indent: 10px;">
+      </div>
+
+      <div style="flex:1;">
+        <label>Contact Number</label>
+        <input type="tel" 
+          id="contact-number"
+          placeholder="e.g. 09123456789" 
+          pattern="[0-9]{10,11}" 
+          inputmode="numeric"
+          title="Please enter 10-11 digits only"
+          required>      
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Service Selection</div>
+
+    <div class="services">
+      <div class="service-box">
+        <div class="service-title">Coffee Booth</div>
+        <div class="price">₱5,000 Up to 50 Cups</div>
+      </div>
+
+      <div class="service-box">
+        <div class="service-title">Matcha Booth</div>
+        <div class="price">₱9,000 Up to 50 Cups</div>
+      </div>
+
+      <div class="service-box">
+        <div class="service-title">Tattoo Event</div>
+        <div class="price">
+          2 minimalist tattoos<br>
+          ₱1,000 (In Store)
+        </div>
+      </div>
+    </div>
+
+    <div class="total">₱ 0000</div>
+  </div>
+
+<!-- ================= EVENT DETAILS ================= -->
+<div class="card">
+
+    <h2 class="booking-title">Booking Details</h2>
+  <div class="event-layout">
+
+    <!-- LEFT SIDE (Calendar) -->
+    <div class="calendar-box">
+      <label class="section-label">Select Date</label>
+
+      <!-- Small input to display selected date -->
+      <input type="text" id="selected-date" placeholder="YYYY-MM-DD" readonly
+             style="width:150px; padding:10px 12px; border-radius:20px; border:2px solid #114500; margin-bottom:10px; text-align:center; font-family:'Domine', serif; font-size:14px;">
+
+      <!-- Inline calendar -->
+      <div id="calendar"></div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="event-fields">
+
+      <div>
+        <label class="section-label">Select Time</label>
+        <input type="time" id="event-time">
+      </div>
+
+      <div>
+        <label class="section-label">Number of Guests</label>
+        <select id="guest-count">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="section-label">Event Address</label>
+        <input type="text" id="event-location" placeholder="Enter venue or address">
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ================= PREFERENCES ================= -->
+<div class="card">
+
+  <div class="section-title">Preferences & Customization</div>
+
+  <label>Additional Notes</label>
+  <textarea placeholder="Any other requests or instructions"></textarea>
+
+</div>
+
+
+<!-- ================= PAYMENT METHOD ================= -->
+<div class="card">
+
+  <div class="section-title">💳 Payment Method</div>
+
+  <label style="margin-top:10px;">Select Payment Type</label>
+  <div class="payment-options">
+
+    <label class="payment-box">
+      <input type="radio" name="payment_type" value="full">
+      <span>Full Payment</span>
+    </label>
+
+    <label class="payment-box">
+      <input type="radio" name="payment_type" value="reservation">
+      <span>Reservation Fee Only</span>
+    </label>
+
+  </div>
+
+
+  <label style="margin-top:20px;">Select Payment Option</label>
+  <div class="payment-options">
+    <label class="payment-box">
+      <input type="radio" name="payment_method" value="cash">
+      <span>Cash</span>
+    </label>
+
+    <label class="payment-box">
+      <input type="radio" name="payment_method" value="gcash">
+      <span>GCash</span>
+    </label>
+  </div>
+</div>
+
+<div class="card">
+
+  <div class="section-title">Terms and Condition</div>
+
+  <div style="font-size:13px; line-height:1.5;">
+
+    <p style="margin-bottom:10px;">
+      Please take a moment to review our Terms and Conditions to ensure a smooth and hassle-free booking experience with Cafe BELLA.
+    </p>
+
+    <ul style="padding-left:18px; margin-bottom:10px;">
+      <li>Bookings must be made at least one (1) week in advance.</li>
+      <li>A ₱2,000 reservation fee is required to secure the booking.</li>
+      <li>Payments accepted: GCash and Cash.</li>
+      <li>Remaining balance must be settled before or on the event date.</li>
+      <li>Reservation fee is non-refundable.</li>
+      <li>Cancellations within 2 days will incur a 5% fee.</li>
+      <li>Clients must provide accurate event details.</li>
+      <li>Cafe BELLA may adjust bookings due to unforeseen circumstances.</li>
+    </ul>
+
+  </div>
+
+</div>
+
+<!-- CHECKBOX -->
+<div class="card" style="display:flex; align-items:center; gap:10px;">
+
+  <input type="checkbox" id="agree" style="width:18px; height:18px;">
+
+  <label for="agree" style="font-size:13px;">
+    I agree to the terms and conditions and booking policies of Cafe BELLA.
+  </label>
+
+</div>
+
+<!-- BUTTON -->
+<button id="complete-booking" class="book-btn" style="width:100%; max-width:400px;">
+  Complete Booking
+</button>
+</div>
+<!-- CONTACT -->
+<p style="text-align:center; font-size:12px; margin-top:10px;">
+  Need help? Contact us at @cafeBELLA on Facebook or Messenger
+</p>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+
+  <div class="footer-top">
+
+    <div class="footer-logo">
+      <img src="IMAGES/Cafebella.jpg">
+      <p>Kape lang saglit<br>tapos laban ulit.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#">Menu</a>
+      <a href="#">Event Packages</a>
+      <a href="#">Feedback</a>
+      <a href="#">Location</a>
+      <a href="#">FAQ's</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Coffee Booth</a>
+      <a href="#">Matcha Booth</a>
+      <a href="#">Tattoo Event</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">Contact Our Team</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Socials</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Tiktok</a>
+    </div>
+
+    <div class="footer-col gcash">
+      <h4>We accept</h4>
+      <img src="IMAGES/GCash.png">
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Cafe BELLA. All rights reserved.
+  </div>
+</body>
+</html>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Grab the selected service from localStorage
+  const selectedService = localStorage.getItem("selectedService");
+
+  const serviceBoxes = document.querySelectorAll(".service-box");
+  const totalPrice = document.querySelector(".total");
+
+  if(selectedService) {
+    serviceBoxes.forEach(box => {
+      const title = box.querySelector(".service-title").textContent.toLowerCase();
+
+      if(title.includes(selectedService)) {
+        // Highlight and enable selected service
+        box.style.background = "#114500";
+        box.style.color = "white";
+        box.dataset.selected = "true"; // optional
+      } else {
+        // Disable other services
+        box.style.pointerEvents = "none";
+        box.style.opacity = "0.5";
+      }
+    });
+
+    // Update total price based on service
+    switch(selectedService) {
+      case "coffee":
+        totalPrice.textContent = "₱5,000";
+        break;
+      case "matcha":
+        totalPrice.textContent = "₱9,000";
+        break;
+      case "tattoo":
+        totalPrice.textContent = "₱1,000";
+        break;
+    }
+
+    // Clear localStorage so it doesn't persist unnecessarily
+    localStorage.removeItem("selectedService");
+  }
+
+  // Optional: allow user to click a service box to select manually
+  serviceBoxes.forEach(box => {
+    box.addEventListener("click", () => {
+      serviceBoxes.forEach(b => {
+        b.style.background = "#eee";
+        b.style.color = "#114500";
+      });
+      box.style.background = "#114500";
+      box.style.color = "white";
+
+      const serviceName = box.querySelector(".service-title").textContent.toLowerCase();
+      switch(serviceName) {
+        case "coffee booth":
+          totalPrice.textContent = "₱5,000";
+          break;
+        case "matcha booth":
+          totalPrice.textContent = "₱9,000";
+          break;
+        case "tattoo event":
+          totalPrice.textContent = "₱1,000";
+          break;
+      }
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", function() {
+
+    // ----------------------
+    // 1️⃣ Calendar (flatpickr)
+    // ----------------------
+    const bookedDates = [
+        "2026-03-01","2026-03-03","2026-03-05",
+        "2026-03-08","2026-03-10","2026-03-12",
+        "2026-03-15","2026-03-18","2026-03-22",
+        "2026-03-25"
+    ];
+
+    flatpickr("#calendar", {
+        inline: true,
+        minDate: "today",
+        disable: bookedDates,
+        dateFormat: "Y-m-d",
+        onDayCreate: function(dObj, dStr, fp, dayElem){
+            const date = dayElem.dateObj;
+            const formattedDate = fp.formatDate(date, "Y-m-d");
+            if(bookedDates.includes(formattedDate)){
+                dayElem.classList.add("booked-date");
+                dayElem.title = "Fully Booked";
+            }
+        },
+        onChange: function(selectedDates, dateStr){
+            document.getElementById("selected-date").value = dateStr;
+        }
+    });
+
+    // ----------------------
+    // 2️⃣ Service Selection
+    // ----------------------
+    let selectedService = null;
+    const boxes = document.querySelectorAll(".service-box");
+    boxes.forEach(box => {
+        box.addEventListener("click", () => {
+            boxes.forEach(b => {
+                b.dataset.selected = "false";
+                b.style.background = "white";
+                b.style.color = "#114500";
+            });
+            box.dataset.selected = "true";
+            box.style.background = "#114500";
+            box.style.color = "white";
+            selectedService = box.querySelector(".service-title").textContent.toLowerCase();
+
+            const total = document.querySelector(".total");
+            if(selectedService.includes("coffee")) total.textContent = "₱5,000";
+            if(selectedService.includes("matcha")) total.textContent = "₱9,000";
+            if(selectedService.includes("tattoo")) total.textContent = "₱1,000";
+        });
+    });
+
+    // ----------------------
+    // 2️⃣.5️⃣ Contact Number Restriction
+    // ----------------------
+    const contactInput = document.querySelector('input[placeholder*="0912"]'); 
+    const errorMsg = document.createElement("div");
+    errorMsg.style.color = "red";
+    errorMsg.style.fontSize = "12px";
+    errorMsg.style.marginTop = "5px";
+    contactInput.parentNode.insertBefore(errorMsg, contactInput.nextSibling);
+
+    // Bawal ang letters, allow lang digits
+    contactInput.addEventListener("keypress", function(e) {
+        if(!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+            errorMsg.textContent = "Must be numbers only";
+        } else {
+            errorMsg.textContent = "";
+        }
+    });
+
+    // Pati paste restriction para hindi makapag-paste ng letters
+    contactInput.addEventListener("paste", function(e) {
+        const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+        if(/\D/.test(pasteData)) {
+            e.preventDefault();
+            errorMsg.textContent = "Must be numbers only";
+        }
+    });
+
+    // ----------------------
+    // 3️⃣ Complete Booking Validation
+    // ----------------------
+    const completeBtn = document.getElementById("complete-booking");
+    completeBtn.addEventListener("click", function() {
+        const fullName = document.querySelector('input[placeholder*="Full Name"]').value.trim();
+        const email = document.querySelector('input[placeholder*="example"]').value.trim();
+        const facebook = document.querySelector('input[placeholder*="@username"]').value.trim();
+        const contact = contactInput.value.trim();
+
+        const eventDate = document.getElementById("selected-date").value;
+        const eventTime = document.getElementById("event-time").value;
+        const guestCount = document.getElementById("guest-count").value;
+        const eventLocation = document.getElementById("event-location").value;
+
+        const paymentType = document.querySelector('input[name="payment_type"]:checked')?.value;
+        const paymentMethod = document.querySelector('input[name="payment_method"]:checked')?.value;
+        if(!fullName || !email || !facebook || !contact || !eventDate || !eventTime || !guestCount || !eventLocation) {
+            alert("Please complete all required fields before proceeding.");
+            return;
+        }
+
+        if(!selectedService) {
+            alert("Please select a service.");
+            return;
+        }
+
+        if(!paymentType) {
+            alert("Please select a payment type.");
+            return;
+        }
+
+        if(!agree) {
+            alert("You must agree to the terms and conditions before proceeding.");
+            return;
+        }
+
+        localStorage.setItem("paymentService", selectedService);
+        localStorage.setItem("paymentType", paymentType);
+        localStorage.setItem("customerName", fullName);
+        localStorage.setItem("customerEmail", email);
+        localStorage.setItem("customerFacebook", facebook);
+        localStorage.setItem("customerContact", contact);
+        localStorage.setItem("eventDate", eventDate);
+        localStorage.setItem("eventTime", eventTime);
+        localStorage.setItem("guestCount", guestCount);
+        localStorage.setItem("eventLocation", eventLocation);
+
+// Redirect based on payment type
+if(paymentMethod === "cash") window.location.href = "Paymentcash.html";
+else if(paymentMethod === "gcash") window.location.href = "Payment.html";
+    });
+
+});
+</script>
