@@ -25,7 +25,7 @@ body {
     padding: 25px;
     border-radius: 15px;
     width: 400px;
-    height: 560px;
+    height: 700px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     color: #114500;
 
@@ -142,26 +142,32 @@ function showReceipt(data) {
         data.reference = generateReference();
     }
 
-    details.innerHTML = "";
+details.innerHTML = "";
 
-    if (data.service) details.innerHTML += `<p>Service: ${data.service}</p>`;
-    if (data.date) details.innerHTML += `<p>Date: ${data.date}</p>`;
-    if (data.time) details.innerHTML += `<p>Time: ${data.time}</p>`;
-    if (data.guests) details.innerHTML += `<p>Guests: ${data.guests}</p>`;
-    if (data.location) details.innerHTML += `<p>Location: ${data.location}</p>`;
-    if (data.payment) details.innerHTML += `<p>Payment Method: ${data.payment}</p>`;
+if (data.fullname) details.innerHTML += `<p>Full Name: ${data.fullname}</p>`;
+if (data.contact) details.innerHTML += `<p>Contact Number: ${data.contact}</p>`;
+if (data.service) details.innerHTML += `<p>Service: ${data.service}</p>`;
+if (data.guests) details.innerHTML += `<p>Number of Guests: ${data.guests}</p>`;
+if (data.location) details.innerHTML += `<p>Location: ${data.location}</p>`;
+if (data.paymentMethod) details.innerHTML += `<p>Mode of Payment: ${data.paymentMethod}</p>`;
 
-    // CASH ONLY
-    if (data.payment && data.payment.toLowerCase() === "cash") {
-        details.innerHTML += `<p>Reference #: ${data.reference}</p>`;
-    }
+if (data.paymentType) {
+    const typeText = data.paymentType === "full"
+        ? "Full Payment"
+        : "Reservation Only";
+    details.innerHTML += `<p>Payment Type: ${typeText}</p>`;
+}
 
-    document.getElementById("total").innerHTML =
-        `Total Amount: ₱${data.total}`;
+details.innerHTML += `<p>Reference Number: ${data.reference}</p>`;
 
-    document.getElementById("qrImg").src =
-        `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${data.reference}`;
+document.getElementById("total").innerHTML = `
+    <p>Full Package Price: ₱${data.fullPrice.toLocaleString()}</p>
+    <p>Amount Paid: ₱${data.amountPaid.toLocaleString()}</p>
+    <p>Remaining Balance: ₱${data.remainingBalance.toLocaleString()}</p>
+`;
 
+   document.getElementById("qrImg").src =
+`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.facebook.com/share/1CiwKkiCkY/`;
     receipt.style.display = "flex";
 }
 
@@ -171,15 +177,14 @@ function downloadPDF() {
 
     html2pdf().from(element).save("CafeBella_Receipt.pdf");
 }
-showReceipt({
-  service: serviceValue,
-  date: dateValue,
-  time: timeValue,
-  guests: guestsValue,
-  location: locationValue,
-  payment: paymentValue,
-  total: totalValue
-});
+const receiptData = JSON.parse(localStorage.getItem("receiptData"));
+
+if (receiptData) {
+    showReceipt(receiptData);
+} else {
+    document.getElementById("receipt").innerHTML = "<p style='text-align:center;'>No booking data found.</p>";
+    document.getElementById("receipt").style.display = "flex";
+}
 </script>
 
 </body>
