@@ -63,6 +63,8 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  cursor: pointer;
+
 }
 
 .nav-menu {
@@ -258,11 +260,12 @@ body {
 
   <div class="navbar">
     <div class="nav-logo">
-      <img src="IMAGES/Cafebella.jpg">
-    </div>
+      <a href="index.html">
+      <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
+  </div>
 
     <ul class="nav-menu">
-      <li><a href="LandingPage.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="Menu.html">Menu</a></li>
       <li><a href="Package.html" class="active">Packages</a></li>
       <li><a href="#">Location</a></li>
@@ -334,9 +337,9 @@ body {
 
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="#">Home</a>
-      <a href="#">Menu</a>
-      <a href="#">Event Packages</a>
+      <a href="index.html">Home</a>
+      <a href="Menu.html">Menu</a>
+      <a href="Package.html">Event Packages</a>
       <a href="#">Feedback</a>
       <a href="#">Location</a>
       <a href="#">FAQ's</a>
@@ -344,9 +347,9 @@ body {
 
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="#">Coffee Booth</a>
-      <a href="#">Matcha Booth</a>
-      <a href="#">Tattoo Event</a>
+      <a href="Package.html">Coffee Booth</a>
+      <a href="Package.html">Matcha Booth</a>
+      <a href="Package.html">Tattoo Event</a>
     </div>
 
     <div class="footer-col">
@@ -356,8 +359,8 @@ body {
 
     <div class="footer-col">
       <h4>Socials</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Tiktok</a>
+      <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
     <div class="footer-col gcash">
@@ -373,6 +376,7 @@ body {
 </body>
 </html>
 <script>
+/******************************** SELECTED SERVICE **************************/
 document.addEventListener("DOMContentLoaded", function() {
   const selectedService = localStorage.getItem("selectedService");
 
@@ -383,18 +387,18 @@ document.addEventListener("DOMContentLoaded", function() {
       const title = box.querySelector(".service-title").textContent.toLowerCase();
 
       if(title.includes(selectedService)) {
-        // Highlight the selected service
+
         box.style.background = "#114500";
         box.style.color = "white";
-        box.dataset.selected = "true"; // optional
+        box.dataset.selected = "true";
       } else {
-        // Disable other services
+
         box.style.pointerEvents = "none";
         box.style.opacity = "0.5";
       }
     });
 
-    // Update total price automatically
+/******************************** REDIRECT DEPENDE SA PAYMENT TYPE **************************/
     const total = document.querySelector(".total");
     if(selectedService === "coffee") total.textContent = "₱5,000";
     if(selectedService === "matcha") total.textContent = "₱9,000";
