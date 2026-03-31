@@ -21,7 +21,7 @@ body {
   color: #114500;
 }
 
-/* ================= TOPBAR ================= */
+/******************************** TOPBAR ********************************/
 .topbar {
   background: #fff;
   display: flex;
@@ -44,7 +44,7 @@ body {
   width: 18px;
 }
 
-/* ================= NAVBAR ================= */
+/******************************** NAVBAR ********************************/
 .navbar {
   background: #114500;
   display: flex;
@@ -88,7 +88,7 @@ body {
   width: 100%;
 }
 
-/* ================= FORM ================= */
+/******************************** CONTAINER ********************************/
 .container {
   width: 850px;
   margin: 50px auto;
@@ -127,8 +127,7 @@ label {
 
 input {
   width: 100%;
-  padding: 10px 25px; /* top/bottom 10px, left/right 15px para may indent */
-  border-radius: 25px;
+  padding: 10px 25px; 
   border: 2px solid #114500;
   margin-bottom: 15px;
   font-family: 'Domine', serif;
@@ -139,7 +138,7 @@ input {
   gap: 15px;
 }
 
-/* ================= SERVICES ================= */
+/******************************** PACKAGE SERVICES ********************************/
 .services {
   display: flex;
   gap: 15px;
@@ -180,12 +179,12 @@ input {
   font-weight: bold;
 }
 
-/* ================= BUTTON ================= */
+/******************************** BOOKING BUTTON ********************************/
 
 .booking-title {
-  font-family: 'Domine', serif; /* same font */
-  font-size: 18px;              /* same size */
-  color: #114500;               /* same color */
+  font-family: 'Domine', serif;
+  font-size: 18px;              
+  color: #114500;               
   text-align: left;
   margin-bottom: 20px;
 }
@@ -193,19 +192,18 @@ input {
 .book-btn {
   margin-top: 20px;
   padding: 12px 28px;
-  background: white;           /* base background same sa services hover */
-  color: #114500;              /* text color same sa services hover */
+  background: white;           
+  color: #114500;              
   border: 2px solid #114500;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Domine', serif;
   font-weight: 600;
-  transform: translateY(0) scale(1); /* initial state */
-  box-shadow: 0 0 0 rgba(0,0,0,0);   /* no shadow initially */
+  transform: translateY(0) scale(1); 
+  box-shadow: 0 0 0 rgba(0,0,0,0);   
 }
 
-/* Hover style same as services */
 .book-btn:hover {
   background: #114500;
   color: white;
@@ -224,7 +222,7 @@ input {
   cursor: not-allowed !important;
 }
 
-/* ================= EVENT LAYOUT ================= */
+/******************************** EVENT ********************************/
 .event-layout {
   display: flex;
   gap: 30px;
@@ -233,10 +231,9 @@ input {
 
 .calendar-box #calendar {
   margin-top: 5px;
-  max-width: 300px;  /* limits calendar width if needed */
+  max-width: 300px;  
 }
 
-/* RIGHT SIDE */
 .event-fields {
   flex: 1;
   display: flex;
@@ -244,14 +241,12 @@ input {
   gap: 20px;
 }
 
-/* LABEL STYLE (same theme) */
 .section-label {
   font-size: 14px;
   margin-bottom: 5px;
   display: block;
 }
 
-/* INPUT + SELECT SAME STYLE */
 .event-fields input,
 .event-fields select {
   width: 100%;
@@ -260,14 +255,14 @@ input {
   border: 2px solid #114500;
   font-family: 'Domine', serif;
 }
-/* ================= EVENT LAYOUT ================= */
+
 .event-layout {
   display: flex;
   gap: 30px;
   align-items: flex-start;
 }
 
-/* LEFT CALENDAR */
+/******************************** CALENDAR ********************************/
 .calendar-box {
   flex: 1;
 }
@@ -276,7 +271,6 @@ input {
   margin-top: 10px;
 }
 
-/* RIGHT SIDE */
 .event-fields {
   flex: 1;
   display: flex;
@@ -284,14 +278,12 @@ input {
   gap: 20px;
 }
 
-/* LABEL STYLE (same theme) */
 .section-label {
   font-size: 14px;
   margin-bottom: 5px;
   display: block;
 }
 
-/* INPUT + SELECT SAME STYLE */
 .event-fields input,
 .event-fields select {
   width: 100%;
@@ -301,7 +293,7 @@ input {
   font-family: 'Domine', serif;
 }
 
-/* ================= EVENT LAYOUT ================= */
+/************************************* EVENT *********************************************/
 .event-layout {
   display: flex;
   gap: 30px;
@@ -315,22 +307,21 @@ input {
   background: white;
 }
 
-/* LEFT CALENDAR */
-/* CENTER calendar header (label + input) */
+/******************************** CALENDAR LEFT POSITION ********************************/
 .calendar-box {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;   /* center horizontally */
+  align-items: center;  
 }
 
 .calendar-box #calendar {
   margin-top: 10px;
 }
 
-/* ================= CALENDAR DESIGN ================= */
+/******************************** CALENDAR DESIGN **************************************/
 
-/* Main calendar container */
+/* CONTAINER */
 .flatpickr-calendar {
   font-family: 'Domine', serif;
   border: 2px solid #114500;
@@ -338,21 +329,19 @@ input {
   box-shadow: none;
 }
 
-/* Header (month + year) */
+/* FLATPICKER MONTHS */
 .flatpickr-months {
   background: #114500;
   color: white;
   border-radius: 13px 13px 0 0;
 }
 
-/* Month text */
 .flatpickr-current-month {
   color: white !important;   /* pwede mo palitan */
   font-size: 18px;
   font-weight: 600;
 }
 
-/* Weekdays */
 .flatpickr-weekdays {
   background: #e6f0e6;
 }
@@ -362,49 +351,44 @@ input {
   font-weight: 600;
 }
 
-/* Days */
 .flatpickr-day {
   border-radius: 10px;
   transition: 0.2s;
 }
 
-/* Hover effect */
+/* FLATPICKER HOVER */
 .flatpickr-day:hover {
   background: #cce5cc !important;
   color: #114500 !important;
   font-weight: 600;
 }
 
-/* Selected day */
 .flatpickr-day.selected {
   background: #114500;
   color: white;
 }
 
-/* Today */
 .flatpickr-day.today {
   border: 2px solid #114500;
 }
 
-/* Calendar arrows */
 .flatpickr-prev-month,
 .flatpickr-next-month {
   color: white !important;   /* arrow color */
   fill: white !important;    /* for SVG */
 }
-/* Disabled/booked */
+
 .booked-date {
   background: #ccc !important;
   color: #888 !important;
   cursor: not-allowed !important;
 }
 
-
 #calendar {
   margin-top: 5px;
   padding: 8px;
 }
-/* RIGHT SIDE */
+
 .event-fields {
   flex: 1;
   display: flex;
@@ -412,14 +396,13 @@ input {
   gap: 20px;
 }
 
-/* LABEL STYLE (same theme) */
+/******************************** SECTION LABEL **************************************/
 .section-label {
   font-size: 14px;
   margin-bottom: 5px;
   display: block;
 }
 
-/* INPUT + SELECT SAME STYLE */
 .event-fields div {
   display: flex;
   flex-direction: column;
@@ -430,7 +413,7 @@ input {
   height: 45px;
   line-height: 45px;
 }
-/* SELECT TIME */
+
 #event-time::-webkit-calendar-picker-indicator {
   transform: translateX(-5px);
 }
@@ -441,10 +424,10 @@ input {
 
 #event-time::-webkit-calendar-picker-indicator {
   position: relative;
-  right: 10px;   /* ilayo sa gilid */
+  right: 10px;  
   cursor: pointer;
 }
-/* NUMBER OF GUESTS */
+
 #guest-count {
   height: 45px;
   padding: 0 30px 0 40px;
@@ -456,12 +439,11 @@ input {
   background-size: 14px;
 }
 
-/* EVENT ADDRESS */
 #event-location {
   padding: 10px 25px;
 }
 .event-fields > div:first-child {
-  margin-top: 100px; /* o kahit anong value para pantay sa calendar */
+  margin-top: 100px;
 }
 
 textarea {
@@ -475,7 +457,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-/* PAYMENT */
+/******************************** PAYMENT **************************************/
 .payment-options {
   display: flex;
   gap: 15px;
@@ -509,7 +491,7 @@ textarea {
 .payment-box input:checked + span::before {
   content: "✔ ";
 }
-/* ================= FOOTER ================= */
+/******************************** FOOTER **************************************/
 .footer {
   background: #eee;
   padding: 40px 60px;
@@ -521,7 +503,6 @@ textarea {
   flex-wrap: wrap;
 }
 
-/* CAFE BELLA LOGO */
 .footer-logo img {
   width: 120px;
   height: 120px;        
@@ -529,7 +510,6 @@ textarea {
   object-fit: cover;      
 }
 
-/* COLOUMNS */
 .footer-col {
   font-size: 13px;
 }
@@ -547,14 +527,13 @@ textarea {
   margin-bottom: 5px;
 }
 
-/* FOOTER BOTTOM */
 .footer-bottom {
   text-align: center;
   margin-top: 20px;
   color: #114500;
 }
 
-/* GCASH LOGO */
+/******************************** GCASH LOGO **************************************/
 .gcash img {
   width: 40px;
   height: 40px;         
@@ -569,7 +548,7 @@ textarea {
 
 <body>
 
-<!-- TOPBAR -->
+<!-------------------------------- TOPBAR ------------------------------------->
 <div class="topbar">
   <div class="topbar-center">
     Free delivery around Molino. Order now.
@@ -581,14 +560,15 @@ textarea {
   </div>
 </div>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="nav-logo">
-    <img src="IMAGES/Cafebella.jpg">
+<!-------------------------------- NAVBAR ------------------------------------->
+  <div class="navbar">
+    <div class="nav-logo">
+      <a href="index.html">
+      <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
   </div>
 
   <ul class="nav-menu">
-      <li><a href="LandingPage.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="Menu.html">Menu</a></li>
       <li><a href="Package.html" class="active">Packages</a></li>
       <li><a href="#">Location</a></li>
@@ -596,7 +576,7 @@ textarea {
   </ul>
 </div>
 
-<!-- FORM -->
+<!-------------------------------- FORM ------------------------------------->
 <div class="container">
   <h1>Book your event</h1>
   <div class="subtitle">
@@ -667,25 +647,21 @@ textarea {
     <div class="total">₱ 0000</div>
   </div>
 
-<!-- ================= EVENT DETAILS ================= -->
+<!-------------------------------- BOOKING DETAILS ------------------------------------->
 <div class="card">
 
     <h2 class="booking-title">Booking Details</h2>
   <div class="event-layout">
 
-    <!-- LEFT SIDE (Calendar) -->
     <div class="calendar-box">
       <label class="section-label">Select Date</label>
 
-      <!-- Small input to display selected date -->
       <input type="text" id="selected-date" placeholder="YYYY-MM-DD" readonly
              style="width:150px; padding:10px 12px; border-radius:20px; border:2px solid #114500; margin-bottom:10px; text-align:center; font-family:'Domine', serif; font-size:14px;">
 
-      <!-- Inline calendar -->
       <div id="calendar"></div>
     </div>
 
-    <!-- RIGHT SIDE -->
     <div class="event-fields">
 
       <div>
@@ -709,13 +685,11 @@ textarea {
         <label class="section-label">Event Address</label>
         <input type="text" id="event-location" placeholder="Enter venue or address">
       </div>
-
     </div>
-
   </div>
-
 </div>
-<!-- ================= PREFERENCES ================= -->
+
+<!-------------------------------- ADDITIONAL NOTES ------------------------------------->
 <div class="card">
 
   <div class="section-title">Preferences & Customization</div>
@@ -726,7 +700,7 @@ textarea {
 </div>
 
 
-<!-- ================= PAYMENT METHOD ================= -->
+<!-------------------------------- PAYMENT METHOD ------------------------------------->
 <div class="card">
 
   <div class="section-title">💳 Payment Method</div>
@@ -746,7 +720,7 @@ textarea {
 
   </div>
 
-
+<!-------------------------------- PAYMENT OPTION ------------------------------------->
   <label style="margin-top:20px;">Select Payment Option</label>
   <div class="payment-options">
     <label class="payment-box">
@@ -786,7 +760,7 @@ textarea {
 
 </div>
 
-<!-- CHECKBOX -->
+<!-------------------------------- TERMS AND CONDITION ------------------------------------->
 <div class="card" style="display:flex; align-items:center; gap:10px;">
 
   <input type="checkbox" id="agree" style="width:18px; height:18px;">
@@ -797,19 +771,19 @@ textarea {
 
 </div>
 
-<!-- BUTTON -->
+<!-------------------------------- BUTTON ------------------------------------->
 <button id="complete-booking" class="book-btn" style="width:100%; max-width:400px;">
   Complete Booking
 </button>
 </div>
-<!-- CONTACT -->
+
+<!-------------------------------- CONTACT US ------------------------------------->
 <p style="text-align:center; font-size:12px; margin-top:10px;">
   Need help? Contact us at @cafeBELLA on Facebook or Messenger
 </p>
 </div>
 
-
-<!-- FOOTER -->
+<!-------------------------------- FOOTER ------------------------------------->
 <div class="footer">
 
   <div class="footer-top">
@@ -821,9 +795,9 @@ textarea {
 
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="#">Home</a>
-      <a href="#">Menu</a>
-      <a href="#">Event Packages</a>
+      <a href="index.html">Home</a>
+      <a href="Menu.html">Menu</a>
+      <a href="Package.html">Event Packages</a>
       <a href="#">Feedback</a>
       <a href="#">Location</a>
       <a href="#">FAQ's</a>
@@ -831,9 +805,9 @@ textarea {
 
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="#">Coffee Booth</a>
-      <a href="#">Matcha Booth</a>
-      <a href="#">Tattoo Event</a>
+      <a href="Package.html">Coffee Booth</a>
+      <a href="Package.html">Matcha Booth</a>
+      <a href="Package.html">Tattoo Event</a>
     </div>
 
     <div class="footer-col">
@@ -843,8 +817,8 @@ textarea {
 
     <div class="footer-col">
       <h4>Socials</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Tiktok</a>
+      <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
     <div class="footer-col gcash">
@@ -861,11 +835,8 @@ textarea {
 </html>
 
 <script>
-
+/******************************** SERVICES **************************/
 document.addEventListener("DOMContentLoaded", function() {
-
-  // Grab the selected service from localStorage
-  const selectedService = localStorage.getItem("selectedService");
 
   const serviceBoxes = document.querySelectorAll(".service-box");
   const totalPrice = document.querySelector(".total");
@@ -875,18 +846,16 @@ document.addEventListener("DOMContentLoaded", function() {
       const title = box.querySelector(".service-title").textContent.toLowerCase();
 
       if(title.includes(selectedService)) {
-        // Highlight and enable selected service
+
         box.style.background = "#114500";
         box.style.color = "white";
-        box.dataset.selected = "true"; // optional
+        box.dataset.selected = "true";
       } else {
-        // Disable other services
         box.style.pointerEvents = "none";
         box.style.opacity = "0.5";
       }
     });
 
-    // Update total price based on service
     switch(selectedService) {
       case "coffee":
         totalPrice.textContent = "₱5,000";
@@ -899,11 +868,9 @@ document.addEventListener("DOMContentLoaded", function() {
         break;
     }
 
-    // Clear localStorage so it doesn't persist unnecessarily
     localStorage.removeItem("selectedService");
   }
 
-  // Optional: allow user to click a service box to select manually
   serviceBoxes.forEach(box => {
     box.addEventListener("click", () => {
       serviceBoxes.forEach(b => {
@@ -930,9 +897,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 document.addEventListener("DOMContentLoaded", function() {
 
-    // ----------------------
-    // 1️⃣ Calendar (flatpickr)
-    // ----------------------
+/******************************** CALENDAR FLATPICKR **************************/
     const bookedDates = [
         "2026-03-01","2026-03-03","2026-03-05",
         "2026-03-08","2026-03-10","2026-03-12",
@@ -958,10 +923,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // ----------------------
-    // 2️⃣ Service Selection
-    // ----------------------
-    let selectedService = null;
+    /******************************** SERVICES SELECTION **************************/
+    let selectedService = "";
     const boxes = document.querySelectorAll(".service-box");
     boxes.forEach(box => {
         box.addEventListener("click", () => {
@@ -973,7 +936,7 @@ document.addEventListener("DOMContentLoaded", function() {
             box.dataset.selected = "true";
             box.style.background = "#114500";
             box.style.color = "white";
-            selectedService = box.querySelector(".service-title").textContent.toLowerCase();
+            selectedService = box.querySelector(".service-title").textContent.toLowerCase().trim();
 
             const total = document.querySelector(".total");
             if(selectedService.includes("coffee")) total.textContent = "₱5,000";
@@ -982,9 +945,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // ----------------------
-    // 2️⃣.5️⃣ Contact Number Restriction
-    // ----------------------
+/******************************** CONTACT NUMBER RESTRICTION **************************/
     const contactInput = document.querySelector('input[placeholder*="0912"]'); 
     const errorMsg = document.createElement("div");
     errorMsg.style.color = "red";
@@ -1011,9 +972,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // ----------------------
-    // 3️⃣ Complete Booking Validation
-    // ----------------------
+/******************************** COMPLETE BOOKING  **************************/
     const completeBtn = document.getElementById("complete-booking");
     completeBtn.addEventListener("click", function() {
         const fullName = document.querySelector('input[placeholder*="Full Name"]').value.trim();
@@ -1043,13 +1002,18 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        if(!agree) {
+        const agree = document.getElementById("agree").checked;
+
+        if(!agree){
             alert("You must agree to the terms and conditions before proceeding.");
-            return;
+        return;
         }
 
-        localStorage.setItem("paymentService", selectedService);
+        localStorage.setItem("service", selectedService);
+        localStorage.setItem("paymentMethod", paymentMethod);
+        console.log("SAVED SERVICE:", localStorage.getItem("service"));
         localStorage.setItem("paymentType", paymentType);
+        localStorage.setItem("total", document.querySelector(".total").textContent);
         localStorage.setItem("customerName", fullName);
         localStorage.setItem("customerEmail", email);
         localStorage.setItem("customerFacebook", facebook);
@@ -1059,7 +1023,7 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("guestCount", guestCount);
         localStorage.setItem("eventLocation", eventLocation);
 
-// Redirect based on payment type
+/******************************** REDIRECT DEPENDE SA PAYMENT TYPE **************************/
 if(paymentMethod === "cash") window.location.href = "Paymentcash.html";
 else if(paymentMethod === "gcash") window.location.href = "Payment.html";
     });
