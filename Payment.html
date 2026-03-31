@@ -63,6 +63,7 @@ body {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .nav-menu {
@@ -300,12 +301,16 @@ button:hover {
     </div>
   </div>
 
-  <div class="navbar">
-    <div class="nav-logo">
-      <img src="IMAGES/Cafebella.jpg">
-    </div>
+<div class="navbar">
+  <div class="nav-logo">
+    <a href="index.html">
+      <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
+    </a>
+  </div>
+</div>
+
     <ul class="nav-menu">
-      <li><a href="LandingPage.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="Menu.html">Menu</a></li>
       <li><a href="Package.html" class="active">Packages</a></li>
       <li><a href="#">Location</a></li>
@@ -388,8 +393,7 @@ function savePaymentType(value){
     </div>
   </div>
 
-  <button>Confirm Payment</button>
-
+  <button onclick="confirmPayment()">Confirm Payment</button>
 </div>
 
 <!-- FOOTER -->
@@ -403,9 +407,9 @@ function savePaymentType(value){
 
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="#">Home</a>
-      <a href="#">Menu</a>
-      <a href="#">Event Packages</a>
+      <a href="index.html">Home</a>
+      <a href="Menu.html">Menu</a>
+      <a href="Package.html">Event Packages</a>
       <a href="#">Feedback</a>
       <a href="#">Location</a>
       <a href="#">FAQ's</a>
@@ -413,9 +417,9 @@ function savePaymentType(value){
 
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="#">Coffee Booth</a>
-      <a href="#">Matcha Booth</a>
-      <a href="#">Tattoo Event</a>
+      <a href="Package.html">Coffee Booth</a>
+      <a href="Package.html">Matcha Booth</a>
+      <a href="Package.html">Tattoo Event</a>
     </div>
 
     <div class="footer-col">
@@ -425,8 +429,8 @@ function savePaymentType(value){
 
     <div class="footer-col">
       <h4>Socials</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Tiktok</a>
+      <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
     <div class="footer-col gcash">
@@ -444,7 +448,7 @@ function savePaymentType(value){
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // --- Retrieve selections from localStorage ---
-    const service = localStorage.getItem("paymentService");  // e.g. "Matcha Booth"
+    const service = localStorage.getItem("service");  // e.g. "Matcha Booth"
     let paymentType = localStorage.getItem("paymentType") || "reservation"; // default to reservation
 
     // --- Map base services to prices ---
@@ -508,19 +512,33 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-<button onclick="confirmPayment()">Confirm Payment</button>
-
-
 function confirmPayment() {
 
+    const paymentType = localStorage.getItem("paymentType");
+    const fullPrice = localStorage.getItem("total");
+
+    // convert ₱9,000 → 9000
+    const numericFull = parseInt(fullPrice.replace(/[₱,]/g, ""));
+
+    let amountPaid = numericFull;
+    let remaining = 0;
+
+    if(paymentType === "reservation"){
+        amountPaid = 2000;
+        remaining = numericFull - 2000;
+    }
+
     const bookingData = {
+        fullname: localStorage.getItem("customerName"),
+        contact: localStorage.getItem("customerContact"),
         service: localStorage.getItem("service"),
-        date: localStorage.getItem("date"),
-        time: localStorage.getItem("time"),
-        guests: localStorage.getItem("guests"),
-        location: localStorage.getItem("location"),
-        payment: "GCash", // ✅ FIXED
-        total: localStorage.getItem("total")
+        guests: localStorage.getItem("guestCount"),
+        location: localStorage.getItem("eventLocation"),
+        paymentMethod: localStorage.getItem("paymentMethod") || "Cash",
+        paymentType: paymentType,
+        fullPrice: numericFull,
+        amountPaid: amountPaid,
+        remainingBalance: remaining
     };
 
     localStorage.setItem("receiptData", JSON.stringify(bookingData));
