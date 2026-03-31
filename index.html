@@ -23,7 +23,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
-/* TOPBAR */
+/******************************** TOPBAR ********************************/
 .topbar {
   background: #fff;
   display: flex;
@@ -47,7 +47,7 @@ html {
   width: 18px;
 }
 
-/* NAVBAR */
+/******************************** NAVBAR ********************************/
 .navbar {
   background: #114500;
   display: flex;
@@ -69,6 +69,7 @@ html {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .nav-menu {
@@ -100,18 +101,17 @@ html {
   width: 100%;
 }
 
-/* NAVBAR HOVER ANIMATION */
 .nav-menu a:hover::after {
   width: 100%;
 }
 
-/* HERO */
+/******************************** HERO ********************************/
 .hero {
   position: relative;
   height: 610px;
   overflow: hidden;
 }
-
+/******************************** SLIDE ARROW ********************************/
 .slide {
   position: absolute;
   width: 100%;
@@ -152,7 +152,7 @@ html {
   margin-bottom: 25px;
 }
 
-/* HERO BUTTON */
+/******************************** HERO BOTTONS ********************************/
 .hero-btn {
   padding: 12px 28px;
   background: #114500;
@@ -170,7 +170,7 @@ html {
   border-radius: 50px;
 }
 
-/* DOTS PER SLIDES */
+/******************************** DOTS ********************************/
 .dots {
   position: absolute;
   bottom: 20px;
@@ -191,16 +191,45 @@ html {
 .dot.active {
   background: white;
 }
+/******************************** SCROLL ANIMATION ********************************/
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
 
-/* MENU SECTION */
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/******************************** TEXT ANIMATION RISE ********************************/
+.rise-title,
+.rise-desc {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.rise-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rise-desc.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+/******************************** MENU ********************************/
 .menu-section {
   background: #eee;
   margin: 60px auto;
   width: 90%;
-  padding: 40px;
+  padding: 80px 40px;
   text-align: center;
   border: 2px solid #114500;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 
 .menu-section h1 {
@@ -209,13 +238,14 @@ html {
 }
 
 .menu-caption {
-  max-width: 700px;
-  margin: 0 auto 15px;
-  font-size: 20px;
-  color: #114500;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.7;
 }
 
-/* MENU SLIDER */
 .menu-slider {
   position: relative;
   overflow: hidden;
@@ -255,23 +285,6 @@ html {
   padding: 8px 12px;
 }
 
-/* ARROWS */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: white;
-  border: 1px solid #114500;
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
-
-/* BUTTON */
 .menu-btn {
   margin-top: 30px;
   padding: 12px 28px;
@@ -282,14 +295,28 @@ html {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .menu-btn:hover {
   background: #114500;
   color: white;
   border-radius: 20px;
 }
 
-/* ================= EVENT SECTION ================= */
+/* ARROWS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #114500;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/******************************** EVENT ********************************/
 
 .event-section {
   width: 90%;
@@ -315,20 +342,6 @@ html {
   align-items: center;
 }
 
-/* MATCHA IMAGES */
-.matcha-left {
-  width: 229px;
-  height: 208px;
-  object-fit: contain;
-}
-
-.matcha-right {
-  width: 344px;
-  height: 172px;
-  object-fit: contain;
-}
-
-/* EVENT TEXT */
 .event-text {
   flex: 1;
   max-width: 600px;
@@ -350,7 +363,6 @@ html {
   color: 114500 ;
 }
 
-/* EVENT BUTTONS */
 .event-btn {
   padding: 12px 28px;
   background: white;
@@ -368,7 +380,6 @@ html {
   transform: translateY(-2px);
 }
 
-/* EVENT CARDS */
 .event-cards {
   display: flex;
   justify-content: center;
@@ -387,7 +398,7 @@ html {
   transform: scale(1.05);
 }
 
-/* EVENT BOTTOM */
+
 .event-bottom h3 {
   color: #114500;
   margin-bottom: 10px;
@@ -398,10 +409,17 @@ html {
   margin-bottom: 15px;
 }
 
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 20px;
+/******************************** MATCHA IMAGES ********************************/
+.matcha-left {
+  width: 229px;
+  height: 208px;
+  object-fit: contain;
+}
+
+.matcha-right {
+  width: 344px;
+  height: 172px;
+  object-fit: contain;
 }
 
 /* ================= FEEDBACK SECTION ================= */
@@ -414,7 +432,6 @@ html {
   overflow: hidden;
 }
 
-/* TOP IMAGE WITH GRADIENT */
 .feedback-top {
   position: absolute;
   top: 0;
@@ -444,7 +461,6 @@ html {
   }
 }
 
-/* COFFEE BEAN APPLY ANIMATION */
 .feedback-side {
   position: absolute;
   bottom: 0;
@@ -468,7 +484,6 @@ html {
   animation-delay: 0.5s;
 }
 
-/* FEEDBACK TEXT */
 .feedback-section h2 {
   font-size: 32px;
   margin-bottom: 10px;
@@ -483,7 +498,6 @@ html {
   z-index: 2;
 }
 
-/* FEEDBACK CARDS */
 .feedback-cards {
   display: flex;
   justify-content: center;
@@ -501,10 +515,9 @@ html {
   background: #f2f2f2;
 }
 
-/* FIVE STARS RATE PICTURE */
 .feedback-stars {
   color: #114500;
-  font-size: 36px; /* adjust mo pa if gusto mo mas malaki */
+  font-size: 36px;
   line-height: 1;
 }
 
@@ -518,7 +531,7 @@ html {
   font-weight: bold;
 }
 
-/* ================= LOCATION SECTION ================= */
+/******************************** LOCATION ********************************/
 
 .location-section {
   position: relative;
@@ -530,7 +543,6 @@ html {
   margin: 80px auto;
 }
 
-/* BLURRED BACKGROUND EFFECT */
 .location-bg {
   position: absolute;
   width: 100%;
@@ -540,7 +552,6 @@ html {
   z-index: 0;
 }
 
-/* CONTAINER NG ANO SA LOCATION */
 .location-container {
   position: relative;
   z-index: 2;
@@ -554,7 +565,6 @@ html {
   border-radius: 10px;
 }
 
-/* PIC NG CAFE BELLA SA LEFT CORNER */
 .location-left {
   flex: 1;
 }
@@ -574,10 +584,10 @@ html {
 .location-text h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  text-align: center; /* ✅ center text */
+  text-align: center;
 }
 
-/* CAFE BELLA ADDRESS */
+/******************************** LOC ADDRESS ********************************/
 .location-info {
   border: 2px solid #114500;
   padding: 12px;
@@ -589,7 +599,7 @@ html {
   margin-bottom: 4px;
 }
 
-/* CAFE BELLA GUGUL MAP */
+/******************************** CAFE BELLA GUGUL MAP ********************************/
 .location-map {
   flex: 1;
 }
@@ -602,7 +612,7 @@ html {
   border-radius: 6px;
 }
 
-/* GREEN TEA NA MAY PA ROTATE */
+/******************************** MATCHA ROTATING ********************************/
 .rotating-green-tea {
   width: 180px;        
   height: 180px;          
@@ -610,13 +620,13 @@ html {
   display: block;
   margin: 40px auto;      
 }
-/* GREEN TEA KEY FRAMES ANIMATION */
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* ================= FAQ SECTION ================= */
+/******************************** FAQ ********************************/
 
 .faq-section {
   background: #114500;
@@ -695,7 +705,11 @@ html {
   transform: scale(1.05);     
 }
 
-/* ================= FOOTER ================= */
+/******************************** FOOTER ********************************/
+.footer {
+  text-align: center;
+  padding: 20px;
+}
 
 .footer {
   background: #eee;
@@ -708,7 +722,6 @@ html {
   flex-wrap: wrap;
 }
 
-/* CAFE BELLA LOGO */
 .footer-logo img {
   width: 120px;
   height: 120px;        
@@ -716,7 +729,6 @@ html {
   object-fit: cover;      
 }
 
-/* COLOUMNS */
 .footer-col {
   font-size: 13px;
 }
@@ -734,14 +746,13 @@ html {
   margin-bottom: 5px;
 }
 
-/* FOOTER BOTTOM */
 .footer-bottom {
   text-align: center;
   margin-top: 20px;
   color: #114500;
 }
 
-/* GCASH LOGO */
+/******************************** GCASH LOGO ********************************/
 .gcash img {
   width: 40px;
   height: 40px;         
@@ -754,7 +765,7 @@ html {
 
 <body>
 
-<!-- TOPBAR -->
+<!-------------------------------- TOPBAR ------------------------------------->
 <div class = "header-wrapper">
   <div class="topbar">
     <div class="topbar-center">
@@ -769,14 +780,15 @@ html {
    </div>
 </div>
 
-<!-- NAVBAR -->
+<!-------------------------------- NAVBAR ------------------------------------->
   <div class="navbar">
     <div class="nav-logo">
-      <img src="IMAGES/Cafebella.jpg">
+      <a href="index.html">
+      <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
   </div>
 
     <ul class="nav-menu">
-      <li><a href="LandingPage.html" class="active">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="Menu.html">Menu</a></li>
       <li><a href="Package.html">Packages</a></li>
       <li><a href="#location">Location</a></li>
@@ -785,7 +797,7 @@ html {
   </div>
 </div>
 
-<!-- HERO -->
+<!-------------------------------- HERO ------------------------------------->
 <div class="hero" id="hero">
 
   <img src="IMAGES/firstslide.png" class="slide active">
@@ -808,12 +820,13 @@ html {
 
 </div>
 
-<!-- MENU -->
+<!-------------------------------- MENU ------------------------------------->
 <div id="menu" class="menu-section">
-  <h1>Our Menu</h1>
 
-  <p class="menu-caption">
-    Discover the menu at Cafe BELLA, where every coffee, matcha, and treat is crafted to delight your taste buds. Each item is made with quality ingredients and careful attention to flavor. Experience the perfect balance of taste in every sip and bite.
+  <h1 class="rise-title">Our Menu</h1>
+
+  <p class="rise-desc">
+    Discover the menu at Cafe BELLA, where every coffee, matcha, and treat is crafted to delight your taste buds.<br>Each item is made with quality ingredients and careful attention to flavor.<br>Experience the perfect balance of taste in every sip and bite.
   </p>
 
   <button class="menu-btn" onclick="window.location.href='menu.html#menu-categories'">View Our Menu</button>
@@ -838,7 +851,7 @@ html {
   
 </div>
 
-<!-- EVENT PACKAGES -->
+<!-------------------------------- EVENT PACKAGES ------------------------------------->
 <div class="event-section">
 
   <div class="event-top">
@@ -864,7 +877,7 @@ html {
 
 </div>
 
-<!-- FEEDBACK SECTION -->
+<!-------------------------------- FEEDBACK ------------------------------------->
 <div class="feedback-section">
 
   <div class="feedback-top"></div>
@@ -916,12 +929,11 @@ html {
   </div>
 </div>
 
-<!-- LOCATION SECTION -->
+<!-------------------------------- LOCATION ------------------------------------->
 <div class="location-section" id="location">
   <div class="location-bg"></div>
     <div class="location-container">
 
-    <!-- LEFT -->
       <div class="location-left">
         <div class="location-img">
           <img src="IMAGES/location.jpg">
@@ -938,7 +950,6 @@ html {
       </div>
     </div>
 
-    <!-- RIGHT (MAP) -->
     <div class="location-map">
       <iframe 
         src="https://maps.google.com/maps?q=Soldiers%20Hills%204%20Bacoor&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -950,12 +961,12 @@ html {
 </div>
 
   </div>
-<!-- MATCHA IMAGE TOP -->
+<!-------------------------------- MATCHA ROTATING ------------------------------------->
   <div style="text-align:center; margin-top:40px;">
     <img src="IMAGES/greentea.png" class="rotating-green-tea" alt="Green Tea">
   </div>
 
-<!-- FAQ SECTION -->
+<!-------------------------------- FAQ SECTION ------------------------------------->
 <div class="faq-section">
   <h2>Frequently ask questions</h2>
   <div class="faq-sub">
@@ -1002,21 +1013,23 @@ html {
 
 </div>
 
-<!-- FOOTER -->
+<!-------------------------------- FOOTER ------------------------------------->
 <div class="footer">
 
   <div class="footer-top">
 
-    <div class="footer-logo">
-      <img src="IMAGES/Cafebella.jpg">
-      <p>Kape lang saglit<br>tapos laban ulit.</p>
-    </div>
+<div class="footer-logo">
+  <a href="index.html">
+    <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
+  </a>
+  <p>Kape lang saglit<br>tapos laban ulit.</p>
+</div>
 
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="#">Home</a>
-      <a href="#">Menu</a>
-      <a href="#">Event Packages</a>
+      <a href="index.html">Home</a>
+      <a href="Menu.html">Menu</a>
+      <a href="Package.html">Event Packages</a>
       <a href="#">Feedback</a>
       <a href="#">Location</a>
       <a href="#">FAQ's</a>
@@ -1024,9 +1037,9 @@ html {
 
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="#">Coffee Booth</a>
-      <a href="#">Matcha Booth</a>
-      <a href="#">Tattoo Event</a>
+      <a href="Package.html">Coffee Booth</a>
+      <a href="Package.html">Matcha Booth</a>
+      <a href="Package.html">Tattoo Event</a>
     </div>
 
     <div class="footer-col">
@@ -1036,8 +1049,8 @@ html {
 
     <div class="footer-col">
       <h4>Socials</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Tiktok</a>
+      <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
     <div class="footer-col gcash">
@@ -1053,10 +1066,28 @@ html {
 
 </div>
 </div>
-
 <script>
+  
+/******************************** TITLE ANIMATION RISE **************************/
+const title = document.querySelector(".rise-title");
+const desc = document.querySelector(".rise-desc");
 
-/* HERO SLIDER */
+function handleRiseUp() {
+  const triggerPoint = window.innerHeight - 100;
+
+  if (title.getBoundingClientRect().top < triggerPoint) {
+    title.classList.add("show");
+  }
+
+  if (desc.getBoundingClientRect().top < triggerPoint) {
+    desc.classList.add("show");
+  }
+}
+
+window.addEventListener("scroll", handleRiseUp);
+handleRiseUp();
+
+/******************************** HERO SLIDER *******************************/
 let slides = document.querySelectorAll(".slide");
 let dots = document.querySelectorAll(".dot");
 
@@ -1098,12 +1129,12 @@ function nextSlide() {
   showSlide(index);
 }
 
-let slider = setInterval(nextSlide, 20000);
+let slider = setInterval(nextSlide, 5000);
 
 const hero = document.getElementById("hero");
 
 hero.addEventListener("mouseenter", () => clearInterval(slider));
-hero.addEventListener("mouseleave", () => slider = setInterval(nextSlide, 20000));
+hero.addEventListener("mouseleave", () => slider = setInterval(nextSlide, 5000));
 
 dots.forEach((dot, i) => {
   dot.addEventListener("click", () => {
@@ -1112,7 +1143,7 @@ dots.forEach((dot, i) => {
   });
 });
 
-/* MENU SLIDER */
+/******************************** MENU SLIDER *******************************/
 let menuIndex = 0;
 const track = document.getElementById("menuTrack");
 const cards = document.querySelectorAll(".menu-card");
@@ -1133,7 +1164,7 @@ function slideMenu(direction) {
   track.style.transform = `translateX(-${menuIndex * cardWidth}px)`;
 }
 
-/* FAQ DROPDOWN */
+/******************************** FAQ DROPDOWN *******************************/
 const faqs = document.querySelectorAll(".faq-item");
 
 faqs.forEach(faq => {
