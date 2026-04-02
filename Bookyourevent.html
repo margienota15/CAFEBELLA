@@ -620,14 +620,14 @@ textarea {
 </div>
 
 <!-------------------------------- FORM ------------------------------------->
-<div class="container">
+<div class="container rise-item">
   <h1>Book your event</h1>
-  <div class="subtitle">
+  <div class="subtitle rise-item">
     Fill out the form and we’ll confirm within 24 hours
   </div>
 
-  <div class="card">
-    <div class="section-title">Customer Details</div>
+  <div class="card rise-item">
+    <div class="section-title rise-item">Customer Details</div>
 
     <label>Full Name</label>
     <input type="text" 
@@ -664,21 +664,21 @@ textarea {
     </div>
   </div>
 
-  <div class="card">
+  <div class="card rise-item">
     <div class="section-title">Service Selection</div>
 
-    <div class="services">
+    <div class="services rise-item">
       <div class="service-box">
         <div class="service-title">Coffee Booth</div>
         <div class="price">₱5,000 Up to 50 Cups</div>
       </div>
 
-      <div class="service-box">
+      <div class="service-box rise-item">
         <div class="service-title">Matcha Booth</div>
         <div class="price">₱9,000 Up to 50 Cups</div>
       </div>
 
-      <div class="service-box">
+      <div class="service-box rise-item">
         <div class="service-title">Tattoo Event</div>
         <div class="price">
           2 minimalist tattoos<br>
@@ -691,7 +691,7 @@ textarea {
   </div>
 
 <!-------------------------------- BOOKING DETAILS ------------------------------------->
-<div class="card">
+<div class="card rise-item">
 
     <h2 class="booking-title">Booking Details</h2>
   <div class="event-layout">
@@ -705,7 +705,7 @@ textarea {
       <div id="calendar"></div>
     </div>
 
-    <div class="event-fields">
+    <div class="event-fields rise-item">
 
       <div>
         <label class="section-label">Select Time</label>
@@ -733,7 +733,7 @@ textarea {
 </div>
 
 <!-------------------------------- ADDITIONAL NOTES ------------------------------------->
-<div class="card">
+<div class="card rise-item">
 
   <div class="section-title">Preferences & Customization</div>
 
@@ -744,19 +744,19 @@ textarea {
 
 
 <!-------------------------------- PAYMENT METHOD ------------------------------------->
-<div class="card">
+<div class="card rise-item">
 
   <div class="section-title">💳 Payment Method</div>
 
   <label style="margin-top:10px;">Select Payment Type</label>
   <div class="payment-options">
 
-    <label class="payment-box">
+    <label class="payment-box rise-item">
       <input type="radio" name="payment_type" value="full">
       <span>Full Payment</span>
     </label>
 
-    <label class="payment-box">
+    <label class="payment-box rise-item">
       <input type="radio" name="payment_type" value="reservation">
       <span>Reservation Fee Only</span>
     </label>
@@ -765,20 +765,20 @@ textarea {
 
 <!-------------------------------- PAYMENT OPTION ------------------------------------->
   <label style="margin-top:20px;">Select Payment Option</label>
-  <div class="payment-options">
+  <div class="payment-options rise-item">
     <label class="payment-box">
       <input type="radio" name="payment_method" value="cash">
       <span>Cash</span>
     </label>
 
-    <label class="payment-box">
+    <label class="payment-box rise-item">
       <input type="radio" name="payment_method" value="gcash">
       <span>GCash</span>
     </label>
   </div>
 </div>
 
-<div class="card">
+<div class="card rise-item">
 
   <div class="section-title">Terms and Condition</div>
 
@@ -826,19 +826,19 @@ textarea {
 </p>
 </div>
 <!-------------------------------- FOOTBAR ------------------------------------->
-<div class="footbar">
+<div class="footbar rise-item">
   Kape lang saglit tapos laban ulit
 </div>
 <!-------------------------------- FOOTER ------------------------------------->
-<div class="footer">
+<div class="footer rise-item">
 
-  <div class="footer-top">
+  <div class="footer-top rise-item">
 
-    <div class="footer-logo">
+    <div class="footer-logo rise-item">
       <img src="IMAGES/Cafebella.jpg">
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
       <a href="Menu.html">Menu</a>
@@ -848,38 +848,58 @@ textarea {
       <a href="#">FAQ's</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Services</h4>
       <a href="Package.html">Coffee Booth</a>
       <a href="Package.html">Matcha Booth</a>
       <a href="Package.html">Tattoo Event</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>About</h4>
       <a href="#">Contact Our Team</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Socials</h4>
       <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
-    <div class="footer-col gcash">
+    <div class="footer-col gcash rise-item">
       <h4>We accept</h4>
       <img src="IMAGES/GCash.png">
     </div>
 
   </div>
 
-  <div class="footer-bottom">
+  <div class="footer-bottom rise-item">
     © 2026 Cafe BELLA. All rights reserved.
   </div>
 </body>
 </html>
 
 <script>
+/******************************** CONSISTENT RISE ANIMATION ********************************/
+
+const riseElements = document.querySelectorAll(".rise-title, .rise-desc, .rise-item, .event-card");
+
+function handleRise() {
+  const triggerPoint = window.innerHeight * 0.85;
+
+  riseElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < triggerPoint) {
+      el.classList.add("show");
+    } else {
+      el.classList.remove("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", handleRise);
+window.addEventListener("load", handleRise);
 /******************************** SERVICES **************************/
 document.addEventListener("DOMContentLoaded", function() {
 
