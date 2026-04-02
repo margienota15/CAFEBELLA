@@ -46,7 +46,16 @@ html {
 .topbar-right img {
   width: 18px;
 }
+.book-link {
+  color: #114500;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
+.book-link:hover {
+  color: #0a2f00;
+}
 /******************************** NAVBAR ********************************/
 .navbar {
   background: #114500;
@@ -104,7 +113,66 @@ html {
 .nav-menu a:hover::after {
   width: 100%;
 }
+.nav-search {
+  position: relative;
+  margin-left: auto;
+}
+.nav-search input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 220px;
+  font-family: 'Domine', serif;
+}
 
+.suggestions-box {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+  background: #114500;
+  color: white;
+}
+
+.search-box {
+  position: relative;
+  width: 220px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px 8px 35px; 
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-family: 'Domine', serif;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;   
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
 /******************************** HERO ********************************/
 .hero {
   position: relative;
@@ -203,23 +271,21 @@ html {
   transform: translateY(0);
 }
 
-/******************************** TEXT ANIMATION RISE ********************************/
+/******************************** RISE ANIMATION ********************************/
+
 .rise-title,
-.rise-desc {
+.rise-desc,
+.rise-item {
   opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.rise-title.show {
+.rise-title.show,
+.rise-desc.show,
+.rise-item.show {
   opacity: 1;
   transform: translateY(0);
-}
-
-.rise-desc.show {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.3s;
 }
 /******************************** MENU ********************************/
 .menu-section {
@@ -326,6 +392,7 @@ html {
   background: #eee;
   text-align: center;
   border-radius: 15px;
+  margin-top: 80px;
 }
 
 .event-top {
@@ -427,8 +494,8 @@ html {
 .feedback-section {
   position: relative;
   text-align: center;
-  padding: 120px 20px 80px;
-  color: #114500;
+  padding: 100px 20px 60px;
+  margin-top: 80px;
   overflow: hidden;
 }
 
@@ -463,7 +530,7 @@ html {
 
 .feedback-side {
   position: absolute;
-  bottom: 0;
+  bottom: -40px; /* para hindi sumapaw sa next section */
   width: 334.96px;
   height: 326.97px;
   object-fit: contain;
@@ -535,12 +602,13 @@ html {
 
 .location-section {
   position: relative;
-  height: 520px;
+  padding: 80px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   margin: 80px auto;
+  margin-top: 80px;
 }
 
 .location-bg {
@@ -560,9 +628,10 @@ html {
   padding: 30px;
   display: flex;
   gap: 25px;
-  width: 80%;
+  width: 90%;
   max-width: 1000px;
   border-radius: 10px;
+  margin: auto;
 }
 
 .location-left {
@@ -632,7 +701,8 @@ html {
   background: #114500;
   color: white;
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
+  margin-top: 80px;
 }
 
 .faq-section h2 {
@@ -704,11 +774,23 @@ html {
   color: white;               
   transform: scale(1.05);     
 }
-
+/******************************** FOOTBAR ********************************/
+.footbar {
+  background: white;
+  border-top: 2px solid #114500;
+  border-bottom: 2px solid #114500;
+  text-align: center;
+  padding: 15px 20px;
+  font-family: 'Domine', serif;
+  color: #114500;
+  font-size: 14px;
+  margin-top: 40px;
+}
 /******************************** FOOTER ********************************/
 .footer {
-  text-align: center;
-  padding: 20px;
+  background: #eee;
+  padding: 50px 20px;
+  margin-top: 80px;
 }
 
 .footer {
@@ -723,10 +805,10 @@ html {
 }
 
 .footer-logo img {
-  width: 120px;
-  height: 120px;        
-  border-radius: 50%;    
-  object-fit: cover;      
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;    
 }
 
 .footer-col {
@@ -768,9 +850,7 @@ html {
 <!-------------------------------- TOPBAR ------------------------------------->
 <div class = "header-wrapper">
   <div class="topbar">
-    <div class="topbar-center">
-    Free delivery around Molino. Order now.
-    </div>
+  <div class="topbar-center">Planning an event? <a href="Package.html" class="book-link">Book Now</a> and reserve your date with Cafe Bella.</div>
 
   <div class="topbar-right">
     <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">
@@ -781,24 +861,34 @@ html {
 </div>
 
 <!-------------------------------- NAVBAR ------------------------------------->
-  <div class="navbar">
-    <div class="nav-logo">
-      <a href="index.html">
+<div class="navbar">
+
+  <div class="nav-logo">
+    <a href="index.html">
       <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
+    </a>
   </div>
 
-    <ul class="nav-menu">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="Menu.html">Menu</a></li>
-      <li><a href="Package.html">Packages</a></li>
-      <li><a href="#location">Location</a></li>
-      <li><a href="#">FAQs</a></li>
-    </ul>
+  <ul class="nav-menu">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="Menu.html">Menu</a></li>
+    <li><a href="Package.html">Packages</a></li>
+    <li><a href="#">Location</a></li>
+    <li><a href="FAQ.html">FAQs</a></li>
+  </ul>
+
+  <!-- SEARCH BAR (RIGHT SIDE WITH ICON) -->
+<div class="nav-search">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search menu..." onkeyup="showSuggestions()">
+    <span class="search-icon">🔍</span>
   </div>
+  <div id="suggestions" class="suggestions-box"></div>
 </div>
 
+</div>
 <!-------------------------------- HERO ------------------------------------->
-<div class="hero" id="hero">
+<div class="hero rise-item" id="hero">
 
   <img src="IMAGES/firstslide.png" class="slide active">
   <img src="IMAGES/secondslide.jpg" class="slide">
@@ -821,7 +911,7 @@ html {
 </div>
 
 <!-------------------------------- MENU ------------------------------------->
-<div id="menu" class="menu-section">
+<div id="menu" class="menu-section rise-item">
 
   <h1 class="rise-title">Our Menu</h1>
 
@@ -829,99 +919,100 @@ html {
     Discover the menu at Cafe BELLA, where every coffee, matcha, and treat is crafted to delight your taste buds.<br>Each item is made with quality ingredients and careful attention to flavor.<br>Experience the perfect balance of taste in every sip and bite.
   </p>
 
-  <button class="menu-btn" onclick="window.location.href='menu.html#menu-categories'">View Our Menu</button>
+<button id="captionBtn" class="menu-btn rise-item" onclick="window.location.href='menu.html#menu-categories'">
+  View Our Menu
+</button>
+  <div class="menu-slider rise-item">
+    <button class="arrow left rise-item" onclick="slideMenu(-1)">&#10094;</button>
 
-  <div class="menu-slider">
-    <button class="arrow left" onclick="slideMenu(-1)">&#10094;</button>
+<div class="menu-track" id="menuTrack">
+  <div class="menu-card rise-item"><span>Davion’s Wok Tossed Fried Rice</span></div>
+  <div class="menu-card rise-item"><span>Sizzling</span></div>
+  <div class="menu-card rise-item"><span>Cheesy Spicy Noodles</span></div>
+  <div class="menu-card rise-item"><span>Snacks</span></div>
+  <div class="menu-card rise-item"><span>Coffee</span></div>
+  <div class="menu-card rise-item"><span>Non-Coffee</span></div>
+  <div class="menu-card rise-item"><span>Matcha Series Regular</span></div>
+  <div class="menu-card rise-item"><span>Matcha Series Premium & Hojicha</span></div>
+</div>
 
-    <div class="menu-track" id="menuTrack">
-      <div class="menu-card"><span>Davion’s Wok Tossed Fried Rice</span></div>
-      <div class="menu-card"><span>Sizzling</span></div>
-      <div class="menu-card"><span>Cheesy Spicy Noodles</span></div>
-      <div class="menu-card"><span>Snacks</span></div>
-      <div class="menu-card"><span>Coffee</span></div>
-      <div class="menu-card"><span>Non-Coffee</span></div>
-      <div class="menu-card"><span>Matcha Series Regular</span></div>
-      <div class="menu-card"><span>Matcha Series Premium & Hojicha</span></div>
-    </div>
-
-    <button class="arrow right" onclick="slideMenu(1)">&#10095;</button>
+    <button class="arrow right rise-item" onclick="slideMenu(1)">&#10095;</button>
   </div>
 
   
 </div>
 
 <!-------------------------------- EVENT PACKAGES ------------------------------------->
-<div class="event-section">
+<div class="event-section rise-item">
 
-  <div class="event-top">
-    <img src="IMAGES/matchacircle.png" class="matcha-left">
+  <div class="event-top rise-item">
+    <img src="IMAGES/matchacircle.png" class="matcha-left rise-item">
 
-    <div class="event-text">
-      <h2>Event Packages</h2>
-      <p>
+    <div class="event-text rise-item">
+      <h2 class="rise-title">Event Packages</h2>
+      <p class="rise-desc">
         Make your celebrations truly special with our curated event packages.
         Each package is crafted to create lasting memories for you and your guests.
       </p>
-      <button class="event-btn" onclick="window.location.href='Package.html'">View Our Packages</button>
+      <button class="event-btn rise-item" onclick="window.location.href='Package.html'">View Our Packages</button>
     </div>
 
-    <img src="IMAGES/matchapowder.png" class="matcha-right">
+    <img src="IMAGES/matchapowder.png" class="matcha-right rise-item">
   </div>
 
   <div class="event-cards">
-    <div class="event-card"></div>
-    <div class="event-card"></div>
-    <div class="event-card"></div>
+    <div class="event-card rise-item"></div>
+    <div class="event-card rise-item"></div>
+    <div class="event-card rise-item"></div>
   </div>
 
 </div>
 
 <!-------------------------------- FEEDBACK ------------------------------------->
-<div class="feedback-section">
+<div class="feedback-section rise-item">
 
-  <div class="feedback-top"></div>
+  <div class="feedback-top rise-item"></div>
 
-  <img src="IMAGES/coffeebean2.png" class="feedback-side feedback-left">
-  <img src="IMAGES/coffeebean1.png" class="feedback-side feedback-right">
+  <img src="IMAGES/coffeebean2.png" class="feedback-side feedback-left rise-item">
+  <img src="IMAGES/coffeebean1.png" class="feedback-side feedback-right rise-item">
 
-  <h2>What our Client’s say</h2>
-  <div class="feedback-sub">
+  <h2 rise-item>What our Client’s say</h2>
+  <div class="feedback-sub rise-item">
     Trusted by hundreds of event organizers and hosts
   </div>
 
-  <div class="feedback-cards">
+  <div class="feedback-cards rise-item">
 
-    <div class="feedback-card">
-      <div class="feedback-stars">★★★★★</div>
-      <div class="feedback-quote">
+    <div class="feedback-card rise-item">
+      <div class="feedback-stars rise-item">★★★★★</div>
+      <div class="feedback-quote rise-item">
         “ The coffee booth was a huge hit at our company retreat!
         Professional service and amazing coffee ”
       </div>
-      <div class="feedback-author">
+      <div class="feedback-author rise-item">
         - Jeryll Boldadora<br>
         COFFEE BOOTH
       </div>
     </div>
 
-    <div class="feedback-card">
-      <div class="feedback-stars">★★★★★</div>
-      <div class="feedback-quote">
+    <div class="feedback-card rise-item">
+      <div class="feedback-stars rise-item">★★★★★</div>
+      <div class="feedback-quote rise-item">
         “ Our guests loved the matcha booth! It was unique and the
         presentations was beautiful. Highly recommended ”
       </div>
-      <div class="feedback-author">
+      <div class="feedback-author rise-item">
         - Anthonet Condino<br>
         MATCHA BOOTH
       </div>
     </div>
 
-    <div class="feedback-card">
-      <div class="feedback-stars">★★★★★</div>
-      <div class="feedback-quote">
+    <div class="feedback-card rise-item">
+      <div class="feedback-stars rise-item">★★★★★</div>
+      <div class="feedback-quote rise-item">
         “ Our guests loved the tattoo booth, it made the event unforgettable! ”
       </div>
-      <div class="feedback-author">
+      <div class="feedback-author rise-item">
         - Michael Bersamina<br>
         TATTOO EVENT
       </div>
@@ -930,102 +1021,103 @@ html {
 </div>
 
 <!-------------------------------- LOCATION ------------------------------------->
-<div class="location-section" id="location">
-  <div class="location-bg"></div>
-    <div class="location-container">
+<div class="location-section rise-item" id="location">
+  <div class="location-bg rise-item"></div>
 
-      <div class="location-left">
-        <div class="location-img">
-          <img src="IMAGES/location.jpg">
-        </div>
+  <div class="location-container rise-item">
 
-      <div class="location-text">
-        <h2>Visit Cafe BELLA</h2>
-        <div class="location-info">
-          <p>Address : BLK 12 Lot 13 Almond</p>
-          <p>Drive Phase 4 Soldiers Hills 4,</p>
-          <p>Bacoor Philippines 4102</p>
-          <p>Mobile : 0905671816</p>
+    <div class="location-left rise-item">
+      <div class="location-img rise-item">
+        <img src="IMAGES/location.jpg">
+      </div>
+
+      <div class="location-text rise-item">
+        <h2 rise-desc>Visit Cafe BELLA</h2>
+        <div class="location-info rise-item">
+          <p rise-desc>Address : BLK 12 Lot 13 Almond</p>
+          <p rise-desc>Drive Phase 4 Soldiers Hills 4,</p>
+          <p rise-desc>Bacoor Philippines 4102</p>
+          <p rise-desc>Mobile : 0905671816</p>
         </div>
       </div>
     </div>
 
-    <div class="location-map">
+    <div class="location-map rise-item">
       <iframe 
-        src="https://maps.google.com/maps?q=Soldiers%20Hills%204%20Bacoor&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        src="https://maps.google.com/maps?q=Soldiers%20Hills%204%20Bacoor&output=embed"
         loading="lazy">
       </iframe>
     </div>
-  </div>
-</div>
-</div>
 
   </div>
+</div>
 <!-------------------------------- MATCHA ROTATING ------------------------------------->
   <div style="text-align:center; margin-top:40px;">
-    <img src="IMAGES/greentea.png" class="rotating-green-tea" alt="Green Tea">
+    <img src="IMAGES/greentea.png" class="rotating-green-tea rise-item" alt="Green Tea">
   </div>
 
 <!-------------------------------- FAQ SECTION ------------------------------------->
-<div class="faq-section">
-  <h2>Frequently ask questions</h2>
-  <div class="faq-sub">
+<div class="faq-section rise-item">
+  <h2 rise-desc>Frequently ask questions</h2>
+  <div class="faq-sub rise-item">
     Everything you need to know about our event booking services
   </div>
 
-  <div class="faq-container">
-    <div class="faq-item">
-      <div class="faq-question">
-        How far in advance should I book ?
+  <div class="faq-container rise-item">
+    <div class="faq-item rise-item">
+      <div class="faq-question rise-item">
+        How early should I book and is there a reservation fee?
         <span>▼</span>
       </div>
-      <div class="faq-answer">
-        <p>We recommend booking at least 2–4 weeks in advance to secure your preferred date.</p>
+      <div class="faq-answer rise-item">
+        <p rise-desc>Bookings must be made at least one (1) week in advance.<br>A ₱2,000 reservation fee is required to secure your booking.</p>
       </div>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-question">
-        What areas do you serve ?
+    <div class="faq-item rise-item">
+      <div class="faq-question rise-item">
+        What are the payment methods and when should I pay the balance?
         <span>▼</span>
       </div>
-      <div class="faq-answer">
-        <p>We currently serve Bacoor, Molino, and nearby areas. Travel fees may apply for farther locations.</p>
+      <div class="faq-answer rise-item">
+        <p rise-desc>We accept GCash and Cash payments.<br>The remaining balance must be settled before or on the event date.</p>
       </div>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-question">
-        Can I customize the menu or services ?
+    <div class="faq-item rise-item">
+      <div class="faq-question rise-item">
+        Can I cancel my booking or get a refund for the reservation fee?
         <span>▼</span>
       </div>
-      <div class="faq-answer">
-        <p>Yes! We offer customizable packages depending on your event needs.</p>
+      <div class="faq-answer rise-item">
+        <p rise-desc>Yes! We offer customizable packages depending on your event needs.</p>
       </div>
     </div>
 
   </div>
 
-<div class="faq-contact">
-  <p>Still have questions?</p>
+<div class="faq-contact rise-item">
+  <p rise-desc>Still have questions?</p>
   <a href="#" class="contact-us-btn">Contact Our Team</a>
 </div>
 
 </div>
-
+<!-------------------------------- FOOTBAR ------------------------------------->
+<div class="footbar rise-item">
+  Kape lang saglit tapos laban ulit
+</div>
 <!-------------------------------- FOOTER ------------------------------------->
-<div class="footer">
+<div class="footer rise-item">
 
-  <div class="footer-top">
+  <div class="footer-top rise-item">
 
-<div class="footer-logo">
+<div class="footer-logo rise-item">
   <a href="index.html">
     <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
   </a>
-  <p>Kape lang saglit<br>tapos laban ulit.</p>
 </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
       <a href="Menu.html">Menu</a>
@@ -1035,32 +1127,32 @@ html {
       <a href="#">FAQ's</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Services</h4>
       <a href="Package.html">Coffee Booth</a>
       <a href="Package.html">Matcha Booth</a>
       <a href="Package.html">Tattoo Event</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>About</h4>
       <a href="#">Contact Our Team</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Socials</h4>
       <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
-    <div class="footer-col gcash">
+    <div class="footer-col gcash rise-item">
       <h4>We accept</h4>
       <img src="IMAGES/GCash.png">
     </div>
 
   </div>
 
-  <div class="footer-bottom">
+  <div class="footer-bottom rise-item">
     © 2026 Cafe BELLA. All rights reserved.
   </div>
 
@@ -1068,24 +1160,26 @@ html {
 </div>
 <script>
   
-/******************************** TITLE ANIMATION RISE **************************/
-const title = document.querySelector(".rise-title");
-const desc = document.querySelector(".rise-desc");
+/******************************** CONSISTENT RISE ANIMATION (SMOOTH) ********************************/
 
-function handleRiseUp() {
-  const triggerPoint = window.innerHeight - 100;
+const riseElements = document.querySelectorAll(".rise-title, .rise-desc, .rise-item, .event-card");
 
-  if (title.getBoundingClientRect().top < triggerPoint) {
-    title.classList.add("show");
-  }
+function handleRise() {
+  const triggerPoint = window.innerHeight * 0.85; // smoother trigger
 
-  if (desc.getBoundingClientRect().top < triggerPoint) {
-    desc.classList.add("show");
-  }
+  riseElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < triggerPoint) {
+      el.classList.add("show");
+    } else {
+      el.classList.remove("show");
+    }
+  });
 }
 
-window.addEventListener("scroll", handleRiseUp);
-handleRiseUp();
+window.addEventListener("scroll", handleRise);
+window.addEventListener("load", handleRise);
 
 /******************************** HERO SLIDER *******************************/
 let slides = document.querySelectorAll(".slide");
