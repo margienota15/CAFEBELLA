@@ -9,19 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Domine', serif; }
-body { background: #f2f2f2; color: #114500; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* ================= TOPBAR ================= */
+body {
+  font-family: 'Domine', serif;
+  background: #f2f2f2;
+  color: #114500;
+}
+/******************************** TOPBAR ********************************/
 .topbar {
   background: #fff;
   display: flex;
   justify-content: space-between;
   padding: 8px 60px;
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* ensures it's on top */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* optional shadow */
 }
 
 .topbar-center {
@@ -38,17 +42,12 @@ body { background: #f2f2f2; color: #114500; }
 .topbar-right img {
   width: 18px;
 }
-
-/* ================= NAVBAR ================= */
+/******************************** NAVBAR ********************************/
 .navbar {
   background: #114500;
   display: flex;
   align-items: center;
   padding: 15px 60px;
-  position: sticky;
-  top: 42px; /* height of topbar, adjust if topbar padding changes */
-  z-index: 999;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav-logo img {
@@ -56,7 +55,6 @@ body { background: #f2f2f2; color: #114500; }
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  cursor: pointer;
 }
 
 .nav-menu {
@@ -87,21 +85,113 @@ body { background: #f2f2f2; color: #114500; }
 .nav-menu a:hover::after {
   width: 100%;
 }
+/******************************** SCROLL ANIMATION ********************************/
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* ================= CONTAINER ================= */
-.container { width: 850px; margin: 50px auto; text-align: center; }
-.title h1 { font-size: 34px; margin-bottom: 5px; }
-.title p { font-size: 14px; margin-bottom: 25px; }
-.card { border: 2px solid #114500; border-radius: 15px; padding: 25px; margin-bottom: 20px; background: #eee; text-align: left; }
-.card h3 { font-size: 18px; margin-bottom: 15px; }
-.section-title { font-size: 18px; font-weight: 600; color: #114500; margin-bottom: 10px; }
-.summary p { font-size: 14px; }
-.amount-banner { border: 1.5px solid #114500; border-radius: 8px; padding: 6px 10px; margin: 8px auto; font-size: 14px; font-weight: 500; background: #fff; display: block; width: fit-content; text-align: center; }
-.amount-banner span { font-weight: 600; margin-left: 10px; }
-button { margin-top: 20px; padding: 12px 28px; background: white; color: #114500; border: 2px solid #114500; border-radius: 25px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-button:hover { background: #114500; color: white; transform: scale(1.05); }
+/******************************** RISE ANIMATION ********************************/
+.rise-title,
+.rise-desc,
+.rise-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rise-title.show,
+.rise-desc.show,
+.rise-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/******************************** CONTAINER ********************************/
+.container {
+  width: 850px;
+  margin: 50px auto;
+  text-align: center;
+}
+.title h1 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+.title p {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+.card {
+  border: 2px solid #114500;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 20px;
+  background: #eee;
+  text-align: left;
+}
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #114500;
+  margin-bottom: 10px;
+}
+.summary p {
+  font-size: 14px;
+}
+.amount-banner {
+  border: 1.5px solid #114500;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 8px auto;
+  font-size: 14px;
+  font-weight: 500;
+  background: #fff;
+  display: block;
+  width: fit-content;
+  text-align: center;
+}
+.amount-banner span {
+  font-weight: 600;
+  margin-left: 10px;
+}
+button {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: white;
+  color: #114500;
+  border: 2px solid #114500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+  font-family: 'Domine', serif;
+}
+button:hover {
+  background: #114500;
+  color: white;
+  transform: scale(1.05);
+}
 
-/* ================= FOOTER ================= */
+/******************************** FOOTBAR ********************************/
+.footbar {
+  background: white;
+  border-top: 2px solid #114500;
+  border-bottom: 2px solid #114500;
+  text-align: center;
+  padding: 15px 20px;
+  font-family: 'Domine', serif;
+  color: #114500;
+  font-size: 14px;
+  margin-top: 40px;
+}
+/******************************** FOOTER **************************************/
 .footer {
   background: #eee;
   padding: 40px 60px;
@@ -114,10 +204,10 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
 }
 
 .footer-logo img {
-  width: 120px;
-  height: 120px;        
-  border-radius: 50%;    
-  object-fit: cover;      
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;    
 }
 
 .footer-col {
@@ -143,6 +233,7 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
   color: #114500;
 }
 
+/******************************** GCASH LOGO **************************************/
 .gcash img {
   width: 40px;
   height: 40px;         
@@ -153,11 +244,9 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-------------------------------- TOPBAR ------------------------------------->
 <div class="topbar">
-  <div class="topbar-center">
-    Free delivery around Molino. Order now.
-  </div>
+      <div class="topbar-center">Planning an event? <a href="Package.html" class="book-link">Book Now</a> and reserve your date with Cafe Bella.</div>
 
   <div class="topbar-right">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
@@ -165,33 +254,30 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
   </div>
 </div>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="nav-logo">
-    <a href="index.html">
+<!-------------------------------- NAVBAR ------------------------------------->
+  <div class="navbar">
+    <div class="nav-logo">
+      <a href="index.html">
       <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
-    </a>
   </div>
-</div>
 
   <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="Menu.html">Menu</a></li>
-      <li><a href="Package.html">Packages</a></li>
+      <li><a href="Package.html" class="active">Packages</a></li>
       <li><a href="#">Location</a></li>
       <li><a href="#">FAQs</a></li>
   </ul>
 </div>
+<!-------------------------------- PAYMENT ------------------------------------->
+<div class="container rise-item">
 
-<!-- PAYMENT CONTENT -->
-<div class="container">
-
-  <div class="title">
+  <div class="title rise-title">
     <h1>Cash Payment</h1>
     <p>Complete your reservation payment in cash at our branch</p>
   </div>
 
-  <div class="card">
+  <div class="card rise-item">
     <div class="section-title">Payment Summary</div>
 
     <p>Selected Service: <span id="selected-service">-</span></p>
@@ -199,19 +285,19 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
     <p>Reservation Fee: <span id="reservation-fee">₱0</span></p>
     <p>Remaining Balance: <span id="remaining-balance">₱0</span></p>
 
-    <div class="amount-banner">
+    <div class="amount-banner rise-item">
       Amount to Pay Now : <span id="amount-now-banner">₱ 0</span>
     </div>
   </div>
 
-  <div class="card">
+  <div class="card rise-item">
     <h3>Cash Payment Instructions</h3>
     <p>Please visit <b>Cafe BELLA, Molino Branch</b> to pay in cash.</p>
     <p>Bring your booking details and reference number.</p>
     <p>After payment, keep the receipt as proof.</p>
   </div>
 
-  <div class="card">
+  <div class="card rise-item">
     <h3>Submit Payment Confirmation</h3>
     <p>Once you’ve paid in cash, enter your reference number below:</p>
     <input class="ref-input" placeholder="Reference Number" style="width: 100%; padding: 10px; border:2px solid #114500; border-radius:25px;">
@@ -220,18 +306,20 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
   <button onclick="confirmPayment()">Confirm Payment</button>
 
 </div>
+<!-------------------------------- FOOTBAR ------------------------------------->
+<div class="footbar rise-item rise-item">
+  Kape lang saglit tapos laban ulit
+</div>
+<!-------------------------------- FOOTER ------------------------------------->
+<div class="footer rise-item ">
 
-<!-- FOOTER -->
-<div class="footer">
+  <div class="footer-top rise-item">
 
-  <div class="footer-top">
-
-    <div class="footer-logo">
+    <div class="footer-logo rise-item">
       <img src="IMAGES/Cafebella.jpg">
-      <p>Kape lang saglit<br>tapos laban ulit.</p>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
       <a href="Menu.html">Menu</a>
@@ -241,38 +329,58 @@ button:hover { background: #114500; color: white; transform: scale(1.05); }
       <a href="#">FAQ's</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Services</h4>
       <a href="Package.html">Coffee Booth</a>
       <a href="Package.html">Matcha Booth</a>
       <a href="Package.html">Tattoo Event</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>About</h4>
       <a href="#">Contact Our Team</a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col rise-item">
       <h4>Socials</h4>
       <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
     </div>
 
-    <div class="footer-col gcash">
+    <div class="footer-col gcash rise-item">
       <h4>We accept</h4>
       <img src="IMAGES/GCash.png">
     </div>
 
   </div>
 
-  <div class="footer-bottom">
+  <div class="footer-bottom rise-item">
     © 2026 Cafe BELLA. All rights reserved.
   </div>
 </div>
-
 <script>
-// Load payment info from localStorage and generate reference
+/******************************** CONSISTENT RISE ANIMATION ********************************/
+
+const riseElements = document.querySelectorAll(".rise-title, .rise-desc, .rise-item, .event-card");
+
+function handleRise() {
+  const triggerPoint = window.innerHeight * 0.85;
+
+  riseElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < triggerPoint) {
+      el.classList.add("show");
+    } else {
+      el.classList.remove("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", handleRise);
+window.addEventListener("load", handleRise);
+
+/******************************** SERVICE / PAYMENT TYPE / TOTAL PRICE ********************************/
 document.addEventListener("DOMContentLoaded", function() {
 
     console.log("LOADED SERVICE:", localStorage.getItem("service"));
@@ -334,7 +442,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const refInput = document.querySelector(".ref-input");
     refInput.value = storedRef;
 });
-
+/******************************** CONFIRM PAYMENT ********************************/
 function confirmPayment() {
 
     const paymentType = localStorage.getItem("paymentType");
