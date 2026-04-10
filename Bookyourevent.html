@@ -657,12 +657,12 @@ textarea {
   <label style="margin-top:20px;">Select Payment Option</label>
   <div class="payment-options rise-item">
     <label class="payment-box">
-      <input type="radio" name="payment_method" value="cash">
+      <input type="radio" name="paymentMethod" value="cash">
       <span>Cash</span>
     </label>
 
     <label class="payment-box rise-item">
-      <input type="radio" name="payment_method" value="gcash">
+      <input type="radio" name="paymentMethod" value="gcash">
       <span>GCash</span>
     </label>
   </div>
@@ -828,6 +828,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
+let selectedDate = "";
 document.addEventListener("DOMContentLoaded", function() {
 
 /******************************** CALENDAR FLATPICKR **************************/
@@ -877,7 +879,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if(selectedService.includes("tattoo")) total.textContent = "₱1,000";
         });
     });
-
+  
 /******************************** CONTACT NUMBER RESTRICTION **************************/
 const contactInput = document.querySelector('input[placeholder*="0912"]'); 
 
@@ -928,64 +930,61 @@ contactInput.addEventListener("paste", function(e) {
         contactInput.value = pasteData.slice(0, 11);
     }
 });
-/******************************** COMPLETE BOOKING  **************************/
-    const completeBtn = document.getElementById("complete-booking");
-    completeBtn.addEventListener("click", function() {
+const completeBtn = document.getElementById("complete-booking");
 
-        const fullName = document.querySelector('input[placeholder*="Full Name"]').value.trim();
-        const email = document.querySelector('input[placeholder*="example"]').value.trim();
-        const facebook = document.querySelector('input[placeholder*="@username"]').value.trim();
-        const contact = contactInput.value.trim();
+completeBtn.addEventListener("click", function() {
 
-        const eventDate = document.getElementById("selected-date").value;
-        const eventTime = document.getElementById("event-time").value;
-        const guestCount = document.getElementById("guest-count").value;
-        const eventLocation = document.getElementById("event-location").value;
+    const fullName = document.querySelector('input[placeholder*="Full Name"]').value.trim();
+    const email = document.querySelector('input[placeholder*="example"]').value.trim();
+    const facebook = document.querySelector('input[placeholder*="@username"]').value.trim();
+    const contact = contactInput.value.trim();
 
-        const paymentType = document.querySelector('input[name="payment_type"]:checked')?.value;
-        const paymentMethod = document.querySelector('input[name="payment_method"]:checked')?.value;
-        if(!fullName || !email || !facebook || !contact || !eventDate || !eventTime || !guestCount || !eventLocation) {
-            alert("Please complete all required fields before proceeding.");
-            return;
-        }
+    const eventTime = document.getElementById("event-time").value;
+    const guestCount = document.getElementById("guest-count").value;
+    const eventLocation = document.getElementById("event-location").value;
 
-        if(!selectedService) {
-            alert("Please select a service.");
-            return;
-        }
-        if(!paymentType) {
-            alert("Please select a payment type.");
-            return;
-        }
-        if(!paymentMethod) {
-            alert("Please select payment method.");
-            return;
-        }
-        const agree = document.getElementById("agree").checked;
+    const paymentType = document.querySelector('input[name="payment_type"]:checked')?.value;
 
-        if(!agree){
-            alert("You must agree to the terms and conditions before proceeding.");
-        return;
-        }
+    // ✅ FIXED NAME HERE
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
 
-        localStorage.setItem("service", selectedService);
-        localStorage.setItem("paymentMethod", paymentMethod);
-        console.log("SAVED SERVICE:", localStorage.getItem("service"));
-        localStorage.setItem("paymentType", paymentType);
-        localStorage.setItem("total", document.querySelector(".total").textContent);
-        localStorage.setItem("customerName", fullName);
-        localStorage.setItem("customerEmail", email);
-        localStorage.setItem("customerFacebook", facebook);
-        localStorage.setItem("customerContact", contact);
-        localStorage.setItem("eventDate", eventDate);
-        localStorage.setItem("eventTime", eventTime);
-        localStorage.setItem("guestCount", guestCount);
-        localStorage.setItem("eventLocation", eventLocation);
+    const agree = document.getElementById("agree").checked;
 
-/******************************** REDIRECT DEPENDE SA PAYMENT TYPE **************************/
-if(paymentMethod === "cash") window.location.href = "Paymentcash.html";
-else if(paymentMethod === "gcash") window.location.href = "Payment.html";
-    });
+    // ✅ VALIDATIONS
+    if(!fullName) return alert("Enter Full Name");
+    if(!email) return alert("Enter Email");
+    if(!facebook) return alert("Enter Facebook");
+    if(!contact) return alert("Enter Contact Number");
+    if(!selectedDate) return alert("Select a Date");
+    if(!eventTime) return alert("Select Time");
+    if(!guestCount) return alert("Select Guests");
+    if(!eventLocation) return alert("Enter Address");
+    if(!selectedService) return alert("Please select a service.");
+    if(!paymentType) return alert("Please select a payment type.");
+    if(!paymentMethod) return alert("Please select payment method.");
+    if(!agree) return alert("You must agree to the terms.");
 
+    // ✅ SAVE DATA
+    localStorage.setItem("service", selectedService);
+    localStorage.setItem("paymentMethod", paymentMethod);
+    localStorage.setItem("paymentType", paymentType);
+    localStorage.setItem("total", document.querySelector(".total").textContent);
+    localStorage.setItem("customerName", fullName);
+    localStorage.setItem("customerEmail", email);
+    localStorage.setItem("customerFacebook", facebook);
+    localStorage.setItem("customerContact", contact);
+    localStorage.setItem("eventDate", selectedDate);
+    localStorage.setItem("eventTime", eventTime);
+    localStorage.setItem("guestCount", guestCount);
+    localStorage.setItem("eventLocation", eventLocation);
+
+    // ✅ REDIRECT
+    if(paymentMethod === "cash") {
+        window.location.href = "Paymentcash.html";
+    } 
+    else if(paymentMethod === "gcash") {
+        window.location.href = "Payment.html";
+    }
+});
 });
 </script>
