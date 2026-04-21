@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Domine', serif;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, Arial, sans-serif;
   background: #f2f2f2;
   color: #114500;
 }
@@ -136,15 +136,96 @@ body {
   font-size: 18px;
   margin-bottom: 15px;
 }
-.section-title {
+.section-title{
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.service-badge{
+  display: inline-block;
+  background: #114500;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  margin-bottom: 18px;
+  text-transform: capitalize;
+}
+
+.summary-clean{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* EACH ROW */
+.summary-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f6f7f6;
+  border: 1px solid rgba(17,69,0,0.08);
+}
+
+/* LABEL (LEFT SIDE) */
+.summary-line .label{
+  font-size: 15px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* VALUE (RIGHT SIDE) */
+.summary-line .value{
+  font-size: 18px;
+  font-weight: 700;
   color: #114500;
-  margin-bottom: 10px;
+}
+
+/* RESERVATION FEE SPECIAL */
+.summary-line .value.fee{
+  color: #b07a00;
+}
+.summary-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.summary-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f7f8f7;
+  transition: 0.2s ease;
+}
+.summary-item:hover{
+  background: #eef5ee;
+  transform: translateX(2px);
 }
 .summary p {
   font-size: 14px;
 }
+.summary-grid .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.summary-grid .row span {
+  color: #555;
+}
+.summary-grid .row strong {
+  color: #114500;
+  font-weight: 600;
+}
+
 .amount-banner {
   border: 1.5px solid #114500;
   border-radius: 8px;
@@ -160,6 +241,162 @@ body {
 .amount-banner span {
   font-weight: 600;
   margin-left: 10px;
+}
+.amount-box {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #114500, #1e6b00);
+  color: white;
+  text-align: center;
+}
+
+.amount-box div {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.amount-box h2 {
+  margin-top: 5px;
+  font-size: 28px;
+  font-weight: 700;
+}
+.amount-highlight{
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #114500, #1f6d00);
+  color: white;
+  text-align: center;
+}
+
+.amount-highlight p{
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.amount-highlight h2{
+  font-size: 30px;
+  margin-top: 5px;
+  font-weight: 800;
+}
+
+.instruction-card{
+  background: #fff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border: 1px solid rgba(17,69,0,0.12);
+}
+
+/* LIST WRAPPER */
+.instruction-list{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* EACH ITEM */
+.instruction-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f7f8f7;
+  transition: 0.2s ease;
+}
+
+
+.instruction-item .icon{
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #114500;
+  color: white;
+  border-radius: 10px;
+}
+
+/* TEXT */
+.instruction-item .text h4{
+  font-size: 15px;
+  margin-bottom: 3px;
+  color: #114500;
+}
+
+.instruction-item .text p{
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+}
+.instruction-card ul {
+  margin-top: 10px;
+  padding-left: 18px;
+  font-size: 14px;
+  color: #333;
+}
+
+.instruction-card li {
+  margin-bottom: 6px;
+}
+.confirm-card{
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(17,69,0,0.12);
+}
+.confirm-header h3{
+  font-size: 20px;
+  font-weight: 800;
+  color: #114500;
+  margin-bottom: 5px;
+}
+.confirm-header p{
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.confirm-box label{
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+.confirm-card input.ref-input {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+  font-size: 14px;
+}
+.confirm-card input.ref-input:focus {
+  border-color: #114500;
+  box-shadow: 0 0 0 3px rgba(17,69,0,0.15);
+}
+.confirm-btn{
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #114500, #1f6d00);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  letter-spacing: 0.3px;
+}
+.confirm-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(17,69,0,0.25);
 }
 button {
   margin-top: 20px;
@@ -179,6 +416,65 @@ button:hover {
   transform: scale(1.05);
 }
 
+.input-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  background: #f6f7f6;
+  border: 1px solid rgba(17,69,0,0.12);
+  padding: 12px 14px;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.input-wrapper:focus-within{
+  border-color: #114500;
+  box-shadow: 0 0 0 3px rgba(17,69,0,0.12);
+}
+
+.input-wrapper .icon{
+  font-size: 16px;
+}
+
+.payment-card{
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(17,69,0,0.12);
+}
+
+.label{
+  font-size: 13px;
+  color: #666;
+}
+
+/* VALUE */
+.value{
+  font-weight: 700;
+  color: #114500;
+}
+
+/* RESERVATION FEE SPECIAL COLOR */
+.value.fee{
+  color: #b07a00;
+}
+
+.ref-input{
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* helper text */
+.hint{
+  font-size: 12px;
+  color: #777;
+  margin-top: 8px;
+}
 /******************************** FOOTBAR ********************************/
 .footbar {
   background: white;
@@ -270,6 +566,7 @@ button:hover {
   </ul>
 </div>
 <!-------------------------------- PAYMENT ------------------------------------->
+<!-- PAYMENT -->
 <div class="container rise-item">
 
   <div class="title rise-title">
@@ -277,33 +574,104 @@ button:hover {
     <p>Complete your reservation payment in cash at our branch</p>
   </div>
 
-  <div class="card rise-item">
-    <div class="section-title">Payment Summary</div>
+  <!-- PAYMENT SUMMARY -->
+<!-- PAYMENT SUMMARY -->
+<div class="card payment-card rise-item">
+  <div class="section-title">Payment Summary</div>
 
-    <p>Selected Service: <span id="selected-service">-</span></p>
-    <p>Total Package Price: <span id="total-price">₱0</span></p>
-    <p>Reservation Fee: <span id="reservation-fee">₱0</span></p>
-    <p>Remaining Balance: <span id="remaining-balance">₱0</span></p>
+  <!-- SERVICE BADGE -->
+  <div class="service-badge">
+    <span id="selected-service">coffee booth</span>
+  </div>
 
-    <div class="amount-banner rise-item">
-      Amount to Pay Now : <span id="amount-now-banner">₱ 0</span>
+  <!-- DETAILS -->
+  <div class="summary-clean">
+
+    <div class="summary-line">
+      <span class="label">Total Package Price</span>
+      <span class="value">₱ 5,000</span>
     </div>
+
+    <div class="summary-line">
+      <span class="label">Reservation Fee</span>
+      <span class="value fee">₱ 2,000</span>
+    </div>
+
+    <div class="summary-line">
+      <span class="label">Remaining Balance</span>
+      <span class="value">₱ 3,000</span>
+    </div>
+
   </div>
 
-  <div class="card rise-item">
-    <h3>Cash Payment Instructions</h3>
-    <p>Please visit <b>Cafe BELLA, Molino Branch</b> to pay in cash.</p>
-    <p>Bring your booking details and reference number.</p>
-    <p>After payment, keep the receipt as proof.</p>
+  <!-- MAIN AMOUNT (HIGHLIGHT) -->
+  <div class="amount-highlight rise-item">
+    <p>Amount to Pay Now</p>
+    <h2 id="amount-now-banner">₱ 0</h2>
   </div>
 
-  <div class="card rise-item">
-    <h3>Submit Payment Confirmation</h3>
-    <p>Once you’ve paid in cash, enter your reference number below:</p>
-    <input class="ref-input" placeholder="Reference Number" style="width: 100%; padding: 10px; border:2px solid #114500; border-radius:25px;">
+</div>
+
+  <!-- INSTRUCTIONS -->
+<div class="card instruction-card rise-item">
+  <div class="section-title">Cash Payment Instructions</div>
+
+  <div class="instruction-list">
+
+    <div class="instruction-item">
+      <div class="icon">📍</div>
+      <div class="text">
+        <h4>Visit Branch</h4>
+        <p>Cafe BELLA, Molino Branch to complete your cash payment.</p>
+      </div>
+    </div>
+
+    <div class="instruction-item">
+      <div class="icon">🧾</div>
+      <div class="text">
+        <h4>Bring Requirements</h4>
+        <p>Bring your booking details and reference number.</p>
+      </div>
+    </div>
+
+    <div class="instruction-item">
+      <div class="icon">📌</div>
+      <div class="text">
+        <h4>Keep Receipt</h4>
+        <p>Always keep your receipt as proof of payment.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <!-- CONFIRM -->
+<!-- CONFIRM PAYMENT (UPGRADED UI) -->
+<div class="card confirm-card rise-item">
+
+  <div class="confirm-header">
+    <h3>Confirm Payment</h3>
+    <p>Enter your reference number to complete the transaction</p>
   </div>
 
-  <button onclick="confirmPayment()">Confirm Payment</button>
+  <div class="confirm-box">
+
+    <label>Reference Number</label>
+
+    <div class="input-wrapper">
+      <span class="icon">🔐</span>
+      <input class="ref-input" placeholder="e.g. ABC12345">
+    </div>
+
+    <div class="hint">
+      Make sure your reference number matches your receipt.
+    </div>
+
+    <button class="confirm-btn" onclick="confirmPayment()">
+      Confirm & Proceed
+    </button>
+
+  </div>
+</div>
 
 </div>
 <!-------------------------------- FOOTBAR ------------------------------------->
@@ -386,6 +754,10 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("LOADED SERVICE:", localStorage.getItem("service"));
 
     const service = localStorage.getItem("service") || "-";
+
+        console.log("SERVICE RAW:", service);
+        console.log("SERVICE LOWER:", service.toLowerCase());
+        
     const paymentType = localStorage.getItem("paymentType") || "reservation";
 
     const servicePrices = {
@@ -420,8 +792,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("total-price").textContent = `₱ ${totalPrice.toLocaleString()}`;
     document.getElementById("reservation-fee").textContent = `₱ ${reservationFee.toLocaleString()}`;
     document.getElementById("remaining-balance").textContent = `₱ ${remainingBalance.toLocaleString()}`;
-    document.getElementById("amount-now-banner").textContent = `₱ ${amountNow.toLocaleString()}`;
 
+    // 👉 ADD THIS
+    document.getElementById("amount-now-banner").textContent =
+    `₱ ${amountNow.toLocaleString()}`;
     // --- Auto-generate reference number ---
     function generateRef(length = 8) {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
