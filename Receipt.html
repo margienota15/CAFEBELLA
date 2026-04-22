@@ -11,61 +11,158 @@
 
 <style>
 body {
-    font-family: 'Domine', serif;
-    background: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: linear-gradient(135deg, #dfead9, #c8d8c0);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* ⬅️ important */
+
+  padding: 40px 0; /* ⬅️ adds top & bottom space */
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(67,160,71,0.25), transparent);
+  z-index: -1;
 }
 
-/* RECEIPT */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -120px;
+  left: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(27,94,32,0.2), transparent);
+  z-index: -1;
+}
 .receipt {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    width: 400px;
-    height: 700px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    color: #114500;
-
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    border-top: 6px solid #114500;
+  background: #ffffff;
+  width: 430px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  margin: 20px 0; /* ⬅️ extra breathing room */
 }
-
+.header {
+  background: linear-gradient(135deg, #114500, #1f6b1f);
+  color: white;
+  text-align: center;
+  padding: 25px 20px;
+}
+.header h2 {
+  margin: 5px 0;
+}
+.header small {
+  opacity: 0.8;
+}
 .logo {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #114500;
-    display: block;
-    margin: 0 auto;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  margin-bottom: 10px;
 }
-
+.content {
+  padding: 25px 30px; /* mas premium spacing */
+  color: #2b2b2b;
+}
 h2 {
-    text-align: center;
-    margin: 10px 0;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 15px;
+}
+.section {
+  margin-bottom: 18px;
 }
 
-/* DIVIDER */
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #114500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 .line {
-    border-top: 1px dashed #114500;
-    margin: 10px 0;
+  border-top: 1px dashed #ccc;
+  margin: 15px 0;
 }
-
 .details {
-    text-align: left;
-    font-size: 14px;
-    line-height: 1.6;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 13px;
+  gap: 6px 10px;
+}
+.details p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+  margin: 6px 0;
+
+  background: #f9fbf8;
+  border-radius: 8px;
+
+  font-size: 13.5px;
+  border: 1px solid #eef3ec;
+}
+.details p::first-line {
+  font-weight: 600;
+  color: #114500;
+}
+.details p::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: #114500;
+}
+.details p {
+  position: relative;
+  font-size: 14px;
 }
 
+
+.details strong {
+  font-weight: 500;
+  color: #888;
+}
+
+.details span {
+  font-weight: 600;
+  text-align: right;
+}
 #total {
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
+  background: #f3f7f2;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 14px;
+}
+#total p {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+#total p:last-child {
+  font-size: 15px;
+  font-weight: bold;
+  color: #114500;
 }
 
 /* QR SMALL */
@@ -73,24 +170,41 @@ h2 {
     width: 90px;
     height: 90px;
 }
-
 .qr {
-    text-align: center;
+  text-align: center;
+  margin-top: 10px;
 }
-
+#qrImg {
+  width: 75px;
+  margin: 10px 0;
+}
 button {
-    background: #114500;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    font-family: 'Domine', serif;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #114500, #2d7a2d);
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: 0.3s;
 }
 
 button:hover {
-    background: #0d3600;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.footer {
+  text-align: center;
+  padding: 15px 20px 20px;
+}
+
+.footer p {
+  margin: 5px 0;
+  font-size: 13px;
 }
 </style>
 </head>
@@ -99,28 +213,25 @@ button:hover {
 
 <div class="receipt" id="receipt">
 
-    <div>
-        <img src="IMAGES/Cafebella.jpg" class="logo">
-        <h2>Booking Receipt</h2>
+  <div class="header">
+    <img src="IMAGES/Cafebella.jpg" class="logo">
+    <h2>Booking Receipt</h2>
+    <small id="dateNow"></small>
+  </div>
 
-        <div class="line"></div>
+  <div class="content">
+    <div id="details"></div>
 
-        <div class="details" id="details"></div>
-    </div>
+    <div class="line"></div>
 
-    <div>
-        <div class="line"></div>
+    <div id="total"></div>
+  </div>
 
-        <div id="total"></div>
-
-        <p style="text-align:center;">Thank you! 🎉</p>
-
-        <div class="qr">
-            <img id="qrImg">
-        </div>
-
-        <button onclick="downloadPDF()">⬇ Download Receipt</button>
-    </div>
+  <div class="footer">
+    <p>Thank you for booking! 🎉</p>
+    <img id="qrImg">
+    <button onclick="downloadPDF()">⬇ Download Receipt</button>
+  </div>
 
 </div>
 
