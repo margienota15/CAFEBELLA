@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Menu</title>
+<title>Cafe Bella</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
 
@@ -307,6 +307,28 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+.ingredients {
+  margin-top: 12px;
+  margin-bottom: 15px;
+}
+
+.ingredients h4 {
+  font-size: 14px;
+  color: #114500;
+  margin-bottom: 6px;
+}
+
+.ingredients ul {
+  padding-left: 18px;
+}
+
+.ingredients li {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
 /******************************** CATEGORIES ********************************/
 
 .cat-btn {
@@ -338,6 +360,84 @@ html {
   height: 18px;
   margin-right: 8px; 
   vertical-align: middle;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  width: 800px;
+  max-width: 90%;
+  border-radius: 16px;
+  overflow: hidden;
+  animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-body {
+  display: flex;
+}
+
+.modal-left {
+  flex: 1;
+  background: #f5f5f5;
+}
+
+.modal-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-right {
+  flex: 1;
+  padding: 20px;
+}
+
+.modal-right h2 {
+  color: #114500;
+  margin-bottom: 10px;
+}
+
+.modal-right p {
+  color: #666;
+  font-size: 14px;
+}
+.modal-price {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.price-box {
+  background: #f4f4f4;
+  border-left: 4px solid #114500;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  transition: 0.3s;
+}
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #114500;
 }
 /******************************** FOOTBAR ********************************/
 .footbar {
@@ -472,87 +572,679 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
 
 <div class="menu-grid rise-item">
 
-  <div class="menu-group rise-item" id="friedrice">
-    <h2 class="menu-title rise-desc">Davion's Wok Tossed Fried Rice</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Kimchi Fried Rice</h3><p>Solo : ₱95 | Double : ₱130</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Shitake Fried Rice</h3><p>Solo : ₱95 | Double : ₱130</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Spam Fried Rice</h3><p>Solo : ₱95 | Double : ₱130</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Seafood Fried Rice</h3><p>Solo : ₱95 | Double : ₱130</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Adobo Fried Rice</h3><p>Solo : ₱95 | Double : ₱130</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Delimondo Fried Rice</h3><p>Solo : ₱95 | Double : ₱130</p></div>
+<div class="menu-group rise-item" id="friedrice">
+
+  <h2 class="menu-title rise-desc">Davion's Wok Tossed Fried Rice</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Kimchi Fried Rice"
+      data-desc="Fragrant fried rice sautéed with authentic kimchi, garlic, and a hint of spice for a bold Korean-inspired flavor. Perfect balance of savory, tangy, and slightly spicy kick."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Solo ₱95 | Double ₱130"
+      data-ingredients="Kimchi, Garlic, Egg, Rice, Sesame oil">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Kimchi Fried Rice</h3>
+    <p>Solo : ₱95 | Double : ₱130</p>
   </div>
 
-  <div class="menu-group rise-item" id="bacsilog">
-    <h2 class="menu-title rise-desc">Bacsilog</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Bacsilog</h3><p>₱95</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Spam Bacsilog</h3><p>₱125</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Hungarian Sausage<br>Bacsilog</h3><p>₱145</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Chicken Bacsilog</h3><p>₱165</p></div>
+    <div class="menu-card2 rise-item"
+        onclick="openModal(this)"
+        data-title="Shitake Fried Rice"
+        data-desc="Fried rice sautéed with savory shitake mushrooms, garlic, and egg for a rich umami flavor."
+        data-img="IMAGES/foodpic.jpg"
+        data-price="Solo ₱95 | Double ₱130"
+        data-ingredients="Shitake Mushroom, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
+
+      <img src="IMAGES/foodpic.jpg">
+      <h3>Shitake Fried Rice</h3>
+      <p>Solo : ₱95 | Double : ₱130</p>
+    </div>
+
+    <div class="menu-card2 rise-item"
+        onclick="openModal(this)"
+        data-title="Spam Fried Rice"
+        data-desc="Savory fried rice loaded with crispy spam, garlic, and egg for a rich, satisfying and slightly smoky flavor."
+        data-img="IMAGES/foodpic.jpg"
+        data-price="Solo ₱95 | Double ₱130"
+        data-ingredients="Spam, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
+
+      <img src="IMAGES/foodpic.jpg">
+      <h3>Spam Fried Rice</h3>
+      <p>Solo : ₱95 | Double : ₱130</p>
+    </div>
+
+    <div class="menu-card2 rise-item"
+        onclick="openModal(this)"
+        data-title="Seafood Fried Rice"
+        data-desc="Flavorful fried rice loaded with shrimp, squid, and garlic, tossed in savory seasoning for a rich ocean-inspired taste."
+        data-img="IMAGES/foodpic.jpg"
+        data-price="Solo ₱95 | Double ₱130"
+        data-ingredients="Shrimp, Squid, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
+
+      <img src="IMAGES/foodpic.jpg">
+      <h3>Seafood Fried Rice</h3>
+      <p>Solo : ₱95 | Double : ₱130</p>
+    </div>
+
+    <div class="menu-card2 rise-item"
+        onclick="openModal(this)"
+        data-title="Adobo Fried Rice"
+        data-desc="Savory fried rice infused with classic Filipino adobo flavors, featuring tender meat, garlic, and a rich soy-vinegar glaze."
+        data-img="IMAGES/foodpic.jpg"
+        data-price="Solo ₱95 | Double ₱130"
+        data-ingredients="Chicken Adobo, Garlic, Egg, Rice, Soy Sauce, Vinegar, Sesame oil">
+
+      <img src="IMAGES/foodpic.jpg">
+      <h3>Adobo Fried Rice</h3>
+      <p>Solo : ₱95 | Double : ₱130</p>
+    </div>
+
+    <div class="menu-card2 rise-item"
+        onclick="openModal(this)"
+        data-title="Delimondo Fried Rice"
+        data-desc="A hearty and flavorful fried rice made with premium Delimondo corned beef, sautéed with aromatic garlic and onions, blended with fluffy rice, egg, and savory soy sauce for a satisfying and delicious comfort meal."
+        data-img="IMAGES/foodpic.jpg"
+        data-price="Solo ₱95 | Double ₱130"
+        data-ingredients="Delimondo Corned Beef, Garlic, Egg, Rice, Soy Sauce">
+
+      <img src="IMAGES/foodpic.jpg">
+      <h3>Delimondo Fried Rice</h3>
+      <p>Solo : ₱95 | Double : ₱130</p>
+    </div>
+
+</div>
+
+<div class="menu-group rise-item" id="bacsilog">
+
+  <h2 class="menu-title rise-desc">Bacsilog</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Bacsilog"
+      data-desc="A classic Filipino comfort meal made with crispy bacon, perfectly cooked egg, and garlic fried rice, served hot and savory for a simple yet satisfying dish."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱95">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Bacsilog</h3>
+    <p>₱95</p>
   </div>
 
-  <div class="menu-group rise-item" id="noodles">
-    <h2 class="menu-title rise-desc">Cheesy Spicy Noodles</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>CSN 1<br>Cheesy Spicy Noodles<br>with Nori</h3><p>₱129</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>CSN 2<br>Cheesy Spicy Noodles<br>with Egg and Nori</h3><p>₱139</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>CSN 3<br>Cheesy Spicy Noodles<br>with Egg, Nori and Spam</h3><p>₱159</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>CSN 4<br>Cheesy Spicy Noodles<br>with Egg, Nori and Hungarian Sausage</h3><p>₱169</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>CSN 1<br>Cheesy Spicy Noodles<br>with Nori and Chicken Katsu</h3><p>₱179</p></div>
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Spam Bacsilog"
+      data-desc="A flavorful twist on the classic Bacsilog made with savory pan-fried Spam, creamy egg, and garlic fried rice, creating a rich and satisfying comfort meal."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱125">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Spam Bacsilog</h3>
+    <p>₱125</p>
   </div>
 
-  <div class="menu-group rise-item" id="snacks">
-    <h2 class="menu-title rise-desc">Sandwich Overload</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Egg Sandwich</h3><p>₱99</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Egg and Bacon Sandwich</h3><p>₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Hungarian Sausage Sandwich</h3><p>₱139</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Chicken Sandwich</h3><p>₱159</p></div>
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Hungarian Sausage Bacsilog"
+      data-desc="A hearty Bacsilog variation made with juicy Hungarian sausage, perfectly paired with creamy scrambled egg and garlic fried rice, delivering a smoky, savory, and satisfying meal."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱145">
 
-    <h2 class="menu-title rise-desc">Nachos and Fries</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Overload Nachos</h3><p>₱110</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Cheesy Bacon Fries</h3><p>₱110</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Fries 'N Chick</h3><p>₱150</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Regular Fries<br>(Plain with Salt, Cheese, Sour n Cream, Barbecue)</h3><p>₱159</p></div>
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Hungarian Sausage<br>Bacsilog</h3>
+    <p>₱145</p>
   </div>
 
-  <div class="menu-group rise-item" id="coffee">
-    <h2 class="menu-title rise-desc">Non- Coffee</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Milky Chocolate</h3><p> 16 oz : ₱90 | 22 oz :  ₱115</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Milky Oreo</h3><p> 16 oz : ₱90 | 22 oz :  ₱115</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Strawberry Milk</h3><p> 16 oz : ₱90 | 22 oz :  ₱115</p></div>
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Chicken Bacsilog"
+      data-desc="A crispy and golden fried chicken served with a perfectly cooked sunny-side-up egg and garlic fried rice, creating a flavorful and satisfying Filipino comfort meal."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱165">
 
-    <h2 class="menu-title rise-desc">Coffee</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Milk Chocolate</h3><p> HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Americano</h3><p> COLD 16 oz : ₱85 | 22 oz : ₱99<br>HOT 12  oz : ₱85</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Summer Americano</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Cafe Latte</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Caramel Latte</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Vanilla Latte</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Hazelnut Latte</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>White Mocha</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Spanish Latte</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Mocha</h3><p> COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12  oz : ₱119</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Pistachio Latte</h3><p> COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12  oz : ₱129</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Biscoff Latte</h3><p> COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12  oz : ₱129</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Dirty Matcha</h3><p> COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12  oz : ₱129</p></div>
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Chicken Bacsilog</h3>
+    <p>₱165</p>
   </div>
 
-  <div class="menu-group rise-item" id="matchaR">
-    <h2 class="menu-title rise-desc">Matcha Regular</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Oreo Matcha</h3><p> 16 oz : ₱120 | 22 oz :  ₱145</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Matcha Latte</h3><p> 16 oz : ₱120 | 22 oz :  ₱145</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Strawberry Matcha</h3><p> 16 oz : ₱120 | 22 oz :  ₱145</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Biscoff Matcha</h3><p> 16 oz : ₱120 | 22 oz :  ₱145</p></div>
+</div>
 
-    <h2 class="menu-title rise-desc">Matcha Premium</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Classic Matcha Latte</h3><p>₱170</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Spanish Matcha</h3><p>₱170</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Agave Oat Matcha</h3><p>₱180</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Berry Matcha</h3><p>₱180</p></div>
+<div class="menu-group rise-item" id="noodles">
 
-    <h2 class="menu-title rise-desc">Matcha Hojicha</h2>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Hojicha Latte</h3><p>₱170</p></div>
-    <div class="menu-card2 rise-item"><img src="IMAGES/foodpic.jpg"><h3>Berry Hojicha</h3><p>₱190</p></div>
-  </div> 
+  <h2 class="menu-title rise-desc">Cheesy Spicy Noodles</h2>
 
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="CSN 1 - Cheesy Spicy Noodles with Nori"
+      data-desc="A bold and flavorful bowl of cheesy spicy noodles topped with nori, perfectly balanced with creamy cheese, spicy kick, and umami-rich seaweed for a satisfying comfort meal."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱129">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>CSN 1<br>Cheesy Spicy Noodles<br>with Nori</h3>
+    <p>₱129</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="CSN 2 - Cheesy Spicy Noodles with Egg and Nori"
+      data-desc="A rich and satisfying bowl of cheesy spicy noodles topped with a perfectly cooked egg and nori, blending creamy cheese, spicy heat, and savory umami flavors in every bite."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱139">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>CSN 2<br>Cheesy Spicy Noodles<br>with Egg and Nori</h3>
+    <p>₱139</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="CSN 3 - Cheesy Spicy Noodles with Egg, Nori and Spam"
+      data-desc="A loaded bowl of cheesy spicy noodles topped with creamy egg, savory spam, and nori, creating a bold combination of spicy heat, rich cheese, and smoky umami flavors."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱159">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>CSN 3<br>Cheesy Spicy Noodles<br>with Egg, Nori and Spam</h3>
+    <p>₱159</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="CSN 4 - Cheesy Spicy Noodles with Egg, Nori and Hungarian Sausage"
+      data-desc="A fully loaded bowl of cheesy spicy noodles topped with creamy egg, savory Hungarian sausage, and nori, delivering a rich, smoky, and spicy flavor combination in every bite."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱169">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>CSN 4<br>Cheesy Spicy Noodles<br>with Egg, Nori and Hungarian Sausage</h3>
+    <p>₱169</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="CSN Chicken Katsu"
+      data-desc="A bold fusion of cheesy spicy noodles topped with crispy chicken katsu, enhanced with nori for an umami kick, creating a crunchy, cheesy, and spicy comfort dish."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱179">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>CSN<br>with Nori and Chicken Katsu</h3>
+    <p>₱179</p>
+  </div>
+
+</div>
+
+<div class="menu-group rise-item" id="snacks">
+
+  <h2 class="menu-title rise-desc">Sandwich Overload</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Egg Sandwich"
+      data-desc="A soft and fluffy sandwich filled with creamy egg spread, lightly seasoned and perfectly balanced for a simple yet satisfying snack."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱99">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Egg Sandwich</h3>
+    <p>₱99</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Egg and Bacon Sandwich"
+      data-desc="A classic toasted sandwich filled with crispy bacon and a perfectly cooked egg, layered together for a savory, smoky, and satisfying breakfast-style meal."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Egg and Bacon Sandwich</h3>
+    <p>₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Hungarian Sausage Sandwich"
+      data-desc="A hearty and savory sandwich filled with juicy Hungarian sausage, served in soft bread and layered for a rich, smoky, and satisfying meal experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱139">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Hungarian Sausage Sandwich</h3>
+    <p>₱139</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Chicken Sandwich"
+      data-desc="A crispy golden chicken fillet sandwiched between soft bread, layered with fresh and savory flavors for a satisfying and hearty meal."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱159">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Chicken Sandwich</h3>
+    <p>₱159</p>
+  </div>
+
+  <!-- FRIES SECTION -->
+
+  <h2 class="menu-title rise-desc">Nachos and Fries</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Overload Nachos"
+      data-desc="A fully loaded nacho dish topped with melted cheese and generous savory toppings, creating a crunchy, cheesy, and satisfying snack perfect for sharing or solo indulgence."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱110">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Overload Nachos</h3>
+    <p>₱110</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Cheesy Bacon Fries"
+      data-desc="Crispy golden fries loaded with melted cheese and crispy bacon bits, creating a rich, savory, and indulgent snack perfect for sharing or solo cravings."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱110">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Cheesy Bacon Fries</h3>
+    <p>₱110</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Fries 'N Chick"
+      data-desc="A satisfying combo of crispy golden fries paired with juicy fried chicken, creating a perfect mix of crunchy, savory, and comforting flavors in every bite."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱150">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Fries 'N Chick</h3>
+    <p>₱150</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Regular Fries"
+      data-desc="Crispy golden fries served plain with a choice of flavorful seasonings including salt, cheese, sour cream, and barbecue, perfect for customizing your snack experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱159">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Regular Fries<br>(Salt, Cheese, Sour Cream, Barbecue)</h3>
+    <p>₱159</p>
+  </div>
+
+</div>
+
+<div class="menu-group rise-item" id="coffee">
+
+  <h2 class="menu-title rise-desc">Non-Coffee</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Milky Chocolate"
+      data-desc="A rich and creamy chocolate milk drink made with smooth cocoa flavor and milk, served chilled for a sweet and comforting beverage experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱90 | 22oz ₱115">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Milky Chocolate</h3>
+    <p>16 oz : ₱90 | 22 oz : ₱115</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Milky Oreo"
+      data-desc="A creamy chocolate milk blended with crushed Oreo cookies, creating a rich, sweet, and cookies-and-cream inspired drink perfect for dessert lovers."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱90 | 22oz ₱115">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Milky Oreo</h3>
+    <p>16 oz : ₱90 | 22 oz : ₱115</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Strawberry Milk"
+      data-desc="A sweet and refreshing strawberry milk drink made with creamy milk blended with fruity strawberry flavor, served chilled for a smooth and delightful treat."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱90 | 22oz ₱115">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Strawberry Milk</h3>
+    <p>16 oz : ₱90 | 22 oz : ₱115</p>
+  </div>
+
+  <!-- COFFEE SECTION -->
+
+  <h2 class="menu-title rise-desc">Coffee</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Milk Chocolate Coffee"
+      data-desc="A warm and comforting blend of rich chocolate and smooth coffee, creating a creamy hot drink with a perfect balance of sweetness and bold coffee flavor."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="HOT 12oz ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Milk Chocolate</h3>
+    <p>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Americano"
+      data-desc="A classic black coffee served hot or iced, made from rich espresso and water for a bold, smooth, and refreshing coffee experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold 16oz ₱85 | 22oz ₱99 / Hot 12oz ₱85">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Americano</h3>
+    <p>COLD 16 oz : ₱85 | 22 oz : ₱99<br>HOT 12 oz : ₱85</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Summer Americano"
+      data-desc="A refreshing iced Americano perfect for hot days, made with bold espresso and chilled water, served over ice for a clean, crisp, and energizing coffee experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱105 | 22oz ₱125">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Summer Americano</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Cafe Latte"
+      data-desc="A smooth and creamy espresso-based drink blended with steamed milk, delivering a balanced coffee flavor with a soft, velvety texture."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Cafe Latte</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Caramel Latte"
+      data-desc="A rich and creamy espresso-based latte infused with sweet caramel syrup, creating a smooth, sweet, and perfectly balanced coffee drink."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Caramel Latte</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Vanilla Latte"
+      data-desc="A smooth and creamy espresso-based latte infused with sweet vanilla flavor, creating a soft, aromatic, and perfectly balanced coffee drink."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Vanilla Latte</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Hazelnut Latte"
+      data-desc="A smooth espresso-based latte infused with rich hazelnut flavor, creating a nutty, creamy, and aromatic coffee drink with a perfectly balanced sweetness."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Hazelnut Latte</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="White Mocha"
+      data-desc="A sweet and creamy espresso-based drink made with white chocolate and milk, creating a smooth, rich, and dessert-like mocha experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>White Mocha</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Spanish Latte"
+      data-desc="A smooth and creamy espresso-based latte with sweetened milk, creating a rich, slightly caramelized coffee flavor with a silky texture."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Spanish Latte</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Mocha"
+      data-desc="A rich and smooth blend of espresso and chocolate, creating a perfectly balanced coffee drink with a sweet, creamy, and slightly bold chocolate flavor."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱105–₱125 / Hot ₱119">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Mocha</h3>
+    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Pistachio Latte"
+      data-desc="A premium espresso-based latte infused with rich and nutty pistachio flavor, blended with creamy milk for a smooth, slightly sweet, and luxurious coffee experience."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱135–₱160 / Hot ₱129">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Pistachio Latte</h3>
+    <p>COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12 oz : ₱129</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Biscoff Latte"
+      data-desc="A rich and creamy espresso-based latte infused with caramelized Biscoff biscuit flavor, creating a sweet, spiced, and dessert-like coffee experience with a smooth finish."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱135–₱160 / Hot ₱129">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Biscoff Latte</h3>
+    <p>COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12 oz : ₱129</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Dirty Matcha"
+      data-desc="A bold fusion drink combining earthy matcha and rich espresso, creating a unique balance of bitterness, creaminess, and coffee kick in every sip."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="Cold ₱135–₱160 / Hot ₱129">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Dirty Matcha</h3>
+    <p>COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12 oz : ₱129</p>
+  </div>
+
+</div>
+
+<div class="menu-group rise-item" id="matchaR">
+
+  <h2 class="menu-title rise-desc">Matcha Regular</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Oreo Matcha"
+      data-desc="A creamy fusion drink combining earthy matcha with sweet Oreo cookies, creating a unique blend of bitterness, sweetness, and cookies-and-cream richness in every sip."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱120 | 22oz ₱145">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Oreo Matcha</h3>
+    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Matcha Latte"
+      data-desc="A classic Japanese-inspired latte made with premium matcha powder and creamy milk, delivering a smooth, earthy, and slightly sweet flavor in every sip."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱120 | 22oz ₱145">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Matcha Latte</h3>
+    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Strawberry Matcha"
+      data-desc="A refreshing fusion of sweet strawberry and earthy matcha, blended with creamy milk to create a smooth, fruity, and slightly bitter balanced drink."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱120 | 22oz ₱145">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Strawberry Matcha</h3>
+    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Biscoff Matcha"
+      data-desc="A unique fusion drink combining earthy matcha with caramelized Biscoff biscuit flavor, creating a creamy, sweet, and slightly spiced dessert-like beverage."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="16oz ₱120 | 22oz ₱145">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Biscoff Matcha</h3>
+    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+  </div>
+
+  <!-- PREMIUM -->
+
+  <h2 class="menu-title rise-desc">Matcha Premium</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Classic Matcha Latte"
+      data-desc="A premium ceremonial-grade matcha latte made with finely stone-ground green tea powder and creamy milk, delivering a smooth, earthy, and authentic Japanese-inspired taste."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱170">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Classic Matcha Latte</h3>
+    <p>₱170</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Spanish Matcha"
+      data-desc="A sweet Spanish-style matcha latte combining creamy milk, sweetened base, and earthy matcha for a smooth, rich, and dessert-like fusion drink."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱170">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Spanish Matcha</h3>
+    <p>₱170</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Agave Oat Matcha"
+      data-desc="A healthy and creamy matcha drink made with oat milk and naturally sweetened with agave, delivering a smooth, earthy, and lightly sweet plant-based beverage."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱180">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Agave Oat Matcha</h3>
+    <p>₱180</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Berry Matcha"
+      data-desc="A refreshing fusion of earthy matcha and mixed berry flavors, creating a fruity, slightly tangy, and creamy drink with a balanced sweet finish."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱180">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Berry Matcha</h3>
+    <p>₱180</p>
+  </div>
+
+  <!-- HOJICHA -->
+
+  <h2 class="menu-title rise-desc">Matcha Hojicha</h2>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Hojicha Latte"
+      data-desc="A smooth and comforting Japanese latte made with roasted green tea (hojicha) and creamy milk, offering a nutty, toasty, and slightly sweet flavor profile."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱170">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Hojicha Latte</h3>
+    <p>₱170</p>
+  </div>
+
+  <div class="menu-card2 rise-item"
+      onclick="openModal(this)"
+      data-title="Berry Hojicha"
+      data-desc="A unique fusion drink combining roasted Japanese hojicha tea with sweet mixed berry flavors, creating a smooth, fruity, and slightly smoky refreshing beverage."
+      data-img="IMAGES/foodpic.jpg"
+      data-price="₱190">
+
+    <img src="IMAGES/foodpic.jpg">
+    <h3>Berry Hojicha</h3>
+    <p>₱190</p>
+  </div>
+
+</div>
+
+</div>
+
+<div id="menuModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeModal()">×</span>
+
+    <div class="modal-body">
+
+      <!-- LEFT: IMAGE -->
+      <div class="modal-left">
+        <img id="modalImg" src="" alt="Menu Item">
+      </div>
+
+      <!-- RIGHT: DETAILS -->
+      <div class="modal-right">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+
+        <div id="modalIngredients" class="ingredients"></div>
+
+        <div id="modalPrice" class="modal-price"></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
 <!-------------------------------- FOOTBAR ------------------------------------->
 <div class="footbar rise-item">
@@ -686,6 +1378,58 @@ function handleRise() {
 window.addEventListener("scroll", handleRise);
 window.addEventListener("load", handleRise);
 
+function openModal(card) {
+  document.getElementById("menuModal").style.display = "flex";
+
+  document.getElementById("modalImg").src = card.dataset.img;
+  document.getElementById("modalTitle").innerText = card.dataset.title;
+  document.getElementById("modalDesc").innerText = card.dataset.desc;
+
+  // 🔥 INGREDIENTS
+  let ingredients = card.dataset.ingredients;
+  let container = document.getElementById("modalIngredients");
+
+  if (ingredients) {
+    let list = ingredients.split(",");
+    let html = "<h4>Ingredients:</h4><ul>";
+
+    list.forEach(item => {
+      html += `<li>${item.trim()}</li>`;
+    });
+
+    html += "</ul>";
+    container.innerHTML = html;
+  } else {
+    container.innerHTML = "";
+  }
+
+  // 🔥 PRICE (dynamic na rin)
+  let price = card.dataset.price;
+  let priceHTML = "";
+
+  if (price.includes("|")) {
+    let parts = price.split("|");
+    parts.forEach(p => {
+      priceHTML += `<div class="price-box">🍚 ${p.trim()}</div>`;
+    });
+  } else {
+    priceHTML = `<div class="price-box">🍚 ${price}</div>`;
+  }
+
+  document.getElementById("modalPrice").innerHTML = priceHTML;
+}
+
+function closeModal() {
+  document.getElementById("menuModal").style.display = "none";
+}
+
+// close when clicking outside
+window.onclick = function(e) {
+  let modal = document.getElementById("menuModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
 /******************************** SHOW MENU ********************************/
 function showMenu(category, button) {
 
