@@ -212,26 +212,77 @@ html {
   transform: translateY(0);
 }
 /******************************** MENU ********************************/
-
 .menu-categories {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:18px;
-  margin:50px 20px;
-    margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 140px auto 40px;
+  padding: 14px 18px;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
-
+.menu-categories::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top left,
+    rgba(17,69,0,0.18),
+    transparent 60%),
+    radial-gradient(circle at bottom right,
+    rgba(255,140,0,0.12),
+    transparent 55%);
+  filter: blur(30px);
+  z-index: 0;
+}
+.menu-categories::-webkit-scrollbar {
+  display: none;
+}
 .menu-title {
   grid-column: 1 / -1;
   font-size: 26px;
+  font-weight: 700;
   color: #114500;
-  margin-bottom: 20px;
+  margin: 60px 0 30px;
   text-align: center;
   position: relative;
-  padding-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
+/* Elegant divider line */
+.menu-title::before,
+.menu-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1.5px;
+  background: linear-gradient(to right, transparent, rgba(17,69,0,0.4), transparent);
+}
+
+.menu-title::before {
+  left: 0;
+}
+
+.menu-title::after {
+  right: 0;
+}
+
+/* subtle glow dot */
+.menu-title span {
+  background: white;
+  padding: 0 14px;
+}
 .menu-grid { 
   width:90%;
   margin:auto;
@@ -240,19 +291,17 @@ html {
 }
 
 .menu-group {
-  display:none;
-  grid-template-columns:repeat(4, 1fr); 
-  gap:25px;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  padding: 40px 0 60px;
   position: relative;
-  padding-bottom: 40px;
-  animation:fadeIn 0.5s ease;
 }
-
 .menu-group.active {
   display:grid;
 }
-
 .menu-group.active::after {
+  display: none;
   content: "";
   position: absolute;
   bottom: 10px;
@@ -261,157 +310,293 @@ html {
   height: 2px;
   background: linear-gradient(to right, transparent, #114500, transparent);
 }
-
 .menu-card2 {
-  background: white;
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  transition: 0.3s;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.4);
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  transition: all 0.35s ease;
+  cursor: pointer;
 }
 
+/* hover premium lift */
 .menu-card2:hover {
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.18);
 }
-
 .menu-card2 img {
   width: 100%;
-  height: 240px;
+  height: 210px;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
-
+.menu-card2:hover img {
+  transform: scale(1.08);
+}
 .menu-card2 h3 {
-  margin:12px 0 5px;
-  color:#114500;
-  text-align:center;
-}
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
 
+  margin: 14px 16px 6px;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+}
 .menu-card2 p {
-  text-align:center;
+  margin: 0 16px 10px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
 }
-
+.menu-card2 p::before {
+  content: "₱ ";
+  font-weight: 600;
+  color: #114500;
+}
 @media (max-width: 1024px){
   .menu-group {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 @media (max-width: 768px){
   .menu-group {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 480px){
   .menu-group {
     grid-template-columns: 1fr;
   }
 }
+.menu-card2::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 
-.ingredients {
-  margin-top: 12px;
-  margin-bottom: 15px;
+  background: radial-gradient(circle at top left,
+    rgba(17,69,0,0.15),
+    transparent 60%);
+
+  opacity: 0;
+  transition: 0.4s;
+}
+.menu-card2:hover::after {
+  opacity: 1;
 }
 
-.ingredients h4 {
-  font-size: 14px;
+.category-title {
+  text-align: center;
+  font-size: 22px;
   color: #114500;
-  margin-bottom: 6px;
-}
-
-.ingredients ul {
-  padding-left: 18px;
-}
-
-.ingredients li {
-  font-size: 13px;
-  color: #555;
-  margin-bottom: 4px;
-  line-height: 1.4;
-}
-/******************************** CATEGORIES ********************************/
-
-.cat-btn {
-  padding: 8px 14px;     
-  font-size: 16px;      
+  margin-top: 140px;
+  margin-bottom: -100px;
   font-weight: 600;
-  border-radius: 20px;  
-  border: 1px solid #114500;
-  background: transparent;
+  letter-spacing: 1px;
+}
+.ingredients {
+  margin: 10px 16px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ingredients h4 {
+  display: none;
+}
+.ingredients ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+}
+.ingredients li {
+  font-size: 11px;
   color: #114500;
+
+  background: rgba(17, 69, 0, 0.08);
+  border: 1px solid rgba(17, 69, 0, 0.15);
+
+  padding: 5px 10px;
+  border-radius: 999px;
+
+  backdrop-filter: blur(8px);
+}
+
+/******************************** CATEGORIES ********************************/
+.cat-btn {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  border-radius: 999px;
+
+  border: 1px solid transparent;
+
+  background: rgba(255,255,255,0.7);
+  color: #333;
+
   cursor: pointer;
+
   transition: all 0.3s ease;
-}
 
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+}
 .cat-btn:hover {
-  background: #114500;
+  transform: translateY(-3px) scale(1.03);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
 
+  background: linear-gradient(
+    135deg,
+    #114500,
+    #1f7a00,
+    #2ecc71
+  );
+
+  box-shadow:
+    0 12px 25px rgba(17,69,0,0.35);
+}
 .cat-btn.active {
-  background: #114500;
-  color: white;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
 }
-
+.cat-btn:hover .cat-icon {
+  transform: rotate(8deg) scale(1.1);
+  filter: brightness(1.2);
+}
 .cat-icon {
-  width: 20px;
-  height: 18px;
-  margin-right: 8px; 
-  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+  transition: transform 0.3s ease;
+}
+.cat-btn.active {
+  color: #fff;
+
+  background: linear-gradient(
+    135deg,
+    #0f3d00,
+    #1f7a00
+  );
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.25),
+    0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+.cat-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 20%;
+  width: 60%;
+  height: 3px;
+
+  background: linear-gradient(90deg, transparent, #2ecc71, transparent);
+
+  border-radius: 10px;
+
+  animation: glowMove 1.5s infinite ease-in-out;
 }
 
+@keyframes glowMove {
+  0% { opacity: 0.4; transform: scaleX(0.8); }
+  50% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0.4; transform: scaleX(0.8); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
   justify-content: center;
   align-items: center;
   z-index: 2000;
 }
-
+.modal-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #114500;
+  margin-bottom: 6px;
+}
 .modal-content {
-  background: white;
-  width: 800px;
-  max-width: 90%;
-  border-radius: 16px;
+  width: 850px;
+  max-width: 92%;
+  background: #fff;
+  border-radius: 22px;
   overflow: hidden;
+  position: relative;
+
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
   animation: pop 0.25s ease;
 }
+.modal-image {
+  position: relative;
+  height: 260px;
+}
 
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+}
 @keyframes pop {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-
 .modal-body {
   display: flex;
+  flex-direction: row;
 }
-
 .modal-left {
   flex: 1;
   background: #f5f5f5;
+  min-height: 100%;
 }
-
 .modal-left img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .modal-right {
   flex: 1;
-  padding: 20px;
+  padding: 24px;
 }
-
 .modal-right h2 {
   color: #114500;
   margin-bottom: 10px;
 }
-
 .modal-right p {
   color: #666;
   font-size: 14px;
@@ -422,6 +607,19 @@ html {
   flex-direction: column;
   gap: 10px;
 }
+.modal-desc {
+  font-size: 14px;
+  color: #555;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* ANIMATION */
+@keyframes pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 .price-box {
   background: #f4f4f4;
   border-left: 4px solid #114500;
@@ -431,13 +629,95 @@ html {
   color: #333;
   transition: 0.3s;
 }
+.price-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin: 12px 16px 18px;
+}
+
+.price-group span {
+  background: linear-gradient(135deg, #114500, #1f7a00);
+  color: white;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  box-shadow: 0 8px 18px rgba(17,69,0,0.25);
+}
+.price-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.price-box {
+  background: linear-gradient(135deg, #114500, #1f7a00);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  box-shadow: 0 10px 20px rgba(17,69,0,0.25);
+}
+.section {
+  margin-top: 18px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #114500;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* INGREDIENT CHIPS */
+.ingredients-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ingredients-chips span {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  background: rgba(17,69,0,0.08);
+  border: 1px solid rgba(17,69,0,0.15);
+  color: #114500;
+
+  backdrop-filter: blur(8px);
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  margin: 18px 0;
+  background: linear-gradient(to right, transparent, #ddd, transparent);
+}
 .close-btn {
   position: absolute;
-  right: 20px;
-  top: 15px;
+  right: 18px;
+  top: 12px;
   font-size: 28px;
   cursor: pointer;
-  color: #114500;
+  color: white;
+  z-index: 10;
+}
+.title-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #114500, transparent);
+  border-radius: 10px;
 }
 /******************************** FOOTBAR ********************************/
 .footbar {
@@ -555,18 +835,19 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
 
 </div>
 <!-------------------------------- CATEGORIES ------------------------------------->
+  <h2 class="category-title">Browse Menu</h2>
 
-<div class="menu-categories rise-item">
+  <div class="menu-categories rise-item">
 
-  <button class="cat-btn active" onclick="showMenu('all', this)"><img src="IMAGES/menu.png" class="cat-icon">All</button>
-  <button class="cat-btn" onclick="showMenu('friedrice', this)"><img src="IMAGES/friedrice.png" class="cat-icon">Fried Rice</button>
-  <button class="cat-btn" onclick="showMenu('bacsilog', this)"><img src="IMAGES/bacon.png" class="cat-icon">Bacsilog</button>
-  <button class="cat-btn" onclick="showMenu('noodles', this)"><img src="IMAGES/noodles.png" class="cat-icon">Noodles</button>
-  <button class="cat-btn" onclick="showMenu('snacks', this)"><img src="IMAGES/snacks.png" class="cat-icon">Snacks</button>
-  <button class="cat-btn" onclick="showMenu('coffee', this)"><img src="IMAGES/coffeeicon.png" class="cat-icon">Coffee & Non-Coffee</button>
-  <button class="cat-btn" onclick="showMenu('matchaR', this)"><img src="IMAGES/matcha.png" class="cat-icon">Matcha Series</button>
+    <button class="cat-btn active" onclick="showMenu('all', this)"><img src="IMAGES/menu.png" class="cat-icon">All</button>
+    <button class="cat-btn" onclick="showMenu('friedrice', this)"><img src="IMAGES/friedrice.png" class="cat-icon">Fried Rice</button>
+    <button class="cat-btn" onclick="showMenu('bacsilog', this)"><img src="IMAGES/bacon.png" class="cat-icon">Bacsilog</button>
+    <button class="cat-btn" onclick="showMenu('noodles', this)"><img src="IMAGES/noodles.png" class="cat-icon">Noodles</button>
+    <button class="cat-btn" onclick="showMenu('snacks', this)"><img src="IMAGES/snacks.png" class="cat-icon">Snacks</button>
+    <button class="cat-btn" onclick="showMenu('coffee', this)"><img src="IMAGES/coffeeicon.png" class="cat-icon">Coffee & Non-Coffee</button>
+    <button class="cat-btn" onclick="showMenu('matchaR', this)"><img src="IMAGES/matcha.png" class="cat-icon">Matcha Series</button>
 
-</div>
+  </div>
 
 <!-------------------------------- MENU GRID ------------------------------------->
 
@@ -584,9 +865,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-price="Solo ₱95 | Double ₱130"
       data-ingredients="Kimchi, Garlic, Egg, Rice, Sesame oil">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Kimchi Fried Rice</h3>
-    <p>Solo : ₱95 | Double : ₱130</p>
+    <div class="price-group">
+      <span>Solo ₱95</span>
+      <span>Double ₱130</span>
+    </div>
   </div>
 
     <div class="menu-card2 rise-item"
@@ -597,9 +881,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Shitake Mushroom, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg">
+      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
       <h3>Shitake Fried Rice</h3>
-      <p>Solo : ₱95 | Double : ₱130</p>
+      <div class="price-group">
+        <span>Solo ₱95</span>
+        <span>Double ₱130</span>
+      </div>
     </div>
 
     <div class="menu-card2 rise-item"
@@ -610,9 +897,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Spam, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg">
+      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
       <h3>Spam Fried Rice</h3>
-      <p>Solo : ₱95 | Double : ₱130</p>
+      <div class="price-group">
+        <span>Solo ₱95</span>
+        <span>Double ₱130</span>
+      </div>
     </div>
 
     <div class="menu-card2 rise-item"
@@ -623,9 +913,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Shrimp, Squid, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg">
+      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
       <h3>Seafood Fried Rice</h3>
-      <p>Solo : ₱95 | Double : ₱130</p>
+      <div class="price-group">
+        <span>Solo ₱95</span>
+        <span>Double ₱130</span>
+      </div>
     </div>
 
     <div class="menu-card2 rise-item"
@@ -636,9 +929,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Chicken Adobo, Garlic, Egg, Rice, Soy Sauce, Vinegar, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg">
+      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
       <h3>Adobo Fried Rice</h3>
-      <p>Solo : ₱95 | Double : ₱130</p>
+      <div class="price-group">
+        <span>Solo ₱95</span>
+        <span>Double ₱130</span>
+      </div>
     </div>
 
     <div class="menu-card2 rise-item"
@@ -649,9 +945,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Delimondo Corned Beef, Garlic, Egg, Rice, Soy Sauce">
 
-      <img src="IMAGES/foodpic.jpg">
+      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
       <h3>Delimondo Fried Rice</h3>
-      <p>Solo : ₱95 | Double : ₱130</p>
+      <div class="price-group">
+        <span>Solo ₱95</span>
+        <span>Double ₱130</span>
+      </div>
     </div>
 
 </div>
@@ -667,9 +966,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱95">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Bacsilog</h3>
-    <p>₱95</p>
+    <div class="price-group">
+      <span>₱95</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -679,9 +980,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱125">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Spam Bacsilog</h3>
-    <p>₱125</p>
+    <div class="price-group">
+      <span>₱125</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -691,9 +994,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱145">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Hungarian Sausage<br>Bacsilog</h3>
-    <p>₱145</p>
+    <div class="price-group">
+      <span>₱145</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -703,9 +1008,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱165">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Chicken Bacsilog</h3>
-    <p>₱165</p>
+    <div class="price-group">
+      <span>₱165</span>
+    </div>
   </div>
 
 </div>
@@ -721,9 +1028,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱129">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 1<br>Cheesy Spicy Noodles<br>with Nori</h3>
-    <p>₱129</p>
+    <div class="price-group">
+      <span>₱129</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -733,9 +1042,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱139">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 2<br>Cheesy Spicy Noodles<br>with Egg and Nori</h3>
-    <p>₱139</p>
+    <div class="price-group">
+      <span>₱139</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -745,9 +1056,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱159">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 3<br>Cheesy Spicy Noodles<br>with Egg, Nori and Spam</h3>
-    <p>₱159</p>
+    <div class="price-group">
+      <span>₱159</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -757,9 +1070,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱169">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 4<br>Cheesy Spicy Noodles<br>with Egg, Nori and Hungarian Sausage</h3>
-    <p>₱169</p>
+    <div class="price-group">
+      <span>₱169</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -769,9 +1084,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱179">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>CSN<br>with Nori and Chicken Katsu</h3>
-    <p>₱179</p>
+    <div class="price-group">
+      <span>₱179</span>
+    </div>
   </div>
 
 </div>
@@ -787,9 +1104,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱99">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Egg Sandwich</h3>
-    <p>₱99</p>
+    <div class="price-group">
+      <span>₱99</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -799,9 +1118,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Egg and Bacon Sandwich</h3>
-    <p>₱119</p>
+    <div class="price-group">
+      <span>₱119</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -811,9 +1132,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱139">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Hungarian Sausage Sandwich</h3>
-    <p>₱139</p>
+    <div class="price-group">
+      <span>₱139</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -823,9 +1146,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱159">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Chicken Sandwich</h3>
-    <p>₱159</p>
+    <div class="price-group">
+      <span>₱159</span>
+    </div>
   </div>
 
   <!-- FRIES SECTION -->
@@ -839,9 +1164,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱110">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Overload Nachos</h3>
-    <p>₱110</p>
+    <div class="price-group">
+      <span>₱110</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -851,9 +1178,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱110">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Cheesy Bacon Fries</h3>
-    <p>₱110</p>
+    <div class="price-group">
+      <span>₱110</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -863,9 +1192,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱150">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Fries 'N Chick</h3>
-    <p>₱150</p>
+    <div class="price-group">
+      <span>₱150</span>
+    </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -875,9 +1206,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱159">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Regular Fries<br>(Salt, Cheese, Sour Cream, Barbecue)</h3>
-    <p>₱159</p>
+    <div class="price-group">
+      <span>₱159</span>
+    </div>
   </div>
 
 </div>
@@ -893,9 +1226,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱90 | 22oz ₱115">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Milky Chocolate</h3>
-    <p>16 oz : ₱90 | 22 oz : ₱115</p>
+      <div class="price-group">
+        <span>16 oz ₱90</span>
+        <span>22 oz ₱115</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -905,9 +1241,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱90 | 22oz ₱115">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Milky Oreo</h3>
-    <p>16 oz : ₱90 | 22 oz : ₱115</p>
+      <div class="price-group">
+        <span>16 oz ₱90</span>
+        <span>22 oz ₱115</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -917,9 +1256,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱90 | 22oz ₱115">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Strawberry Milk</h3>
-    <p>16 oz : ₱90 | 22 oz : ₱115</p>
+      <div class="price-group">
+        <span>16 oz ₱90</span>
+        <span>22 oz ₱115</span>
+      </div>
   </div>
 
   <!-- COFFEE SECTION -->
@@ -933,9 +1275,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="HOT 12oz ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Milk Chocolate</h3>
-    <p>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -945,9 +1289,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold 16oz ₱85 | 22oz ₱99 / Hot 12oz ₱85">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Americano</h3>
-    <p>COLD 16 oz : ₱85 | 22 oz : ₱99<br>HOT 12 oz : ₱85</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱85 | 22 oz ₱99</span>
+        <span>22 oz ₱99</span>
+        <span>HOT 12 oz ₱85</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -957,9 +1305,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱105 | 22oz ₱125">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Summer Americano</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -969,9 +1320,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Cafe Latte</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -981,9 +1336,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Caramel Latte</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -993,9 +1352,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Vanilla Latte</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1005,9 +1368,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Hazelnut Latte</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1017,9 +1384,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>White Mocha</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1029,9 +1400,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Spanish Latte</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1041,9 +1416,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Mocha</h3>
-    <p>COLD 16 oz : ₱105 | 22 oz : ₱125<br>HOT 12 oz : ₱119</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1053,9 +1432,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱135–₱160 / Hot ₱129">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Pistachio Latte</h3>
-    <p>COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12 oz : ₱129</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱105</span>
+        <span>22 oz ₱125</span>
+        <span>HOT 12 oz ₱119</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1065,9 +1448,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱135–₱160 / Hot ₱129">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Biscoff Latte</h3>
-    <p>COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12 oz : ₱129</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱135</span>
+        <span>22 oz ₱160</span>
+        <span>HOT 12 oz ₱129</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1077,9 +1464,13 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="Cold ₱135–₱160 / Hot ₱129">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Dirty Matcha</h3>
-    <p>COLD 16 oz : ₱135 | 22 oz : ₱160<br>HOT 12 oz : ₱129</p>
+      <div class="price-group">
+        <span>COLD 16 oz ₱135</span>
+        <span>22 oz ₱160</span>
+        <span>HOT 12 oz ₱129</span>
+      </div>
   </div>
 
 </div>
@@ -1095,9 +1486,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱120 | 22oz ₱145">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Oreo Matcha</h3>
-    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+      <div class="price-group">
+        <span>16 oz ₱120</span>
+        <span>22 oz ₱145</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1107,9 +1501,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱120 | 22oz ₱145">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Matcha Latte</h3>
-    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+      <div class="price-group">
+        <span>16 oz ₱120</span>
+        <span>22 oz ₱145</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1119,9 +1516,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱120 | 22oz ₱145">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Strawberry Matcha</h3>
-    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+      <div class="price-group">
+        <span>16 oz ₱120</span>
+        <span>22 oz ₱145</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1131,9 +1531,12 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="16oz ₱120 | 22oz ₱145">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Biscoff Matcha</h3>
-    <p>16 oz : ₱120 | 22 oz : ₱145</p>
+      <div class="price-group">
+        <span>16 oz ₱120</span>
+        <span>22 oz ₱145</span>
+      </div>
   </div>
 
   <!-- PREMIUM -->
@@ -1147,9 +1550,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱170">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Classic Matcha Latte</h3>
-    <p>₱170</p>
+      <div class="price-group">
+        <span>₱170</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1159,9 +1564,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱170">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Spanish Matcha</h3>
-    <p>₱170</p>
+      <div class="price-group">
+        <span>₱170</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1171,9 +1578,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱180">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Agave Oat Matcha</h3>
-    <p>₱180</p>
+      <div class="price-group">
+        <span>₱180</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1183,9 +1592,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱180">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Berry Matcha</h3>
-    <p>₱180</p>
+      <div class="price-group">
+        <span>₱180</span>
+      </div>
   </div>
 
   <!-- HOJICHA -->
@@ -1199,9 +1610,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱170">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Hojicha Latte</h3>
-    <p>₱170</p>
+      <div class="price-group">
+        <span>₱170</span>
+      </div>
   </div>
 
   <div class="menu-card2 rise-item"
@@ -1211,9 +1624,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       data-img="IMAGES/foodpic.jpg"
       data-price="₱190">
 
-    <img src="IMAGES/foodpic.jpg">
+    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
     <h3>Berry Hojicha</h3>
-    <p>₱190</p>
+      <div class="price-group">
+        <span>₱190</span>
+      </div>
   </div>
 
 </div>
@@ -1232,18 +1647,29 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         <img id="modalImg" src="" alt="Menu Item">
       </div>
 
-      <!-- RIGHT: DETAILS -->
+      <!-- RIGHT: CONTENT -->
       <div class="modal-right">
+
         <h2 id="modalTitle"></h2>
-        <p id="modalDesc"></p>
+        <div class="title-divider"></div>
 
-        <div id="modalIngredients" class="ingredients"></div>
+        <p id="modalDesc" class="modal-desc"></p>
 
-        <div id="modalPrice" class="modal-price"></div>
+        <div class="section">
+          <h4 class="section-title">Ingredients</h4>
+          <div id="modalIngredients" class="ingredients-chips"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          <h4 class="section-title">Price</h4>
+          <div id="modalPrice" class="price-container"></div>
+        </div>
+
       </div>
 
     </div>
-
   </div>
 </div>
 <!-------------------------------- FOOTBAR ------------------------------------->
@@ -1391,14 +1817,13 @@ function openModal(card) {
 
   if (ingredients) {
     let list = ingredients.split(",");
-    let html = "<h4>Ingredients:</h4><ul>";
+    container.innerHTML = "";
 
     list.forEach(item => {
-      html += `<li>${item.trim()}</li>`;
+      let span = document.createElement("span");
+      span.textContent = item.trim();
+      container.appendChild(span);
     });
-
-    html += "</ul>";
-    container.innerHTML = html;
   } else {
     container.innerHTML = "";
   }
@@ -1410,10 +1835,10 @@ function openModal(card) {
   if (price.includes("|")) {
     let parts = price.split("|");
     parts.forEach(p => {
-      priceHTML += `<div class="price-box">🍚 ${p.trim()}</div>`;
+      priceHTML += `<div class="price-box"> ${p.trim()}</div>`;
     });
   } else {
-    priceHTML = `<div class="price-box">🍚 ${price}</div>`;
+    priceHTML = `<div class="price-box"> ${price}</div>`;
   }
 
   document.getElementById("modalPrice").innerHTML = priceHTML;
