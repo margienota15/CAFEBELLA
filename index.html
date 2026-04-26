@@ -267,17 +267,6 @@ html {
 .dot.active {
   background: white;
 }
-/******************************** SCROLL ANIMATION ********************************/
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
-}
-
-.scroll-animate.show {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /******************************** RISE ANIMATION ********************************/
 
@@ -364,14 +353,6 @@ html {
   line-height: 1.8;
   margin-bottom: var(--space-md);
 }
-.menu-slider {
-  position: relative;
-  margin-top: 50px;
-  overflow: hidden;
-  border-radius: 15px;
-  max-width: 1100px;
-  margin: 60px auto 0;
-}
 .menu-track {
   display: flex;
   gap: 20px; /* from 18 → mas balanced */
@@ -447,6 +428,9 @@ html {
   margin-bottom: 12px;
 }
 .menu-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
   max-width: 1100px;
   margin: var(--space-lg) auto 0;
 }
@@ -606,7 +590,7 @@ html {
   font-size: 17px;
   margin-bottom: 15px;
   line-height: 1.5;
-  color: 114500 ;
+  color: #114500;
 }
 
 .event-btn {
@@ -667,14 +651,6 @@ html {
 }
 .event-card:hover img {
   transform: scale(1.08);
-}
-.event-bottom h3 {
-  color: #114500;
-  margin-bottom: 10px;
-}
-.event-bottom p {
-  font-size: 17px;
-  margin-bottom: 15px;
 }
 .event-overlay {
   position: absolute;
@@ -807,124 +783,6 @@ html {
   }
 }
 
-.modal-artist {
-  margin-top: 18px;
-  text-align: center;
-  font-size: 13px;
-  color: #777;
-}
-
-.modal-artist span {
-  display: block;
-  margin-bottom: 8px;
-}
-.modal-artist-box {
-  margin-top: 18px;
-  text-align: center;
-}
-.modal-artist-inline {
-  margin-top: 16px;
-  font-size: 13px;
-  color: #666;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap; /* para responsive */
-}
-.modal-artist-clean {
-  margin-top: 18px;
-  text-align: center;
-}
-/* CARD STYLE */
-.artist-label {
-  display: block;
-  font-size: 12px;
-  color: #999;
-  letter-spacing: 0.6px;
-  margin-bottom: 6px;
-}
-.artist-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-.artist-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 8px 14px;
-  border-radius: 8px;
-
-  text-decoration: none;
-
-  background: #fafafa;
-  border: 1px solid #e5e5e5;
-
-  transition: all 0.2s ease;
-}
-.artist-card:hover {
-  background: #f2f2f2;
-}
-.artist-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  text-decoration: none;
-  color: #114500;
-  font-weight: 500;
-}
-.artist-icon {
-  width: 16px;
-  height: 16px;
-}
-.artist-icon img {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-}
-.artist-info {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-.artist-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #114500;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-.artist-name:hover {
-  opacity: 0.7;
-}
-.artist-role {
-  font-size: 12px;
-  color: #777;
-  position: relative;
-}
-.artist-role::before {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 1px;
-  background: #ddd;
-  margin: 4px auto 6px;
-}
-.artist-info strong {
-  display: block;
-  color: #114500;
-  font-size: 13px;
-}
-.artist-info small {
-  font-size: 11px;
-  color: #666;
-}
-
 .collab-wrapper {
   margin-top: 18px;
   margin-bottom: 22px; /* 👉 important para humiwalay sa grid */
@@ -992,40 +850,8 @@ html {
   color: white;
   transform: translateX(4px);
 }
-/******************************** MATCHA IMAGES ********************************/
-.matcha-left {
-  width: 229px;
-  height: 208px;
-  object-fit: contain;
-}
 
-.matcha-right {
-  width: 344px;
-  height: 172px;
-  object-fit: contain;
-}
 
-/* ================= FEEDBACK SECTION ================= */
-.feedback-header {
-  text-align: center;
-  margin-bottom: 70px;
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  margin: auto;
-}
-.feedback-header h2{
-  font-size: 42px;
-  color: #114500;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.feedback-header p{
-  font-size: 14px;
-  color: #666;
-  max-width: 500px;
-  margin: auto;
-}
 .feedback-line{
   width: 80px;
   height: 2px;
@@ -1033,11 +859,7 @@ html {
   margin: 14px auto;
   opacity: 0.4;
 }
-.feedback-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
-}
+
 .feedback-badge{
   display: inline-block;
   padding: 6px 14px;
@@ -1103,36 +925,10 @@ html {
   }
 }
 
-.feedback-side {
-  position: absolute;
-  bottom: -40px; /* para hindi sumapaw sa next section */
-  width: 334.96px;
-  height: 326.97px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
 .feedback-side:hover {
   animation: splashHover 0.6s ease;
-  filter: drop-shadow(0 15px 20px #f2f2f2(14, 97, 65, 0.25));
+  filter: drop-shadow(0 15px 20px rgba(14, 97, 65, 0.25));
 }
-.feedback-left {
-  left: -40px;
-  animation-delay: 0.2s;
-}
-
-.feedback-right {
-  right: -40px;
-  animation-delay: 0.5s;
-}
-
-.feedback-section h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 2;
-}
-
 .feedback-sub {
   font-size: 14px;
   margin-bottom: 40px;
@@ -1164,11 +960,6 @@ html {
   width: 100%;
 }
 
-.feedback-card p{
-  font-size: 14.5px;
-  color: #444;
-  line-height: 1.7;
-}
 .feedback-author {
   font-size: 12px;
   font-weight: bold;
@@ -1558,13 +1349,8 @@ html {
 /******************************** FOOTER ********************************/
 .footer {
   background: #eee;
-  padding: 50px 20px;
-  margin-top: 80px;
-}
-
-.footer {
-  background: #eee;
   padding: 40px 60px;
+  margin-top: 80px;
 }
 
 .footer-top {
