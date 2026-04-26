@@ -9,6 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+
+:root {
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+}  
 * {
   margin: 0;
   padding: 0;
@@ -289,126 +297,297 @@ html {
 }
 /******************************** MENU ********************************/
 .menu-section {
-  background: #eee;
-  margin: 60px auto;
-  width: 90%;
-  padding: 80px 40px;
-  text-align: center;
-  border: 2px solid #114500;
-  border-radius: 20px;
-}
-
-.menu-section h1 {
-  color: #114500;
-  margin-bottom: 20px;
-}
-
-.menu-caption {
-  max-width: 650px;
-  margin: 0 auto;
-  padding: 0 20px;
-  text-align: justify;
-  text-justify: inter-word;
-  line-height: 1.7;
-}
-
-.menu-slider {
+  padding: var(--space-xl) 20px;
   position: relative;
   overflow: hidden;
-  margin-top: 25px;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at top left, rgba(255, 252, 248, 0.95), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(210, 185, 160, 0.22), transparent 60%),
+    linear-gradient(145deg, #fbf7f2, #f2ebe4);
 }
+.menu-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 
+  background:
+    radial-gradient(circle at 25% 20%, rgba(120, 80, 50, 0.10), transparent 40%),
+    radial-gradient(circle at 75% 30%, rgba(160, 120, 90, 0.08), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(90, 60, 40, 0.06), transparent 50%);
+
+  filter: blur(45px);
+  z-index: 0;
+  pointer-events: none;
+}
+.menu-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  opacity: 0.28;
+
+  mix-blend-mode: multiply;
+  z-index: 1;
+  pointer-events: none;
+}
+.menu-section > * {
+  position: relative;
+  z-index: 2;
+}
+.menu-section h1 {
+  color: #114500;
+  font-size: 42px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+.menu-header {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-lg);
+  text-align: center;
+}
+.menu-header h1 {
+  font-size: 38px;
+  color: #114500;
+  margin-bottom: var(--space-sm);
+
+}
+.menu-caption {
+  max-width: 650px;
+  margin: auto;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
+.menu-slider {
+  position: relative;
+  margin-top: 50px;
+  overflow: hidden;
+  border-radius: 15px;
+  max-width: 1100px;
+  margin: 60px auto 0;
+}
 .menu-track {
   display: flex;
-  gap: 20px;
+  gap: 20px; /* from 18 → mas balanced */
   transition: transform 0.5s ease;
 }
-
 .menu-card {
-  flex: 0 0 auto;
-  width: 290px;
-  height: 331px;
-  background: url('IMAGES/foodpic.jpg') center/cover no-repeat;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 15px;
-
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-
-  transition: transform 0.4s ease;
+  flex: 0 0 280px;
+  height: 330px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 .menu-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
 }
-
+.menu-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: transform 0.5s ease;
+}
+.menu-card:hover img {
+  transform: scale(1.1);
+}
 .menu-card span {
-  background: rgba(0,0,0,0.4);
-  padding: 8px 12px;
-}
-
-.menu-btn {
-  margin-top: 30px;
-  padding: 12px 28px;
-  background: white;
-  color: #114500;
-  border: 2px solid #114500;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  z-index: 3;
+  background: rgba(17,69,0,0.75);
+  color: white;
+  padding: 10px;
   border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 13px;
+  text-align: center;
+}
+.menu-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  z-index: 2;
+}
+.menu-btn {
+  background: #114500;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+  margin-top: var(--space-sm);
 }
 .menu-btn:hover {
+  background: #0a2f00;
+  transform: scale(1.05);
+}
+.menu-badge {
+  display: inline-block;
+  padding: 6px 14px;
   background: #114500;
   color: white;
-  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+.menu-slider {
+  max-width: 1100px;
+  margin: var(--space-lg) auto 0;
 }
 
-/* ARROWS */
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  border: 1px solid #114500;
-  font-size: 20px;
-  padding: 10px;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  font-size: 22px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   cursor: pointer;
-  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+  z-index: 10; /* 🔥 important para hindi matabunan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow:hover {
+  background: #114500;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+.arrow.left {
+  left: -10px;
 }
 
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
+.arrow.right {
+  right: -10px;
+}
 
+/******************************** PREMIUM CTA BUTTON ********************************/
+
+.premium-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 34px;
+  border-radius: 50px;
+
+  background: linear-gradient(135deg, #114500, #1f6b00);
+  color: white;
+
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  text-decoration: none;
+
+  box-shadow: 0 10px 25px rgba(17, 69, 0, 0.25);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.4s ease;
+}
+
+/* hover glow effect */
+.premium-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: rgba(255,255,255,0.15);
+  transform: skewX(-25deg);
+  transition: 0.5s;
+}
+
+.premium-btn:hover::before {
+  left: 120%;
+}
+
+.premium-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(17, 69, 0, 0.35);
+}
+.premium-btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+.btn-arrow {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
 /******************************** EVENT ********************************/
 
 .event-section {
-  width: 90%;
-  margin: 60px auto;
-  padding: 40px 20px;
-  border: 2px solid #114500;
-  background: #eee;
-  text-align: center;
-  border-radius: 15px;
-  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: var(--space-xl) 20px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 250, 245, 0.9), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(140, 110, 80, 0.18), transparent 60%),
+    linear-gradient(145deg, #f8f3ed, #efe7dd);
 }
-
+.event-header {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+.event-header h2 {
+  font-size: 38px;
+  color: #114500;
+  margin-bottom: 16px;
+}
+.event-header p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
 .event-top {
   display: flex;
   align-items: center;
   justify-content: space-between; 
   margin-bottom: 30px;
 }
-
 .event-top img {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.event-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #114500;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
 .event-text {
   flex: 1;
   max-width: 600px;
@@ -438,6 +617,7 @@ html {
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: var(--space-sm);
 }
 
 .event-btn:hover {
@@ -446,36 +626,372 @@ html {
   border-radius: 20px;
   transform: translateY(-2px);
 }
-
 .event-cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 30px 0;
-}
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 60px;
+  margin: var(--space-lg) auto 0;
+  max-width: 1100px;
+  gap: var(--space-md);
 
+}
 .event-card {
-  width: 370px;
-  height: 274px;
-  background: url('IMAGES/eventpic.jpg') center/cover no-repeat;
-  transition: transform 0.4s ease;
-}
+  height: 280px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.event-card:nth-child(1){
+  background-image: url('IMAGES/eventpic.jpg');
+}
+.event-card:nth-child(2){
+  background-image: url('IMAGES/eventpic.jpg');
+}
+.event-card:nth-child(3){
+  background-image: url('IMAGES/eventpic.jpg');
+}
 .event-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
 }
-
-
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.event-card:hover img {
+  transform: scale(1.08);
+}
 .event-bottom h3 {
   color: #114500;
   margin-bottom: 10px;
 }
-
 .event-bottom p {
   font-size: 17px;
   margin-bottom: 15px;
 }
+.event-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  color: white;
+  text-align: left;
+}
+.event-overlay h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
 
+.event-overlay p {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .event-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/******************************** MODAL ********************************/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.88);
+  overflow-y: auto;
+}
+.modal-content {
+  background: #ffffff;
+  margin: 60px auto;
+  padding: 35px;
+  width: 92%;
+  max-width: 1000px;
+  border-radius: 22px;
+  position: relative;
+  animation: fadeUp 0.3s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #114500;
+}
+.modal-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.modal-header h2 {
+  font-size: 30px;
+  color: #114500;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.modal-header p {
+  font-size: 14px;
+  color: #666;
+  letter-spacing: 0.4px;
+}
+.modal-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #114500;
+  color: white;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+/******************************** MODAL DESCRIPTION ********************************/
+
+.modal-description {
+  margin-top: 18px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #555;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* GRID */
+.modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;   /* 👉 push grid down */
+  gap: 16px;          /* slight refinement (optional upgrade) */
+}
+.modal-item {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+.modal-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 768px) {
+  .modal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal-artist {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+}
+
+.modal-artist span {
+  display: block;
+  margin-bottom: 8px;
+}
+.modal-artist-box {
+  margin-top: 18px;
+  text-align: center;
+}
+.modal-artist-inline {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #666;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap; /* para responsive */
+}
+.modal-artist-clean {
+  margin-top: 18px;
+  text-align: center;
+}
+/* CARD STYLE */
+.artist-label {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+.artist-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.artist-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+
+  transition: all 0.2s ease;
+}
+.artist-card:hover {
+  background: #f2f2f2;
+}
+.artist-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  text-decoration: none;
+  color: #114500;
+  font-weight: 500;
+}
+.artist-icon {
+  width: 16px;
+  height: 16px;
+}
+.artist-icon img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+.artist-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.artist-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #114500;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.artist-name:hover {
+  opacity: 0.7;
+}
+.artist-role {
+  font-size: 12px;
+  color: #777;
+  position: relative;
+}
+.artist-role::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: #ddd;
+  margin: 4px auto 6px;
+}
+.artist-info strong {
+  display: block;
+  color: #114500;
+  font-size: 13px;
+}
+.artist-info small {
+  font-size: 11px;
+  color: #666;
+}
+
+.collab-wrapper {
+  margin-top: 18px;
+  margin-bottom: 22px; /* 👉 important para humiwalay sa grid */
+}
+
+.collab-label {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.collab-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+  padding: 10px 14px;
+
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  background: #fafafa;
+
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+
+  min-width: 260px;
+}
+
+.collab-card:hover {
+  background: #114500;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(17, 69, 0, 0.25);
+}
+
+.collab-text strong {
+  display: block;
+  font-size: 14px;
+  color: #114500;
+  transition: 0.25s;
+}
+
+.collab-text small {
+  font-size: 12px;
+  color: #777;
+  transition: 0.25s;
+}
+
+/* hover color change */
+.collab-card:hover .collab-text strong,
+.collab-card:hover .collab-text small {
+  color: white;
+}
+
+.collab-arrow {
+  font-size: 16px;
+  color: #114500;
+  transition: 0.25s;
+}
+
+.collab-card:hover .collab-arrow {
+  color: white;
+  transform: translateX(4px);
+}
 /******************************** MATCHA IMAGES ********************************/
 .matcha-left {
   width: 229px;
@@ -490,15 +1006,58 @@ html {
 }
 
 /* ================= FEEDBACK SECTION ================= */
-
-.feedback-section {
-  position: relative;
+.feedback-header {
   text-align: center;
-  padding: 100px 20px 60px;
-  margin-top: 80px;
-  overflow: hidden;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: auto;
 }
-
+.feedback-header h2{
+  font-size: 42px;
+  color: #114500;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.feedback-header p{
+  font-size: 14px;
+  color: #666;
+  max-width: 500px;
+  margin: auto;
+}
+.feedback-line{
+  width: 80px;
+  height: 2px;
+  background: #114500;
+  margin: 14px auto;
+  opacity: 0.4;
+}
+.feedback-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+.feedback-badge{
+  display: inline-block;
+  padding: 6px 14px;
+  background: #114500;
+  color: white;
+  font-size: 11px;
+  border-radius: 50px;
+  letter-spacing: 1.2px;
+  margin-bottom: 12px;
+}
+.feedback-container{
+  max-width: 1100px;
+  margin: auto;
+}
+.feedback-section{
+  padding: 120px 20px;
+  background: radial-gradient(circle at top, #ffffff 0%, #f5f5f5 100%);
+  text-align: center;
+  position: relative;
+}
 .feedback-top {
   position: absolute;
   top: 0;
@@ -510,7 +1069,23 @@ html {
     url('IMAGES/feedback.png') top center/cover no-repeat;
   z-index: 0;
 }
-
+.feedback-tag{
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  background: #114500;
+  color: white;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.feedback-footer-info {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
 /* ================= COFFEE BEAN ANIMATION LEFT AND RIGHT ================= */
 
 @keyframes splashHover {
@@ -564,40 +1139,220 @@ html {
   position: relative;
   z-index: 2;
 }
-
-.feedback-cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.feedback-cards{
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+}
+.feedback-card{
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(17,69,0,0.08);
+  border-radius: 18px;
+  padding: 26px;
   position: relative;
-  z-index: 2;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+  transition: all 0.35s ease;
+}
+.feedback-card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+}
+.feedback-card:hover::before{
+  width: 100%;
 }
 
-.feedback-card {
-  border: 2px solid #114500;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 260px;
-  background: #f2f2f2;
+.feedback-card p{
+  font-size: 14.5px;
+  color: #444;
+  line-height: 1.7;
 }
-
-.feedback-stars {
-  color: #114500;
-  font-size: 36px;
-  line-height: 1;
-}
-
-.feedback-quote {
-  font-size: 13px;
-  margin-bottom: 15px;
-}
-
 .feedback-author {
   font-size: 12px;
   font-weight: bold;
 }
+.feedback-meta{
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+.feedback-meta span{
+  font-size: 12px;
+  color: #777;
+  letter-spacing: 0.4px;
+}
+.feedback-meta small{
+  font-size: 11px;
+  color: #999;
+}
 
+.testimonials-section {
+  padding: var(--space-xl) 20px;
+  background: linear-gradient(135deg, #f8f4ee, #f3ede3);
+  position: relative;
+}
+
+.testimonials-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* HEADER */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.testimonials-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #114500;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+
+.testimonials-header h2 {
+  font-size: 40px;
+  color: #2b1b12;
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+}
+
+.testimonials-header p {
+  font-size: 14px;
+  color: #6b5b4d;
+  max-width: 600px;
+  margin: auto;
+  margin-top: var(--space-xs);
+  line-height: 1.7;
+}
+
+/* GRID */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+/* CARD */
+.testimonial-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(17,69,0,0.08);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+.testimonial-text {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+.card-bottom small {
+  font-size: 11px;
+  color: #777;
+}
+.card-footer{
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.card-footer span{
+  font-size: 12px;
+  color: #777;
+}
+.stars {
+  font-size: 14px;
+  background: linear-gradient(90deg, #d4af37, #ffdf70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+}
+.verified {
+  font-size: 11px;
+  color: #114500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(17,69,0,0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.source{
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 1px;
+}
+.quote {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.quote-mark{
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  font-size: 70px;
+  color: rgba(17,69,0,0.08);
+  font-family: serif;
+  line-height: 1;
+}
+.disclaimer {
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.6;
+  background: rgba(255,255,255,0.6);
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(17,69,0,0.1);
+}
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #114500, #1f6b00);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2b1b12;
+  display: block;
+}
 /******************************** LOCATION ********************************/
 
 .location-section {
@@ -645,29 +1400,44 @@ html {
   margin-bottom: 10px;
   border-radius: 6px;
 }
-
 .location-text {
   color: #114500;
+  text-align: center; /* clean and balanced */
+  padding: 10px 15px;
 }
-
 .location-text h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
 }
 
 /******************************** LOC ADDRESS ********************************/
 .location-info {
-  border: 2px solid #114500;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 14px;
+  border: 1.5px solid rgba(17, 69, 0, 0.2);
+  padding: 20px 18px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* 🔥 consistent vertical spacing */
 }
-
 .location-info p {
-  margin-bottom: 4px;
+  margin: 0;
+  line-height: 1.6;
+  color: #2b2b2b;
 }
-
+.location-info p:nth-child(-n+3) {
+  font-size: 14.5px;
+}
+.location-info p:last-child {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(17, 69, 0, 0.15);
+  font-weight: 500;
+  color: #114500;
+}
 /******************************** CAFE BELLA GUGUL MAP ********************************/
 .location-map {
   flex: 1;
@@ -704,16 +1474,15 @@ html {
   padding: 80px 20px;
   margin-top: 80px;
 }
-
 .faq-section h2 {
   font-size: 36px;
   margin-bottom: 10px;
 }
-
 .faq-sub {
   font-size: 14px;
   margin-bottom: 30px;
 }
+
 
 /* FAQ BOX */
 .faq-container {
@@ -913,113 +1682,226 @@ html {
 <!-------------------------------- MENU ------------------------------------->
 <div id="menu" class="menu-section rise-item">
 
-  <h1 class="rise-title">Our Menu</h1>
+  <div class="menu-header">
 
-  <p class="rise-desc">
-    Discover the menu at Cafe BELLA, where every coffee, matcha, and treat is crafted to delight your taste buds.<br>Each item is made with quality ingredients and careful attention to flavor.<br>Experience the perfect balance of taste in every sip and bite.
-  </p>
+    <span class="menu-badge rise-title">OUR SIGNATURE MENU</span>
 
-<button id="captionBtn" class="menu-btn rise-item" onclick="window.location.href='menu.html#menu-categories'">
-  View Our Menu
-</button>
-  <div class="menu-slider rise-item">
-    <button class="arrow left rise-item" onclick="slideMenu(-1)">&#10094;</button>
+    <h1 class="rise-title">Crafted with Passion, Served with Style</h1>
 
-<div class="menu-track" id="menuTrack">
-  <div class="menu-card rise-item"><span>Davion’s Wok Tossed Fried Rice</span></div>
-  <div class="menu-card rise-item"><span>Sizzling</span></div>
-  <div class="menu-card rise-item"><span>Cheesy Spicy Noodles</span></div>
-  <div class="menu-card rise-item"><span>Snacks</span></div>
-  <div class="menu-card rise-item"><span>Coffee</span></div>
-  <div class="menu-card rise-item"><span>Non-Coffee</span></div>
-  <div class="menu-card rise-item"><span>Matcha Series Regular</span></div>
-  <div class="menu-card rise-item"><span>Matcha Series Premium & Hojicha</span></div>
-</div>
+    <p class="menu-caption rise-desc">
+      At <strong>Cafe BELLA</strong>, every dish and drink is thoughtfully prepared using quality ingredients.
+      From comforting rice meals to refreshing matcha and coffee creations — every bite is designed to elevate your experience.
+    </p>
 
-    <button class="arrow right rise-item" onclick="slideMenu(1)">&#10095;</button>
+    <a href="menu.html#menu-categories" class="menu-btn premium-btn rise-item">
+      Explore Full Menu
+      <span class="btn-arrow">→</span>
+    </a>
+
   </div>
 
-  
+  <div class="menu-slider rise-item">
+
+    <button class="arrow left" onclick="slideMenu(-1)">&#10094;</button>
+
+    <div class="menu-track" id="menuTrack">
+
+      <div class="menu-card">
+        <img src="IMAGES/Friedrice.jpg">
+        <span>Davion’s Wok Fried Rice</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Bacsilog.jpg">
+        <span>Bacsilog</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Chessyspicynoodles.jpg">
+        <span>Cheesy Spicy Noodles</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Snacks.jpg">
+        <span>Snacks</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Coffee.jpg">
+        <span>Coffee Selection</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Noncoffee.jpg">
+        <span>Non-Coffee Drinks</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Matchaseriesregular.jpg">
+        <span>Matcha Series</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="IMAGES/Matchaseriespremium.jpg">
+        <span>Premium Matcha & Hojicha</span>
+      </div>
+
+    </div>
+
+    <button class="arrow right" onclick="slideMenu(1)">&#10095;</button>
+
+  </div>
+
 </div>
 
 <!-------------------------------- EVENT PACKAGES ------------------------------------->
+<!-------------------------------- EVENT PACKAGES ------------------------------------->
 <div class="event-section rise-item">
 
-  <div class="event-top rise-item">
-    <img src="IMAGES/matchacircle.png" class="matcha-left rise-item">
+  <div class="event-header">
+    <span class="event-badge">EVENT PACKAGES</span>
 
-    <div class="event-text rise-item">
-      <h2 class="rise-title">Event Packages</h2>
-      <p class="rise-desc">
-        Make your celebrations truly special with our curated event packages.
-        Each package is crafted to create lasting memories for you and your guests.
-      </p>
-      <button class="event-btn rise-item" onclick="window.location.href='Package.html'">View Our Packages</button>
-    </div>
+    <h2 class="rise-title">Make Your Celebrations Truly Special</h2>
 
-    <img src="IMAGES/matchapowder.png" class="matcha-right rise-item">
+    <p class="rise-desc">
+      Explore our curated event packages designed to create unforgettable experiences.
+      From intimate gatherings to large celebrations, we’ve got you covered with premium setups.
+    </p>
+
+    <button class="event-btn premium-btn" onclick="window.location.href='Package.html'">
+      View Our Packages <span class="btn-arrow">→</span>
+    </button>
   </div>
 
   <div class="event-cards">
-    <div class="event-card rise-item"></div>
-    <div class="event-card rise-item"></div>
-    <div class="event-card rise-item"></div>
+
+    <div class="event-card" onclick="openModal('coffeeModal')">
+      <img src="IMAGES/Coffeebooth.jpg" alt="Coffee Booth">
+      <div class="event-overlay">
+        <h3>Coffee Booth</h3>
+        <p>Perfect for corporate events & weddings</p>
+      </div>
+    </div>
+
+    <div class="event-card" onclick="openModal('matchaModal')">
+      <img src="IMAGES/Matchabooth.jpg" alt="Matcha Booth">
+      <div class="event-overlay">
+        <h3>Matcha Booth</h3>
+        <p>Unique aesthetic drinks experience</p>
+      </div>
+    </div>
+
+    <div class="event-card" onclick="openModal('tattooModal')">
+      <img src="IMAGES/Tattoobooth.jpg" alt="Tattoo Booth">
+      <div class="event-overlay">
+        <h3>Tattoo Booth</h3>
+        <p>Fun interactive guest experience</p>
+      </div>
+    </div>
+
   </div>
 
 </div>
 
-<!-------------------------------- FEEDBACK ------------------------------------->
-<div class="feedback-section rise-item">
+<!-- ================= TESTIMONIALS SECTION ================= -->
+<div class="testimonials-section rise-item">
 
-  <div class="feedback-top rise-item"></div>
+  <div class="testimonials-container">
 
-  <img src="IMAGES/coffeebean2.png" class="feedback-side feedback-left rise-item">
-  <img src="IMAGES/coffeebean1.png" class="feedback-side feedback-right rise-item">
+    <!-- HEADER -->
+    <div class="testimonials-header">
+      <span class="testimonials-badge">TESTIMONIALS</span>
 
-  <h2 rise-item>What our Client’s say</h2>
-  <div class="feedback-sub rise-item">
-    Trusted by hundreds of event organizers and hosts
+      <h2>What Our Customers Say</h2>
+
+      <p>
+        Real experiences shared by Cafe Bella customers from our official Facebook page
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="testimonials-grid">
+
+      <!-- CARD 1 -->
+      <div class="testimonial-card">
+
+        <div class="card-top">
+          <div class="stars">★★★★★</div>
+
+          <div class="verified">
+            <span>✔</span> Verified Review
+          </div>
+        </div>
+
+        <p class="testimonial-text">
+          Hello po, my feedback sa all-meat sandwich was a solid 10/10! Super sarap and definitely worth the price. Ang dami ng laman kaya sobrang busog!
+        </p>
+
+        <div class="card-bottom">
+          <div class="avatar">F</div>
+          <div>
+            <span class="name">Verified Facebook Customer</span>
+            <small>Facebook Review</small>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="testimonial-card">
+
+        <div class="card-top">
+          <div class="stars">★★★★★</div>
+
+          <div class="verified">
+            <span>✔</span> Verified Review
+          </div>
+        </div>
+
+        <p class="testimonial-text">
+          Yung fried rice very flavorful masarap sya kaya lagi namin inoorder then yung bacsilog nagustuhan ng kids. Thank youuu.
+        </p>
+
+        <div class="card-bottom">
+          <div class="avatar">F</div>
+          <div>
+            <span class="name">Verified Facebook Customer</span>
+            <small>Facebook Review</small>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="testimonial-card">
+
+        <div class="card-top">
+          <div class="stars">★★★★★</div>
+
+          <div class="verified">
+            <span>✔</span> Verified Review
+          </div>
+        </div>
+
+        <p class="testimonial-text">
+          I think I've finally found my favorite cafe. Your servings are really generous, and it still fits the budget!
+        </p>
+
+        <div class="card-bottom">
+          <div class="avatar">F</div>
+          <div>
+            <span class="name">Verified Facebook Customer</span>
+            <small>Facebook Review</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="feedback-cards rise-item">
-
-    <div class="feedback-card rise-item">
-      <div class="feedback-stars rise-item">★★★★★</div>
-      <div class="feedback-quote rise-item">
-        “ The coffee booth was a huge hit at our company retreat!
-        Professional service and amazing coffee ”
-      </div>
-      <div class="feedback-author rise-item">
-        - Jeryll Boldadora<br>
-        COFFEE BOOTH
-      </div>
-    </div>
-
-    <div class="feedback-card rise-item">
-      <div class="feedback-stars rise-item">★★★★★</div>
-      <div class="feedback-quote rise-item">
-        “ Our guests loved the matcha booth! It was unique and the
-        presentations was beautiful. Highly recommended ”
-      </div>
-      <div class="feedback-author rise-item">
-        - Anthonet Condino<br>
-        MATCHA BOOTH
-      </div>
-    </div>
-
-    <div class="feedback-card rise-item">
-      <div class="feedback-stars rise-item">★★★★★</div>
-      <div class="feedback-quote rise-item">
-        “ Our guests loved the tattoo booth, it made the event unforgettable! ”
-      </div>
-      <div class="feedback-author rise-item">
-        - Michael Bersamina<br>
-        TATTOO EVENT
-      </div>
-    </div>
-  </div>
 </div>
-
 <!-------------------------------- LOCATION ------------------------------------->
 <div class="location-section rise-item" id="location">
   <div class="location-bg rise-item"></div>
@@ -1057,57 +1939,69 @@ html {
   </div>
 
 <!-------------------------------- FAQ SECTION ------------------------------------->
+
 <div class="faq-section rise-item">
-  <h2 rise-desc>Frequently ask questions</h2>
+
+  <h2 rise-desc>Frequently Asked Questions</h2>
+
   <div class="faq-sub rise-item">
     Everything you need to know about our event booking services
   </div>
 
   <div class="faq-container rise-item">
+
     <div class="faq-item rise-item">
       <div class="faq-question rise-item">
         How early should I book and is there a reservation fee?
         <span>▼</span>
       </div>
       <div class="faq-answer rise-item">
-        <p rise-desc>Bookings must be made at least one (1) week in advance.<br>A ₱2,000 reservation fee is required to secure your booking.</p>
+        <p rise-desc>
+          Bookings must be made at least one (1) week in advance to ensure availability and proper preparation for your event.<br>
+          A ₱2,000 reservation fee is required to secure and confirm your booking.
+        </p>
       </div>
     </div>
 
     <div class="faq-item rise-item">
       <div class="faq-question rise-item">
-        What are the payment methods and when should I pay the balance?
+        What payment methods do you accept, and when should the balance be settled?
         <span>▼</span>
       </div>
       <div class="faq-answer rise-item">
-        <p rise-desc>We accept GCash and Cash payments.<br>The remaining balance must be settled before or on the event date.</p>
+        <p rise-desc>
+          We accept payments via GCash and Cash.<br>
+          The remaining balance must be fully settled on or before the event date.
+        </p>
       </div>
     </div>
 
     <div class="faq-item rise-item">
       <div class="faq-question rise-item">
-        Can I cancel my booking or get a refund for the reservation fee?
+        Can I cancel my booking or request a refund for the reservation fee?
         <span>▼</span>
       </div>
       <div class="faq-answer rise-item">
-        <p rise-desc>Yes! We offer customizable packages depending on your event needs.</p>
+        <p rise-desc>
+          Cancellation and refund policies depend on the type of package and preparation stage of your booking.<br>
+          Please contact our team directly so we can assist you with your specific concern and available options.
+        </p>
       </div>
     </div>
 
   </div>
 
-<div class="faq-contact rise-item">
-  <p class="rise-desc">Still have questions?</p>
-  
-  <a href="https://www.facebook.com/share/1CiwKkiCkY/" 
-     class="contact-us-btn" 
-     target="_blank" 
-     rel="noopener noreferrer">
-     
-     Contact Our Team
-     
-  </a>
-</div>
+  <div class="faq-contact rise-item">
+    <p class="rise-desc">Still have questions?</p>
+
+    <a href="https://www.facebook.com/share/1CiwKkiCkY/" 
+       class="contact-us-btn" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       Contact Our Team
+    </a>
+
+  </div>
 
 </div>
 <!-------------------------------- FOOTBAR ------------------------------------->
@@ -1173,6 +2067,190 @@ html {
 
 </div>
 </div>
+
+<!-- COFFEE BOOTH MODAL -->
+<div id="coffeeModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal('coffeeModal')">&times;</span>
+
+    <!-- PREMIUM HEADER -->
+    <div class="modal-header">
+
+      <div class="modal-badge">COFFEE BOOTH</div>
+
+      <h2>Coffee Booth Gallery</h2>
+
+      <p>Corporate events • Weddings • Special occasions</p>
+
+      <div class="modal-description">
+        Enjoy a premium mobile café experience with professional barista service, serving expertly crafted espresso and specialty beverages. Includes two skilled baristas accommodating up to 50 guests, with a selection of four flavors from both coffee and non-coffee options, all served in 16 oz cups for a complete café-style experience.
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="modal-grid">
+
+      <div class="modal-item">
+        <img src="IMAGES/Coffeebooth1.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Coffeebooth2.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Coffeebooth3.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Coffeebooth4.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Coffeebooth5.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Coffeebooth6.jpg">
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MATCHA BOOTH MODAL -->
+<div id="matchaModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal('matchaModal')">&times;</span>
+
+    <!-- HEADER -->
+    <div class="modal-header">
+
+      <div class="modal-badge">MATCHA BOOTH</div>
+
+      <h2>Matcha Booth Gallery</h2>
+
+      <p>Japanese-inspired • Aesthetic drinks • Wellness experience</p>
+
+      <div class="modal-description">
+        Experience an authentic Japanese matcha booth featuring ceremonial-grade matcha, specialty lattes, and wellness-focused beverages. Includes ceremonial matcha with Oatside milk, two skilled baristas serving up to 50 cups, with a choice of three flavors, all served in 16 oz cups for a refined and refreshing experience.
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="modal-grid">
+
+      <div class="modal-item">
+        <img src="IMAGES/Matchabooth1.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Matchabooth2.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Matchabooth3.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Matchabooth4.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Matchabooth5.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Matchabooth6.jpg">
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- TATTOO BOOTH MODAL -->
+<div id="tattooModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal('tattooModal')">&times;</span>
+
+    <!-- HEADER -->
+    <div class="modal-header">
+
+      <div class="modal-badge">TATTOO BOOTH</div>
+
+      <h2>Tattoo Booth Gallery</h2>
+
+      <p>Interactive • Creative • Guest experience</p>
+
+      <div class="modal-description">
+        Enjoy a fun and interactive temporary tattoo station in collaboration with a professional tattoo artist, offering a curated selection of minimalist designs using safe, skin-friendly materials. Guests can avail of two minimalist tattoos for ₱1,000, complete with a complimentary 16 oz drink for a unique and memorable experience.
+      </div>
+
+      <div class="collab-wrapper">
+        
+        <span class="collab-label">In collaboration with</span>
+
+        <a href="https://www.facebook.com/share/1FJCRH37Rs/" 
+          target="_blank" 
+          class="collab-card">
+
+          <div class="collab-text">
+            <strong>Gene Brando Tattooist</strong>
+            <small>Professional Tattoo Artist</small>
+          </div>
+
+          <div class="collab-arrow">→</div>
+
+        </a>
+
+      </div>
+
+    <!-- GRID -->
+    <div class="modal-grid">
+
+      <div class="modal-item">
+        <img src="IMAGES/Tattoobooth1.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Tattoobooth2.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Tattoobooth3.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Tattoobooth4.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Tattoobooth5.jpg">
+      </div>
+
+      <div class="modal-item">
+        <img src="IMAGES/Tattoobooth6.jpg">
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
 <script>
   
 /******************************** CONSISTENT RISE ANIMATION (SMOOTH) ********************************/
@@ -1281,6 +2359,55 @@ faqs.forEach(faq => {
     faq.classList.toggle("active");
   });
 });
+
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+
+  modal.style.display = "block";
+  document.body.classList.add("modal-open");
+}
+
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+
+  modal.style.display = "none";
+
+  // check if ANY modal is still open
+  const anyOpen = document.querySelector(".modal[style*='block']");
+  if (!anyOpen) {
+    document.body.classList.remove("modal-open");
+  }
+}
+
+/* CLICK OUTSIDE TO CLOSE */
+window.addEventListener("click", function(event) {
+  const modals = document.querySelectorAll(".modal");
+
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // check again after closing
+  const anyOpen = document.querySelector(".modal[style*='block']");
+  if (!anyOpen) {
+    document.body.classList.remove("modal-open");
+  }
+});
+
+/* ESC KEY CLOSE */
+window.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const modals = document.querySelectorAll(".modal");
+
+    modals.forEach(modal => {
+      modal.style.display = "none";
+    });
+
+    document.body.classList.remove("modal-open");
+  }
+});
 </script>
-</body>
-</html>
