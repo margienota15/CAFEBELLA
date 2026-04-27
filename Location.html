@@ -2,299 +2,534 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Booking Receipt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Domine&display=swap" rel="stylesheet">
+<title>Location</title>
 
-<!-- PDF LIBRARY -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: linear-gradient(135deg, #dfead9, #c8d8c0);
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+  background: #f2f2f2;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+/******************************** TOPBAR ********************************/
+.topbar {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 60px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.topbar-center {
+  flex: 1;
+  text-align: center;
+  color: #114500;
+  font-size: 13px;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.topbar-right img {
+  width: 18px;
+}
+
+.book-link {
+  color: #114500;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.book-link:hover {
+  color: #0a2f00;
+}
+
+/******************************** NAVBAR ********************************/
+.navbar {
+  background: #114500;
+  display: flex;
+  align-items: center;
+  padding: 15px 60px;
+
+  position: fixed;
+  top: 36px; /* MUST match actual topbar height */
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.nav-menu {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* ⬅️ important */
+  gap: 50px;
+  list-style: none;
+}
 
-  padding: 40px 0; /* ⬅️ adds top & bottom space */
-  min-height: 100vh;
+.nav-menu a {
+   color: white;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
 }
-body::before {
+
+.nav-menu a::after {
   content: "";
-  position: fixed;
-  top: -100px;
-  right: -100px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(67,160,71,0.25), transparent);
-  z-index: -1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
 }
-body::after {
-  content: "";
-  position: fixed;
-  bottom: -120px;
-  left: -120px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(27,94,32,0.2), transparent);
-  z-index: -1;
+.nav-menu a.active::after {
+  width: 100%;
 }
-.receipt {
-  background: #ffffff;
-  width: 430px;
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+.nav-search {
+  position: relative;
+  margin-left: auto;
+}
+
+.nav-search input {
+  padding: 8px 12px;
   border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-  overflow: hidden;
-  display: none;
-  flex-direction: column;
-  margin: 20px 0; /* ⬅️ extra breathing room */
+  border: 1px solid #ccc;
+  outline: none;
+  width: 220px;
+  font-family: 'Domine', serif;
 }
-.header {
-  background: linear-gradient(135deg, #114500, #1f6b1f);
+
+.suggestions-box {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+  background: #114500;
+  color: white;
+}
+
+.search-box {
+  position: relative;
+  width: 220px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px 8px 35px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-family: 'Domine', serif;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* HERO */
+.hero {
+  margin-top: 110px;
+  height: 200px;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url("IMAGES/Locationbg.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   text-align: center;
-  padding: 25px 20px;
-}
-.header h2 {
-  margin: 5px 0;
-}
-.header small {
-  opacity: 0.8;
-}
-.logo {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  background: #fff;
-  border-radius: 50%;
-  padding: 6px;
-  margin-bottom: 10px;
-}
-.content {
-  padding: 25px 30px; /* mas premium spacing */
-  color: #2b2b2b;
-}
-h2 {
-  text-align: center;
-  margin-bottom: 5px;
-}
-.subtitle {
-  text-align: center;
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 15px;
-}
-.section {
-  margin-bottom: 18px;
 }
 
-.section-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: #114500;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.hero h1 {
+  font-size: 42px;
 }
-.line {
-  border-top: 1px dashed #ccc;
-  margin: 15px 0;
-}
-.details {
+
+/* CONTENT LAYOUT */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  font-size: 13px;
-  gap: 6px 10px;
+  gap: 30px;
 }
-.details p {
+
+/* LOCATION SECTION */
+.location-section {
+  max-width: 500px;
+  margin: auto;
+}
+
+.location-header h2 {
+  font-size: 28px;
+  color: #114500;
+}
+
+.location-header p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* CARD */
+.location-card {
+  margin-top: 15px;
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.location-item {
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background: #114500;
+  color: white;
+  display: flex;
   align-items: center;
-
-  padding: 10px 12px;
-  margin: 6px 0;
-
-  background: #f9fbf8;
-  border-radius: 8px;
-
-  font-size: 13.5px;
-  border: 1px solid #eef3ec;
+  justify-content: center;
+  border-radius: 10px;
 }
-.details p::first-line {
-  font-weight: 600;
+
+.text h4 {
   color: #114500;
-}
-.details p::before {
-  content: attr(data-label);
-  font-weight: 600;
-  color: #114500;
-}
-.details p {
-  position: relative;
-  font-size: 14px;
+  margin-bottom: 5px;
 }
 
-
-.details strong {
-  font-weight: 500;
-  color: #888;
+.text p {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.5;
 }
 
-.details span {
-  font-weight: 600;
-  text-align: right;
-}
-#total {
-  background: #f3f7f2;
-  border-radius: 12px;
-  padding: 15px;
-  font-size: 14px;
-}
-#total p {
-  display: flex;
-  justify-content: space-between;
-  margin: 6px 0;
-}
-
-#total p:last-child {
-  font-size: 15px;
-  font-weight: bold;
-  color: #114500;
-}
-
-/* QR SMALL */
-#qrImg {
-    width: 90px;
-    height: 90px;
-}
-.qr {
-  text-align: center;
-  margin-top: 10px;
-}
-#qrImg {
-  width: 75px;
+.divider {
+  height: 1px;
+  background: #ddd;
   margin: 10px 0;
 }
-button {
-  margin-top: 10px;
-  background: linear-gradient(135deg, #114500, #2d7a2d);
-  color: white;
-  border: none;
-  padding: 13px;
-  border-radius: 30px;
-  cursor: pointer;
+
+/* MAP */
+.map {
   width: 100%;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: 0.3s;
+  height: 320px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/******************************** FOOTBAR ********************************/
+.footbar {
+  background: white;
+  border-top: 2px solid #114500;
+  border-bottom: 2px solid #114500;
+  text-align: center;
+  padding: 15px 20px;
+  font-family: 'Domine', serif;
+  color: #114500;
+  font-size: 14px;
+  margin-top: 40px;
+}
+/******************************** FOOTER ********************************/
+.footer {
+  text-align: center;
+  padding: 20px;
 }
 
 .footer {
-  text-align: center;
-  padding: 15px 20px 20px;
+  background: #eee;
+  padding: 40px 60px;
 }
 
-.footer p {
-  margin: 5px 0;
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;    
+}
+
+.footer-col {
   font-size: 13px;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  color: #114500;
+}
+
+.footer-col p,
+.footer-col a {
+  display: block;
+  color: #114500;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  color: #114500;
+}
+
+/******************************** GCASH LOGO ********************************/
+.gcash img {
+  width: 40px;
+  height: 40px;         
+  border-radius: 50%;    
+  object-fit: cover;      
 }
 </style>
 </head>
 
 <body>
 
-<div class="receipt" id="receipt">
+<!-------------------------------- TOPBAR ------------------------------------->
+<div class = "header-wrapper">
+  <div class="topbar">
+<div class="topbar-center">
+Planning an event? <a href="Package.html" class="book-link">Book Now</a> and reserve your date with Cafe Bella.
+</div>
 
-  <div class="header">
-    <img src="IMAGES/Cafebella.jpg" class="logo">
-    <h2>Booking Receipt</h2>
-    <small id="dateNow"></small>
+  <div class="topbar-right">
+    <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+    <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"></a>
+   </div>
+</div>
+
+<!-------------------------------- NAVBAR ------------------------------------->
+<div class="navbar">
+
+  <div class="nav-logo">
+    <a href="index.html">
+      <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
+    </a>
   </div>
 
-  <div class="content">
-    <div id="details"></div>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="Menu.html">Menu</a></li>
+    <li><a href="Package.html">Packages</a></li>
+    <li><a href="Location.html"class="active">Location</a></li>
+    <li><a href="FAQ.html">FAQs</a></li>
+  </ul>
 
-    <div class="line"></div>
-
-    <div id="total"></div>
+<!-------------------------------- SEARCH BAR (NAVBAR) ------------------------------------->
+<div class="nav-search">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search menu..." onkeyup="showSuggestions()">
+    <span class="search-icon">🔍</span>
   </div>
-
-  <div class="footer">
-    <p>Thank you for booking! 🎉</p>
-    <img id="qrImg">
-    <button onclick="downloadPDF()">⬇ Download Receipt</button>
-  </div>
+  <div id="suggestions" class="suggestions-box"></div>
+</div>
 
 </div>
 
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Visit Cafe BELLA</h1>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- LOCATION CARD -->
+  <div class="location-section scroll-animate">
+
+    <div class="location-header">
+      <h2>Our Location</h2>
+      <p>We’d love to see you ☕</p>
+    </div>
+
+    <div class="location-card">
+
+      <div class="location-item">
+        <div class="icon">📍</div>
+        <div class="text">
+          <h4>Address</h4>
+          <p>
+            BLK 12 Lot 13 Almond Drive<br>
+            Phase 4 Soldiers Hills 4,<br>
+            Bacoor, Philippines 4102
+          </p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="location-item">
+        <div class="icon">📱</div>
+        <div class="text">
+          <h4>Mobile</h4>
+          <p>0905671816</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <iframe class="map scroll-animate"
+    src="https://www.google.com/maps/embed?pb=YOUR_EMBED_LINK_HERE"
+    loading="lazy">
+  </iframe>
+
+</div>
+
+<!-------------------------------- FOOTBAR ------------------------------------->
+<div class="footbar rise-item">
+  Kape lang saglit tapos laban ulit
+</div>
+<!-------------------------------- FOOTER ------------------------------------->
+<div class="footer rise-item">
+
+  <div class="footer-top rise-item">
+
+<div class="footer-logo rise-item">
+  <a href="index.html">
+    <img src="IMAGES/Cafebella.jpg" alt="Cafe Bella Logo">
+  </a>
+</div>
+
+    <div class="footer-col rise-item">
+      <h4 rise-desc>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="Menu.html">Menu</a>
+      <a href="Package.html">Event Packages</a>
+      <a href="#">Feedback</a>
+      <a href="#">Location</a>
+      <a href="FAQ.html">FAQ's</a>
+    </div>
+
+    <div class="footer-col rise-item">
+      <h4 rise-desc>Services</h4>
+      <a href="Package.html">Coffee Booth</a>
+      <a href="Package.html">Matcha Booth</a>
+      <a href="Package.html">Tattoo Event</a>
+    </div>
+
+    <div class="footer-col rise-item">
+      <h4 rise-desc>About</h4>
+      <a href="#">Contact Our Team</a>
+    </div>
+
+    <div class="footer-col rise-item">
+      <h4 rise-desc>Socials</h4>
+      <a href="https://www.facebook.com/share/1CiwKkiCkY/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@christiandavidangelo?_r=1&_t=ZS-94tpPJhFWzZ" target="_blank" rel="noopener">Tiktok</a>
+    </div>
+
+    <div class="footer-col gcash rise-item">
+      <h4 rise-desc>We accept</h4>
+      <img src="IMAGES/GCash.png">
+    </div>
+
+  </div>
+
+  <div class="footer-bottom rise-item">
+    © 2026 Cafe BELLA. All rights reserved.
+  </div>
+
+</div>
+</div>
+
+<!-- SCRIPT -->
 <script>
+const elements = document.querySelectorAll(".scroll-animate");
 
-// ✅ AUTO GENERATE REFERENCE
-function generateReference() {
-    return 'REF-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-}
+function showOnScroll() {
+  const trigger = window.innerHeight * 0.85;
 
-// SHOW RECEIPT
-function showReceipt(data) {
-
-    const receipt = document.getElementById("receipt");
-    const details = document.getElementById("details");
-
-    // AUTO REF IF NONE
-    if (!data.reference) {
-        data.reference = generateReference();
+  elements.forEach(el => {
+    if (el.getBoundingClientRect().top < trigger) {
+      el.classList.add("show");
     }
-
-details.innerHTML = "";
-
-if (data.fullname) details.innerHTML += `<p>Full Name: ${data.fullname}</p>`;
-if (data.contact) details.innerHTML += `<p>Contact Number: ${data.contact}</p>`;
-if (data.service) details.innerHTML += `<p>Service: ${data.service}</p>`;
-if (data.guests) details.innerHTML += `<p>Number of Guests: ${data.guests}</p>`;
-if (data.location) details.innerHTML += `<p>Location: ${data.location}</p>`;
-if (data.paymentMethod) details.innerHTML += `<p>Mode of Payment: ${data.paymentMethod}</p>`;
-
-if (data.paymentType) {
-    const typeText = data.paymentType === "full"
-        ? "Full Payment"
-        : "Reservation Only";
-    details.innerHTML += `<p>Payment Type: ${typeText}</p>`;
+  });
 }
 
-details.innerHTML += `<p>Reference Number: ${data.reference}</p>`;
-
-document.getElementById("total").innerHTML = `
-    <p>Full Package Price: ₱${data.fullPrice.toLocaleString()}</p>
-    <p>Amount Paid: ₱${data.amountPaid.toLocaleString()}</p>
-    <p>Remaining Balance: ₱${data.remainingBalance.toLocaleString()}</p>
-`;
-
-   document.getElementById("qrImg").src =
-`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.facebook.com/share/1CiwKkiCkY/`;
-    receipt.style.display = "flex";
-}
-
-// ✅ REAL PDF DOWNLOAD
-function downloadPDF() {
-    const element = document.getElementById("receipt");
-
-    html2pdf().from(element).save("CafeBella_Receipt.pdf");
-}
-const receiptData = JSON.parse(localStorage.getItem("receiptData"));
-
-if (receiptData) {
-    showReceipt(receiptData);
-} else {
-    document.getElementById("receipt").innerHTML = "<p style='text-align:center;'>No booking data found.</p>";
-    document.getElementById("receipt").style.display = "flex";
-}
+window.addEventListener("scroll", showOnScroll);
+window.addEventListener("load", showOnScroll);
 </script>
 
 </body>
