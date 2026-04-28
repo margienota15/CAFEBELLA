@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cafe Bella</title>
+<title>Menu</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600&display=swap" rel="stylesheet">
 
@@ -229,8 +229,8 @@ html {
     0 10px 30px rgba(0,0,0,0.08),
     inset 0 1px 0 rgba(255,255,255,0.6);
   position: relative;
-  overflow-x: auto;
   scrollbar-width: none;
+  flex-wrap: wrap; /* para mag next line instead of scroll */
 }
 .menu-categories::before {
   content: "";
@@ -861,11 +861,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Kimchi Fried Rice"
       data-desc="Fragrant fried rice sautéed with authentic kimchi, garlic, and a hint of spice for a bold Korean-inspired flavor. Perfect balance of savory, tangy, and slightly spicy kick."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/kimchifriedrice.jpg"
       data-price="Solo ₱95 | Double ₱130"
       data-ingredients="Kimchi, Garlic, Egg, Rice, Sesame oil">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/kimchifriedrice.jpg" loading="lazy" class="lazy-img">
     <h3>Kimchi Fried Rice</h3>
     <div class="price-group">
       <span>Solo ₱95</span>
@@ -877,11 +877,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         onclick="openModal(this)"
         data-title="Shitake Fried Rice"
         data-desc="Fried rice sautéed with savory shitake mushrooms, garlic, and egg for a rich umami flavor."
-        data-img="IMAGES/foodpic.jpg"
+        data-img="IMAGES/shitakefriedrice.jpg"
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Shitake Mushroom, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+      <img src="IMAGES/shitakefriedrice.jpg" loading="lazy" class="lazy-img">
       <h3>Shitake Fried Rice</h3>
       <div class="price-group">
         <span>Solo ₱95</span>
@@ -893,11 +893,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         onclick="openModal(this)"
         data-title="Spam Fried Rice"
         data-desc="Savory fried rice loaded with crispy spam, garlic, and egg for a rich, satisfying and slightly smoky flavor."
-        data-img="IMAGES/foodpic.jpg"
+        data-img="IMAGES/spamfriedrice.jpg"
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Spam, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+      <img src="IMAGES/spamfriedrice.jpg" loading="lazy" class="lazy-img">
       <h3>Spam Fried Rice</h3>
       <div class="price-group">
         <span>Solo ₱95</span>
@@ -909,11 +909,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         onclick="openModal(this)"
         data-title="Seafood Fried Rice"
         data-desc="Flavorful fried rice loaded with shrimp, squid, and garlic, tossed in savory seasoning for a rich ocean-inspired taste."
-        data-img="IMAGES/foodpic.jpg"
+        data-img="IMAGES/seafoodfriedrice.jpg"
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Shrimp, Squid, Garlic, Egg, Rice, Soy Sauce, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+      <img src="IMAGES/seafoodfriedrice.jpg" loading="lazy" class="lazy-img">
       <h3>Seafood Fried Rice</h3>
       <div class="price-group">
         <span>Solo ₱95</span>
@@ -925,11 +925,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         onclick="openModal(this)"
         data-title="Adobo Fried Rice"
         data-desc="Savory fried rice infused with classic Filipino adobo flavors, featuring tender meat, garlic, and a rich soy-vinegar glaze."
-        data-img="IMAGES/foodpic.jpg"
+        data-img="IMAGES/adobofriedrice.jpg"
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Chicken Adobo, Garlic, Egg, Rice, Soy Sauce, Vinegar, Sesame oil">
 
-      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+      <img src="IMAGES/adobofriedrice.jpg" loading="lazy" class="lazy-img">
       <h3>Adobo Fried Rice</h3>
       <div class="price-group">
         <span>Solo ₱95</span>
@@ -941,11 +941,11 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
         onclick="openModal(this)"
         data-title="Delimondo Fried Rice"
         data-desc="A hearty and flavorful fried rice made with premium Delimondo corned beef, sautéed with aromatic garlic and onions, blended with fluffy rice, egg, and savory soy sauce for a satisfying and delicious comfort meal."
-        data-img="IMAGES/foodpic.jpg"
+        data-img="IMAGES/delimondofriedrice.jpg"
         data-price="Solo ₱95 | Double ₱130"
         data-ingredients="Delimondo Corned Beef, Garlic, Egg, Rice, Soy Sauce">
 
-      <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+      <img src="IMAGES/delimondofriedrice.jpg" loading="lazy" class="lazy-img">
       <h3>Delimondo Fried Rice</h3>
       <div class="price-group">
         <span>Solo ₱95</span>
@@ -963,10 +963,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Bacsilog"
       data-desc="A classic Filipino comfort meal made with crispy bacon, perfectly cooked egg, and garlic fried rice, served hot and savory for a simple yet satisfying dish."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/bacsilog.jpg"
       data-price="₱95">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/bacsilog.jpg" loading="lazy" class="lazy-img">
     <h3>Bacsilog</h3>
     <div class="price-group">
       <span>₱95</span>
@@ -977,10 +977,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Spam Bacsilog"
       data-desc="A flavorful twist on the classic Bacsilog made with savory pan-fried Spam, creamy egg, and garlic fried rice, creating a rich and satisfying comfort meal."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/spambacsilog.jpg"
       data-price="₱125">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/spambacsilog.jpg" loading="lazy" class="lazy-img">
     <h3>Spam Bacsilog</h3>
     <div class="price-group">
       <span>₱125</span>
@@ -991,10 +991,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Hungarian Sausage Bacsilog"
       data-desc="A hearty Bacsilog variation made with juicy Hungarian sausage, perfectly paired with creamy scrambled egg and garlic fried rice, delivering a smoky, savory, and satisfying meal."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/hungariansausagebacsilog.jpg"
       data-price="₱145">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/hungariansausagebacsilog.jpg" loading="lazy" class="lazy-img">
     <h3>Hungarian Sausage<br>Bacsilog</h3>
     <div class="price-group">
       <span>₱145</span>
@@ -1005,10 +1005,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Chicken Bacsilog"
       data-desc="A crispy and golden fried chicken served with a perfectly cooked sunny-side-up egg and garlic fried rice, creating a flavorful and satisfying Filipino comfort meal."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/chickenbacsilog.jpg"
       data-price="₱165">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/chickenbacsilog.jpg" loading="lazy" class="lazy-img">
     <h3>Chicken Bacsilog</h3>
     <div class="price-group">
       <span>₱165</span>
@@ -1025,10 +1025,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="CSN 1 - Cheesy Spicy Noodles with Nori"
       data-desc="A bold and flavorful bowl of cheesy spicy noodles topped with nori, perfectly balanced with creamy cheese, spicy kick, and umami-rich seaweed for a satisfying comfort meal."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/CSN1.jpg"
       data-price="₱129">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/CSN1.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 1<br>Cheesy Spicy Noodles<br>with Nori</h3>
     <div class="price-group">
       <span>₱129</span>
@@ -1039,10 +1039,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="CSN 2 - Cheesy Spicy Noodles with Egg and Nori"
       data-desc="A rich and satisfying bowl of cheesy spicy noodles topped with a perfectly cooked egg and nori, blending creamy cheese, spicy heat, and savory umami flavors in every bite."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/CSN2.jpg"
       data-price="₱139">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/CSN2.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 2<br>Cheesy Spicy Noodles<br>with Egg and Nori</h3>
     <div class="price-group">
       <span>₱139</span>
@@ -1053,10 +1053,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="CSN 3 - Cheesy Spicy Noodles with Egg, Nori and Spam"
       data-desc="A loaded bowl of cheesy spicy noodles topped with creamy egg, savory spam, and nori, creating a bold combination of spicy heat, rich cheese, and smoky umami flavors."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/CSN3.jpg"
       data-price="₱159">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/CSN3.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 3<br>Cheesy Spicy Noodles<br>with Egg, Nori and Spam</h3>
     <div class="price-group">
       <span>₱159</span>
@@ -1067,10 +1067,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="CSN 4 - Cheesy Spicy Noodles with Egg, Nori and Hungarian Sausage"
       data-desc="A fully loaded bowl of cheesy spicy noodles topped with creamy egg, savory Hungarian sausage, and nori, delivering a rich, smoky, and spicy flavor combination in every bite."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/CSN4.jpg"
       data-price="₱169">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/CSN4.jpg" loading="lazy" class="lazy-img">
     <h3>CSN 4<br>Cheesy Spicy Noodles<br>with Egg, Nori and Hungarian Sausage</h3>
     <div class="price-group">
       <span>₱169</span>
@@ -1081,10 +1081,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="CSN Chicken Katsu"
       data-desc="A bold fusion of cheesy spicy noodles topped with crispy chicken katsu, enhanced with nori for an umami kick, creating a crunchy, cheesy, and spicy comfort dish."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/CSN5.jpg"
       data-price="₱179">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/CSN5.jpg" loading="lazy" class="lazy-img">
     <h3>CSN<br>with Nori and Chicken Katsu</h3>
     <div class="price-group">
       <span>₱179</span>
@@ -1129,10 +1129,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Hungarian Sausage Sandwich"
       data-desc="A hearty and savory sandwich filled with juicy Hungarian sausage, served in soft bread and layered for a rich, smoky, and satisfying meal experience."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/hungariansandwich.jpg"
       data-price="₱139">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/hungariansandwich.jpg" loading="lazy" class="lazy-img">
     <h3>Hungarian Sausage Sandwich</h3>
     <div class="price-group">
       <span>₱139</span>
@@ -1143,10 +1143,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Chicken Sandwich"
       data-desc="A crispy golden chicken fillet sandwiched between soft bread, layered with fresh and savory flavors for a satisfying and hearty meal."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/chickensandwich.jpg"
       data-price="₱159">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/chickensandwich.jpg" loading="lazy" class="lazy-img">
     <h3>Chicken Sandwich</h3>
     <div class="price-group">
       <span>₱159</span>
@@ -1161,10 +1161,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Overload Nachos"
       data-desc="A fully loaded nacho dish topped with melted cheese and generous savory toppings, creating a crunchy, cheesy, and satisfying snack perfect for sharing or solo indulgence."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/overloadnachos.jpg"
       data-price="₱110">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/overloadnachos.jpg" loading="lazy" class="lazy-img">
     <h3>Overload Nachos</h3>
     <div class="price-group">
       <span>₱110</span>
@@ -1175,10 +1175,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Cheesy Bacon Fries"
       data-desc="Crispy golden fries loaded with melted cheese and crispy bacon bits, creating a rich, savory, and indulgent snack perfect for sharing or solo cravings."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/chessybaconfries.jpg"
       data-price="₱110">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/chessybaconfries.jpg" loading="lazy" class="lazy-img">
     <h3>Cheesy Bacon Fries</h3>
     <div class="price-group">
       <span>₱110</span>
@@ -1203,10 +1203,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Regular Fries"
       data-desc="Crispy golden fries served plain with a choice of flavorful seasonings including salt, cheese, sour cream, and barbecue, perfect for customizing your snack experience."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/regularfries.jpg"
       data-price="₱159">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/regularfries.jpg" loading="lazy" class="lazy-img">
     <h3>Regular Fries<br>(Salt, Cheese, Sour Cream, Barbecue)</h3>
     <div class="price-group">
       <span>₱159</span>
@@ -1238,10 +1238,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Milky Oreo"
       data-desc="A creamy chocolate milk blended with crushed Oreo cookies, creating a rich, sweet, and cookies-and-cream inspired drink perfect for dessert lovers."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/milkyoreo.jpg"
       data-price="16oz ₱90 | 22oz ₱115">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/milkyoreo.jpg" loading="lazy" class="lazy-img">
     <h3>Milky Oreo</h3>
       <div class="price-group">
         <span>16 oz ₱90</span>
@@ -1253,10 +1253,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Strawberry Milk"
       data-desc="A sweet and refreshing strawberry milk drink made with creamy milk blended with fruity strawberry flavor, served chilled for a smooth and delightful treat."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/strawberrymilk.jpg"
       data-price="16oz ₱90 | 22oz ₱115">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/strawberrymilk.jpg" loading="lazy" class="lazy-img">
     <h3>Strawberry Milk</h3>
       <div class="price-group">
         <span>16 oz ₱90</span>
@@ -1286,10 +1286,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Americano"
       data-desc="A classic black coffee served hot or iced, made from rich espresso and water for a bold, smooth, and refreshing coffee experience."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/americano.jpg"
       data-price="Cold 16oz ₱85 | 22oz ₱99 / Hot 12oz ₱85">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/americano.jpg" loading="lazy" class="lazy-img">
     <h3>Americano</h3>
       <div class="price-group">
         <span>COLD 16 oz ₱85 | 22 oz ₱99</span>
@@ -1333,10 +1333,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Caramel Latte"
       data-desc="A rich and creamy espresso-based latte infused with sweet caramel syrup, creating a smooth, sweet, and perfectly balanced coffee drink."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/caramellatte.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/caramellatte.jpg" loading="lazy" class="lazy-img">
     <h3>Caramel Latte</h3>
       <div class="price-group">
         <span>COLD 16 oz ₱105</span>
@@ -1365,10 +1365,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Hazelnut Latte"
       data-desc="A smooth espresso-based latte infused with rich hazelnut flavor, creating a nutty, creamy, and aromatic coffee drink with a perfectly balanced sweetness."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/hazelnutlatte.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/hazelnutlatte.jpg" loading="lazy" class="lazy-img">
     <h3>Hazelnut Latte</h3>
       <div class="price-group">
         <span>COLD 16 oz ₱105</span>
@@ -1381,10 +1381,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="White Mocha"
       data-desc="A sweet and creamy espresso-based drink made with white chocolate and milk, creating a smooth, rich, and dessert-like mocha experience."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/whitemocha.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/whitemocha.jpg" loading="lazy" class="lazy-img">
     <h3>White Mocha</h3>
       <div class="price-group">
         <span>COLD 16 oz ₱105</span>
@@ -1397,10 +1397,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Spanish Latte"
       data-desc="A smooth and creamy espresso-based latte with sweetened milk, creating a rich, slightly caramelized coffee flavor with a silky texture."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/spanishlatte.jpg"
       data-price="Cold ₱105–₱125 / Hot ₱119">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/spanishlatte.jpg" loading="lazy" class="lazy-img">
     <h3>Spanish Latte</h3>
       <div class="price-group">
         <span>COLD 16 oz ₱105</span>
@@ -1461,10 +1461,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Dirty Matcha"
       data-desc="A bold fusion drink combining earthy matcha and rich espresso, creating a unique balance of bitterness, creaminess, and coffee kick in every sip."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/dirtymatchahot.jpg"
       data-price="Cold ₱135–₱160 / Hot ₱129">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/dirtymatchahot.jpg" loading="lazy" class="lazy-img">
     <h3>Dirty Matcha</h3>
       <div class="price-group">
         <span>COLD 16 oz ₱135</span>
@@ -1547,10 +1547,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Classic Matcha Latte"
       data-desc="A premium ceremonial-grade matcha latte made with finely stone-ground green tea powder and creamy milk, delivering a smooth, earthy, and authentic Japanese-inspired taste."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/classicmatchalatte.jpg"
       data-price="₱170">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/classicmatchalatte.jpg" loading="lazy" class="lazy-img">
     <h3>Classic Matcha Latte</h3>
       <div class="price-group">
         <span>₱170</span>
@@ -1589,10 +1589,10 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
       onclick="openModal(this)"
       data-title="Berry Matcha"
       data-desc="A refreshing fusion of earthy matcha and mixed berry flavors, creating a fruity, slightly tangy, and creamy drink with a balanced sweet finish."
-      data-img="IMAGES/foodpic.jpg"
+      data-img="IMAGES/strawberrymatcha.jpg"
       data-price="₱180">
 
-    <img src="IMAGES/foodpic.jpg" loading="lazy" class="lazy-img">
+    <img src="IMAGES/strawberrymatcha.jpg" loading="lazy" class="lazy-img">
     <h3>Berry Matcha</h3>
       <div class="price-group">
         <span>₱180</span>
