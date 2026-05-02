@@ -17,10 +17,18 @@
 body {
   font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, Arial, sans-serif;
   background: #f2f2f2;
-}
 
+  margin: 0;
+  padding: 0;
+
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 /******************************** TOPBAR ********************************/
@@ -184,33 +192,110 @@ html {
   font-size: 14px;
   pointer-events: none;
 }
-
-/* HERO */
-.hero {
-  margin-top: 110px;
-  height: 200px;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url("IMAGES/Locationbg.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 42px;
-}
-
-/* CONTENT LAYOUT */
 .container {
   max-width: 1100px;
   margin: 40px auto;
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* change this */
   gap: 30px;
 }
+.hero {
+  margin-top: 110px;
+  min-height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+  url("IMAGES/Locationbg.jpg") center/cover no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+
+/* Title */
+.hero h1 {
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* Subtitle */
+.hero-sub {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-bottom: 25px;
+}
+
+/* Glass Card */
+.hero-location {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  padding: 25px 30px;
+  border-radius: 18px;
+
+  max-width: 420px;
+  width: 100%;
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Section Title */
+.hero-location h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* Small text */
+.hero-location p {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Divider */
+.hero-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 15px 0;
+}
+
+/* Info rows */
+.hero-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+/* Icon style */
+.hero-icon {
+  font-size: 18px;
+  background: rgba(255,255,255,0.15);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Text content */
+.hero-text strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.hero-text span {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+
 
 /* LOCATION SECTION */
 .location-section {
@@ -271,15 +356,6 @@ html {
   background: #ddd;
   margin: 10px 0;
 }
-
-/* MAP */
-.map {
-  width: 100%;
-  height: 320px;
-  border: none;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
 .scroll-animate {
   opacity: 0;
   transform: translateY(40px);
@@ -305,19 +381,21 @@ html {
 }
 /******************************** FOOTER ********************************/
 .footer {
-  text-align: center;
-  padding: 20px;
+  background: #eee;
+  padding: 30px 60px;
+  overflow: hidden; /* important */
 }
 
 .footer {
   background: #eee;
   padding: 40px 60px;
 }
-
 .footer-top {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* prevent stacking */
+  gap: 30px;
+  align-items: flex-start;
 }
 
 .footer-logo img {
@@ -396,65 +474,51 @@ Planning an event? <a href="Package.html" class="book-link">Book Now</a> and res
 
 <!-------------------------------- SEARCH BAR (NAVBAR) ------------------------------------->
 <div class="nav-search">
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search menu..." onkeyup="showSuggestions()">
-    <span class="search-icon">🔍</span>
-  </div>
-  <div id="suggestions" class="suggestions-box"></div>
-</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search menu..." onkeyup="showSuggestions()">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div id="suggestions" class="suggestions-box"></div>
+        </div>
 
 </div>
 
-
-<!-- HERO -->
 <div class="hero">
+
   <h1>Visit Cafe BELLA</h1>
-</div>
+  <div class="hero-sub">Our Location • We’d love to see you ☕</div>
 
-<!-- CONTENT -->
-<div class="container">
+  <div class="hero-location">
 
-  <!-- LOCATION CARD -->
-  <div class="location-section scroll-animate">
+    <h2>Our Location</h2>
+    <p>We’d love to see you ☕</p>
 
-    <div class="location-header">
-      <h2>Our Location</h2>
-      <p>We’d love to see you ☕</p>
+    <div class="hero-divider"></div>
+
+    <div class="hero-info-item">
+      <div class="hero-icon">📍</div>
+      <div class="hero-text">
+        <strong>Address</strong>
+        <span>
+          BLK 12 Lot 13 Almond Drive<br>
+          Phase 4 Soldiers Hills 4,<br>
+          Bacoor, Philippines 4102
+        </span>
+      </div>
     </div>
 
-    <div class="location-card">
-
-      <div class="location-item">
-        <div class="icon">📍</div>
-        <div class="text">
-          <h4>Address</h4>
-          <p>
-            BLK 12 Lot 13 Almond Drive<br>
-            Phase 4 Soldiers Hills 4,<br>
-            Bacoor, Philippines 4102
-          </p>
-        </div>
+    <div class="hero-info-item">
+      <div class="hero-icon">📱</div>
+      <div class="hero-text">
+        <strong>Mobile</strong>
+        <span>0905671816</span>
       </div>
-
-      <div class="divider"></div>
-
-      <div class="location-item">
-        <div class="icon">📱</div>
-        <div class="text">
-          <h4>Mobile</h4>
-          <p>0905671816</p>
-        </div>
-      </div>
-
     </div>
+
   </div>
 
-  <!-- MAP -->
-  <iframe class="map scroll-animate"
-    src="https://www.google.com/maps/embed?pb=YOUR_EMBED_LINK_HERE"
-    loading="lazy">
-  </iframe>
-
+</div>
+  </div>
 </div>
 
 <!-------------------------------- FOOTBAR ------------------------------------->
