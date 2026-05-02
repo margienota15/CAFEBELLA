@@ -369,53 +369,76 @@ html {
 }
 .menu-track {
   display: flex;
-  gap: 20px; /* from 18 → mas balanced */
+  gap: 20px;
   transition: transform 0.5s ease;
+  scroll-snap-type: x mandatory;
 }
 .menu-card {
   flex: 0 0 280px;
-  height: 330px;
-  border-radius: 20px;
+  height: 360px;
+  border-radius: 22px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  background: #111;
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.15),
+    0 2px 10px rgba(0,0,0,0.08);
+  transition: 
+  transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+  box-shadow 0.45s ease,
+  filter 0.3s ease;
+  scroll-snap-align: start;
+  aspect-ratio: 3 / 4; /* instead of fixed height */
+  height: auto;
 }
-.menu-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+.menu-track:hover .menu-card {
+  filter: brightness(0.7);
+}
+.menu-track .menu-card:hover {
+  filter: brightness(1);
+  transform: translateY(-10px); /* REMOVE SCALE HERE */
+  z-index: 5;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.35),
+    0 10px 20px rgba(0,0,0,0.2);
 }
 .menu-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transition: transform 0.5s ease;
-}
-.menu-card:hover img {
-  transform: scale(1.1);
+  object-position: center top;
+
+  transition: transform 0.7s ease;
 }
 .menu-card span {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
+  bottom: 18px;
+  left: 18px;
+  right: 18px;
   z-index: 3;
-  background: rgba(17,69,0,0.75);
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 13px;
-  text-align: center;
+
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+
+  text-shadow: 0 4px 15px rgba(0,0,0,0.7);
 }
 .menu-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 10%,
+    rgba(0,0,0,0.4) 45%,
+    transparent 75%
+  );
+
   z-index: 2;
 }
 .menu-btn {
@@ -441,45 +464,21 @@ html {
   border-radius: 50px;
   margin-bottom: 12px;
 }
-.menu-slider {
+.menu-slider-wrapper {
   position: relative;
-  overflow: hidden;
-  border-radius: 15px;
-  max-width: 1100px;
-  margin: var(--space-lg) auto 0;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.95);
-  border: none;
-  font-size: 22px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transition: 0.3s ease;
-  z-index: 10; /* 🔥 important para hindi matabunan */
   display: flex;
   align-items: center;
-  justify-content: center;
+  max-width: 100%; /* 👈 full width */
+  padding: 10px 0; /* tanggal side padding */
+  margin: var(--space-lg) auto 0;
 }
-.arrow:hover {
-  background: #114500;
-  color: white;
-  transform: translateY(-50%) scale(1.1);
+.menu-slider {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 15px;
+  padding: 10px 5px;
+  position: relative;
 }
-.arrow.left {
-  left: -10px;
-}
-
-.arrow.right {
-  right: -10px;
-}
-
 /******************************** PREMIUM CTA BUTTON ********************************/
 
 .premium-btn {
@@ -1459,7 +1458,11 @@ html {
 <!-------------------------------- HERO ------------------------------------->
 <div class="hero rise-item" id="hero">
 
-  <img src="IMAGES/firstslide.png" class="slide active">
+  <video class="slide active" muted autoplay playsinline>
+    <source src="IMAGES/Cafebellavideo.mp4" type="video/mp4">
+  </video>
+
+  <img src="IMAGES/firstslide.png" class="slide">
   <img src="IMAGES/secondslide.jpg" class="slide">
   <img src="IMAGES/thirdslide.jpg" class="slide">
   <img src="IMAGES/fourthslide.jpg" class="slide">
@@ -1471,10 +1474,11 @@ html {
   </div>
 
   <div class="dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+    <span class="dot active"></span> <!-- video -->
+    <span class="dot"></span>        <!-- image 1 -->
+    <span class="dot"></span>        <!-- image 2 -->
+    <span class="dot"></span>        <!-- image 3 -->
+    <span class="dot"></span>        <!-- image 4 -->
   </div>
 
 </div>
@@ -1500,57 +1504,99 @@ html {
 
   </div>
 
-  <div class="menu-slider rise-item">
+<div class="menu-slider-wrapper rise-item">
 
-    <button class="arrow left" onclick="slideMenu(-1)">&#10094;</button>
+  <div class="menu-slider">
 
-    <div class="menu-track" id="menuTrack">
+ <div class="menu-track" id="menuTrack">
 
-      <div class="menu-card">
-        <img src="IMAGES/Friedrice.jpg">
-        <span>Davion’s Wok Fried Rice</span>
-      </div>
+  <!-- ORIGINAL -->
+  <div class="menu-card">
+    <img src="IMAGES/Friedrice.jpg">
+    <span>Davion’s Wok Fried Rice</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Bacsilog.jpg">
-        <span>Bacsilog</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Bacsilog.jpg">
+    <span>Bacsilog</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Chessyspicynoodles.jpg">
-        <span>Cheesy Spicy Noodles</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Chessyspicynoodles.jpg">
+    <span>Cheesy Spicy Noodles</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Snacks.jpg">
-        <span>Snacks</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Snacks.jpg">
+    <span>Snacks</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Coffee.jpg">
-        <span>Coffee Selection</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Coffee.jpg">
+    <span>Coffee Selection</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Noncoffee.jpg">
-        <span>Non-Coffee Drinks</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Noncoffee.jpg">
+    <span>Non-Coffee Drinks</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Matchaseriesregular.jpg">
-        <span>Matcha Series</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Matchaseriesregular.jpg">
+    <span>Matcha Series</span>
+  </div>
 
-      <div class="menu-card">
-        <img src="IMAGES/Matchaseriespremium.jpg">
-        <span>Premium Matcha & Hojicha</span>
-      </div>
+  <div class="menu-card">
+    <img src="IMAGES/Matchaseriespremium.jpg">
+    <span>Premium Matcha & Hojicha</span>
+  </div>
 
-    </div>
 
-    <button class="arrow right" onclick="slideMenu(1)">&#10095;</button>
+  <!-- DUPLICATE (for infinite scroll illusion) -->
+  <div class="menu-card">
+    <img src="IMAGES/Friedrice.jpg">
+    <span>Davion’s Wok Fried Rice</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Bacsilog.jpg">
+    <span>Bacsilog</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Chessyspicynoodles.jpg">
+    <span>Cheesy Spicy Noodles</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Snacks.jpg">
+    <span>Snacks</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Coffee.jpg">
+    <span>Coffee Selection</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Noncoffee.jpg">
+    <span>Non-Coffee Drinks</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Matchaseriesregular.jpg">
+    <span>Matcha Series</span>
+  </div>
+
+  <div class="menu-card">
+    <img src="IMAGES/Matchaseriespremium.jpg">
+    <span>Premium Matcha & Hojicha</span>
+  </div>
+
+</div>
 
   </div>
+
 
 </div>
 
@@ -2077,21 +2123,32 @@ let captionBtn = document.getElementById("captionBtn");
 let captionBox = document.getElementById("captionBox");
 
 let index = 0;
+let autoSlide = null;
 
 let data = [
   { title: "", text: "", btn: "View our menu", link: "#menu" },
-  { title: "Cafe BELLA", text: "Cafe BELLA aims to bring unique and memorable experiences to every event. Feel free to explore our coffee, matcha, and tattoo booth services, crafted with quality ingredients, creative concepts, and a passion for excellent service. quality coffee and matcha.", btn: "View Menu", link: "Menu.html" },
-  { title: "Our Packages", text: "Cafe BELLA offers curated event packages designed for memorable celebrations. Choose from our coffee, matcha, and tattoo booth services tailored to your event. Each package is created to deliver a unique and enjoyable experience. for events.", btn: "Book Now", link: "#" },
-  { title: "Our Space", text: "Step into a cozy space inspired by classic retro coffee shop vibes, perfect for relaxed and memorable moments. and relaxing.", btn: "Visit Us", link: "#" }
+  { title: "Cafe BELLA", text: "Cafe BELLA aims to bring unique and memorable experiences to every event.", btn: "View Menu", link: "Menu.html" },
+  { title: "Our Packages", text: "Cafe BELLA offers curated event packages designed for memorable celebrations.", btn: "Book Now", link: "#" },
+  { title: "Our Space", text: "Step into a cozy space inspired by classic retro coffee shop vibes.", btn: "Visit Us", link: "#" }
 ];
 
 function showSlide(i) {
-  slides.forEach(s => s.classList.remove("active"));
+  // reset all slides
+  slides.forEach(s => {
+    s.classList.remove("active");
+    if (s.tagName === "VIDEO") {
+      s.pause();
+      s.currentTime = 0;
+    }
+  });
+
   dots.forEach(d => d.classList.remove("active"));
 
-  slides[i].classList.add("active");
+  let currentSlide = slides[i];
+  currentSlide.classList.add("active");
   dots[i].classList.add("active");
 
+  // captions
   captionTitle.textContent = data[i].title;
   captionText.textContent = data[i].text;
   captionBtn.textContent = data[i].btn;
@@ -2102,6 +2159,29 @@ function showSlide(i) {
   } else {
     captionBox.classList.add("show");
   }
+
+  // STOP AUTO SLIDE FIRST
+  if (autoSlide) {
+    clearTimeout(autoSlide);
+    autoSlide = null;
+  }
+
+  // IF VIDEO SLIDE
+  if (currentSlide.tagName === "VIDEO") {
+    currentSlide.currentTime = 0;
+
+    currentSlide.play();
+
+    currentSlide.onended = () => {
+      nextSlide(); // move after video ends
+    };
+
+  } else {
+    // IMAGE SLIDES = normal timer
+    autoSlide = setTimeout(() => {
+      nextSlide();
+    }, 5000);
+  }
 }
 
 function nextSlide() {
@@ -2109,13 +2189,12 @@ function nextSlide() {
   showSlide(index);
 }
 
-let slider = setInterval(nextSlide, 5000);
+// init
+window.addEventListener("load", () => {
+  showSlide(0);
+});
 
-const hero = document.getElementById("hero");
-
-hero.addEventListener("mouseenter", () => clearInterval(slider));
-hero.addEventListener("mouseleave", () => slider = setInterval(nextSlide, 5000));
-
+// dots click
 dots.forEach((dot, i) => {
   dot.addEventListener("click", () => {
     index = i;
@@ -2123,26 +2202,64 @@ dots.forEach((dot, i) => {
   });
 });
 
+// pause on hover
+const hero = document.getElementById("hero");
+
+hero.addEventListener("mouseenter", () => {
+  if (autoSlide) clearTimeout(autoSlide);
+});
+
+hero.addEventListener("mouseleave", () => {
+  showSlide(index);
+});
+
 /******************************** MENU SLIDER *******************************/
 let menuIndex = 0;
 const track = document.getElementById("menuTrack");
 const cards = document.querySelectorAll(".menu-card");
 
-function slideMenu(direction) {
-  const gap = 20;
-  const cardWidth = 290 + gap;
+/* ===== AUTO SCROLL (NETFLIX STYLE) ===== */
+let autoScroll;
 
-  const visibleCards = Math.floor(document.querySelector(".menu-slider").offsetWidth / cardWidth);
-  const totalCards = cards.length;
-  const maxIndex = totalCards - visibleCards;
+function startAutoScroll() {
+  const slider = document.querySelector(".menu-slider");
 
-  menuIndex += direction;
+  autoScroll = setInterval(() => {
+    slider.scrollBy({
+      left: 1,
+      behavior: "auto" // smooth continuous motion
+    });
 
-  if (menuIndex < 0) menuIndex = 0;
-  if (menuIndex > maxIndex) menuIndex = maxIndex;
+    // seamless loop
+    if (slider.scrollLeft >= slider.scrollWidth / 2) {
+      slider.scrollLeft = 0;
+    }
 
-  track.style.transform = `translateX(-${menuIndex * cardWidth}px)`;
+  }, 20); // speed control
 }
+
+function stopAutoScroll() {
+  clearInterval(autoScroll);
+}
+
+/* ===== ARROW CONTROL ===== */
+function slideMenu(direction) {
+  const slider = document.querySelector(".menu-slider");
+  const card = document.querySelector(".menu-card");
+
+  const scrollAmount = card.offsetWidth + 20;
+
+  slider.scrollBy({
+    left: direction * scrollAmount * 2,
+    behavior: "smooth"
+  });
+}
+
+/* ===== HOVER PAUSE ===== */
+const menuSlider = document.querySelector(".menu-slider");
+
+menuSlider.addEventListener("mouseenter", stopAutoScroll);
+menuSlider.addEventListener("mouseleave", startAutoScroll);
 
 /******************************** FAQ DROPDOWN *******************************/
 const faqs = document.querySelectorAll(".faq-item");
@@ -2202,5 +2319,27 @@ window.addEventListener("keydown", function(e) {
 
     document.body.classList.remove("modal-open");
   }
+});
+window.addEventListener("load", () => {
+  showSlide(0);
+});
+
+/******************************** ESC KEY CLOSE ********************************/
+window.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const modals = document.querySelectorAll(".modal");
+
+    modals.forEach(modal => {
+      modal.style.display = "none";
+    });
+
+    document.body.classList.remove("modal-open");
+  }
+});
+
+/* 👇 DITO MO ILALAGAY */
+window.addEventListener("load", () => {
+  showSlide(0);
+  startAutoScroll();
 });
 </script>
