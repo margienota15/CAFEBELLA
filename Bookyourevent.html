@@ -412,8 +412,6 @@ label {
 .form-row .form-group {
   flex: 1;
 }
-
-
 .field label {
   font-size: 12px;
   font-weight: 600;
@@ -686,7 +684,18 @@ h1 {
   font-weight: 700;
   letter-spacing: -0.5px;
 }
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
 
+.modal.show {
+  display: flex;
+}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -768,32 +777,42 @@ h1 {
   </div>
   
 <!-------------------------------- SERVICE COLLECTION ------------------------------------->
-  <div class="card rise-item">
+<div class="card rise-item">
     <div class="section-title">Service Selection</div>
 
-    <div class="services rise-item">
-      <div class="service-box">
-        <div class="service-title">Coffee Booth</div>
-        <div class="price">₱5,000 Up to 50 Cups</div>
-      </div>
+<div class="services rise-item">
 
-      <div class="service-box rise-item">
-        <div class="service-title">Matcha Booth</div>
-        <div class="price">₱9,000 Up to 50 Cups</div>
-      </div>
-
-      <div class="service-box rise-item">
-        <div class="service-title">Tattoo Event</div>
-        <div class="price">
-          2 minimalist tattoos<br>
-          ₱1,000 (In Store)
-        </div>
-      </div>
+  <!-- ☕ COFFEE -->
+  <div class="service-box">
+    <div class="service-title">Coffee Booth</div>
+    <div class="price">
+      ₱5,000 — Up to 50 cups<br>
+      <small>Price adjusts based on number of cups ordered</small>
     </div>
+  </div>
+
+  <!-- 🍵 MATCHA -->
+  <div class="service-box">
+    <div class="service-title">Matcha Booth</div>
+    <div class="price">
+      ₱9,000 — Up to 100 cups<br>
+      <small>Price adjusts based on number of cups ordered</small>
+    </div>
+  </div>
+
+  <!-- 🎨 TATTOO -->
+  <div class="service-box">
+    <div class="service-title">Tattoo Event</div>
+    <div class="price">
+      ₱1,000 — In-store service only<br>
+      Includes 2 minimalist tattoos
+    </div>
+  </div>
+
+</div>
 
     <div class="total">₱ 0000</div>
   </div>
-
 <!-------------------------------- BOOKING DETAILS ------------------------------------->
 <div class="card rise-item">
 
@@ -813,48 +832,53 @@ h1 {
       <div class="details-box">
 
         <!-- TIME + GUESTS (ROW) -->
-      <div class="form-row">
+<div class="form-row">
 
-        <!-- TIME -->
-        <div class="form-group">
-          <label for="event-time">Time</label>
-          <select id="event-time" required>
-            <option value="" disabled selected>Select time</option>
+  <!-- TIME -->
+  <div class="form-group">
+    <label for="event-time">Time</label>
+    <select id="event-time" required>
+      <option value="" disabled selected>Select time</option>
 
-            <option>9:00 AM</option>
-            <option>10:00 AM</option>
-            <option>11:00 AM</option>
-            <option>12:00 PM</option>
-            <option>1:00 PM</option>
-            <option>2:00 PM</option>
-            <option>3:00 PM</option>
-            <option>4:00 PM</option>
-            <option>5:00 PM</option>
-            <option>6:00 PM</option>
-            <option>7:00 PM</option>
-            <option>8:00 PM</option>
-            <option>9:00 PM</option>
-            <option>10:00 PM</option>
-            <option>11:00 PM</option>
-          </select>
-        </div>
+      <option>9:00 AM</option>
+      <option>10:00 AM</option>
+      <option>11:00 AM</option>
+      <option>12:00 PM</option>
+      <option>1:00 PM</option>
+      <option>2:00 PM</option>
+      <option>3:00 PM</option>
+      <option>4:00 PM</option>
+      <option>5:00 PM</option>
+      <option>6:00 PM</option>
+      <option>7:00 PM</option>
+      <option>8:00 PM</option>
+      <option>9:00 PM</option>
+      <option>10:00 PM</option>
+      <option>11:00 PM</option>
+    </select>
+  </div>
 
-        <!-- GUESTS -->
-        <div class="form-group">
-          <label for="guest-count">Guests</label>
-          <select id="guest-count" required>
-            <option value="" disabled selected>Select guests</option>
+<div class="form-group">
+  <label for="guest-count">Number of Guests</label>
 
-            <option>10 Guests</option>
-            <option>20 Guests</option>
-            <option>30 Guests</option>
-            <option>40 Guests</option>
-            <option>50 Guests</option>
-          </select>
-        </div>
+  <input 
+    type="number" 
+    id="guest-count" 
+    min="30"
+    max="100"
+    placeholder="Enter number of guests"
+    required
+  >
 
-      </div>
+  <!-- 🔴 ERROR MESSAGE DITO -->
+  <div id="guest-error" style="color:red; font-size:12px; margin-top:5px;"></div>
 
+  <small style="color:#666;">
+    Minimum of 30 guests required
+  </small>
+</div>
+
+</div>
         <!-- LOCATION SECTION -->
         <div class="form-group">
           <label for="province">Province</label>
@@ -1046,10 +1070,48 @@ h1 {
   <div class="footer-bottom rise-item">
     © 2026 Cafe BELLA. All rights reserved.
   </div>
+
+<div id="serviceModal" class="modal">
+
+  <div style="background:#fff; padding:25px; border-radius:15px; width:320px; text-align:center;">
+
+    <h3 id="modalTitle">Service</h3>
+
+    <button onclick="selectPackage()" style="width:100%; margin:10px 0; padding:12px;">
+      Select Package
+    </button>
+
+    <button onclick="showCustom()" style="width:100%; padding:12px;">
+      Customize Service
+    </button>
+
+    <div id="customBox" style="margin-top:15px; display:none;">
+      <label>Number of Cups</label>
+      <input type="number" id="modalCups" min="1" style="width:100%; padding:10px;">
+
+      <div id="priceInfo" style="margin-top:10px; font-size:13px;"></div>
+
+      <!-- ✅ DITO MO ILALAGAY -->
+      <button onclick="applyCustom()" style="width:100%; margin-top:10px; padding:12px;">
+        Apply
+      </button>
+    </div>
+
+    <br>
+    <button onclick="closeModal()">Close</button>
+
+  </div>
+
+</div>
 </body>
-</html>
 
 <script>
+
+let selectedService = "";
+let pricingType = "package";
+let selectedDate = "";
+let total = 0; // 🔥 ADD THIS
+
 /******************************** CONSISTENT RISE ANIMATION ********************************/
 
 const riseElements = document.querySelectorAll(".rise-title, .rise-desc, .rise-item, .event-card");
@@ -1072,36 +1134,248 @@ window.addEventListener("scroll", handleRise);
 window.addEventListener("load", handleRise);
 
 /******************************** SERVICES **************************/
-document.addEventListener("DOMContentLoaded", function() {
 
+window.onload = function () {
 
-    serviceBoxes.forEach(box => {
-    box.addEventListener("click", () => {
-      serviceBoxes.forEach(b => {
-        b.style.background = "#eee";
-        b.style.color = "#114500";
-      });
-      box.style.background = "#114500";
-      box.style.color = "white";
+  const boxes = document.querySelectorAll(".service-box");
+  const guestInput = document.getElementById("guest-count");
 
-      const serviceName = box.querySelector(".service-title").textContent.toLowerCase();
-      switch(serviceName) {
-        case "coffee booth":
-          totalPrice.textContent = "₱5,000";
-          break;
-        case "matcha booth":
-          totalPrice.textContent = "₱9,000";
-          break;
-        case "tattoo event":
-          totalPrice.textContent = "₱1,000";
-          break;
-      }
+  // ☕🍵 SERVICE CLICK
+boxes.forEach(box => {
+  box.addEventListener("click", () => {
+
+    // reset styles
+    boxes.forEach(b => {
+      b.style.background = "white";
+      b.style.color = "#114500";
     });
+
+    // highlight selected
+    box.style.background = "#114500";
+    box.style.color = "white";
+
+    // ✅ DITO MO ILALAGAY
+    selectedService = box
+      .querySelector(".service-title")
+      .textContent
+      .toLowerCase()
+      .trim();
+
+    // 🔥 DEFAULT PRICE DISPLAY (FIXED)
+    if (selectedService.includes("coffee")) {
+      document.querySelector(".total").innerHTML = "Estimated Total: ₱5,000";
+    }
+    else if (selectedService.includes("matcha")) {
+      document.querySelector(".total").innerHTML = "Estimated Total: ₱9,000";
+    }
+    else if (selectedService.includes("tattoo")) {
+      document.querySelector(".total").innerHTML = "Estimated Total: ₱1,000";
+    }
+
+    // 🔥 IMPORTANT: auto compute after select
+    computeTotal();
+
   });
 });
 
-let selectedDate = "";
-document.addEventListener("DOMContentLoaded", function() {
+  // 🔥 LIVE UPDATE WHEN TYPING
+  guestInput.addEventListener("input", function () {
+    computeTotal(); // 🔥 HERE
+  });
+
+  // 🔥 ENTER KEY SUPPORT
+  guestInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      computeTotal(); // 🔥 HERE
+    }
+  });
+};
+
+
+function handleServiceSelect(service) {
+
+  selectedService = service.toLowerCase().trim();
+
+  // IMMEDIATE BASE DISPLAY
+  const totalDisplay = document.querySelector(".total");
+
+  if (selectedService.includes("coffee")) {
+    total = 5000;
+    totalDisplay.innerHTML = "Estimated Total: ₱5,000";
+  }
+
+  else if (selectedService.includes("matcha")) {
+    total = 9000;
+    totalDisplay.innerHTML = "Estimated Total: ₱9,000";
+  }
+
+  computeTotal(); // still allow update if guests exist
+}
+function selectPackage() {
+
+    const guests = parseInt(document.getElementById("guest-count").value) || 0;
+
+    if (selectedService.includes("coffee")) {
+
+        const baseGuests = 30;
+        const basePrice = 3450;
+        const capGuests = 50;
+        const capPrice = 5000;
+        const perHead = 120;
+
+        if (guests <= baseGuests) {
+            total = basePrice;
+        } 
+        else if (guests < capGuests) {
+            total = basePrice + ((guests - baseGuests) * perHead);
+        } 
+        else {
+            total = capPrice;
+        }
+    }
+
+    updateTotalUI();
+    closeModal();
+}
+
+function showCustom() {
+  document.getElementById("customBox").style.display = "block";
+}
+
+document.getElementById("modalCups").addEventListener("input", function() {
+
+  let cups = parseInt(this.value) || 0;
+  let rate = 120;
+
+  let base = selectedService.includes("coffee") ? 5000 : 9000;
+  let limit = selectedService.includes("coffee") ? 50 : 100;
+
+  let total = 0;
+  let info = "";
+
+  if (cups <= limit) {
+    total = base;
+    info = `Package price: ₱${base}`;
+  } else {
+    let extra = cups - limit;
+    total = base + (extra * rate);
+
+    info = `
+      Base: ₱${base}<br>
+      Extra cups (${extra} × ₱120): ₱${extra * rate}
+    `;
+  }
+
+  document.getElementById("priceInfo").innerHTML = info;
+
+  window.tempTotal = total;
+});
+
+function applyCustom() {
+  total = window.tempTotal || 0;
+  updateTotalUI();
+  closeModal();
+}
+
+function updateTotalUI() {
+  document.querySelector(".total").innerHTML =
+    `Estimated Total: ₱${total.toLocaleString()}`;
+}
+
+function closeModal() {
+  document.getElementById("serviceModal").classList.remove("show");
+}
+
+
+function computeTotal() {
+
+  const guestInput = document.getElementById("guest-count");
+  const guests = parseInt(guestInput.value);
+  const totalDisplay = document.querySelector(".total");
+
+  // ❗ if no number yet → show base price on select
+  if (!guests) {
+    if (selectedService.includes("coffee")) {
+      totalDisplay.innerHTML = "Estimated Total: ₱5,000";
+    } 
+    else if (selectedService.includes("matcha")) {
+      totalDisplay.innerHTML = "Estimated Total: ₱9,000";
+    }
+    return;
+  }
+
+  // ❌ VALIDATION
+  if (guests < 30) {
+    totalDisplay.innerHTML = "Minimum of 30 guests required.";
+    return;
+  }
+
+  if (guests > 100) {
+    totalDisplay.innerHTML = "Maximum of 100 guests required.";
+    return;
+  }
+
+  if (!selectedService) {
+    totalDisplay.innerHTML = "Please select a service first.";
+    return;
+  }
+
+  let total = 0;
+
+  // ☕ COFFEE BOOTH (YOUR EXACT TABLE)
+  if (selectedService.includes("coffee")) {
+
+    const base = 3450;
+
+    if (guests === 30) {
+      total = base;
+    }
+
+    else if (guests < 50) {
+      total = base + ((guests - 30) * 120);
+    }
+
+    else if (guests === 50) {
+      total = 5000; // 🔥 FIXED CAP (no more 5850 bug)
+    }
+
+    else {
+      // 🔥 AFTER 50 → NEW RATE (₱80)
+      total = 5000 + ((guests - 50) * 80);
+    }
+  }
+
+  // 🍵 MATCHA BOOTH (YOUR EXACT TABLE)
+  else if (selectedService.includes("matcha")) {
+
+    const base = 3450;
+
+    if (guests === 30) {
+      total = base;
+    }
+
+    else {
+      total = base + ((guests - 30) * 80);
+
+      // 🔥 CAP AT 9000
+      if (total > 9000) {
+        total = 9000;
+      }
+    }
+  }
+
+  // 🎨 TATTOO
+  else if (selectedService.includes("tattoo")) {
+    total = 1000;
+  }
+
+  totalDisplay.innerHTML = `
+    Estimated Total: ₱${total.toLocaleString()}<br>
+    <small style="color:#666;">
+      Final price subject to confirmation by Cafe Bella
+    </small>
+  `;
+}
 
 /******************************** CALENDAR FLATPICKR **************************/
     const bookedDates = [
@@ -1129,28 +1403,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    /******************************** SERVICES SELECTION **************************/
-    let selectedService = "";
-    const boxes = document.querySelectorAll(".service-box");
-    boxes.forEach(box => {
-        box.addEventListener("click", () => {
-            boxes.forEach(b => {
-                b.dataset.selected = "false";
-                b.style.background = "white";
-                b.style.color = "#114500";
-            });
-            box.dataset.selected = "true";
-            box.style.background = "#114500";
-            box.style.color = "white";
-            selectedService = box.querySelector(".service-title").textContent.toLowerCase().trim();
-
-            const total = document.querySelector(".total");
-            if(selectedService.includes("coffee")) total.textContent = "₱5,000";
-            if(selectedService.includes("matcha")) total.textContent = "₱9,000";
-            if(selectedService.includes("tattoo")) total.textContent = "₱1,000";
-        });
-    });
-  
 /******************************** CONTACT NUMBER RESTRICTION **************************/
 const contactInput = document.querySelector('input[placeholder*="0912"]'); 
 
@@ -1209,11 +1461,12 @@ completeBtn.addEventListener("click", function() {
     const email = document.querySelector('input[placeholder*="example"]').value.trim();
     const facebook = document.querySelector('input[placeholder*="@username"]').value.trim();
     const contact = contactInput.value.trim();
-
     const eventTime = document.getElementById("event-time").value;
-    const guestCount = document.getElementById("guest-count").value;
-    const eventLocation = document.getElementById("event-location").value;
-
+    const province = document.getElementById("province").value;
+    const city = document.getElementById("city").value;
+    const barangay = document.getElementById("barangay").value;
+    const street = document.getElementById("street").value;
+    const eventLocation = `${street}, ${barangay}, ${city}, ${province}`;
     const paymentType = document.querySelector('input[name="payment_type"]:checked')?.value;
 
     // ✅ FIXED NAME HERE
@@ -1228,8 +1481,6 @@ completeBtn.addEventListener("click", function() {
     if(!contact) return alert("Enter Contact Number");
     if(!selectedDate) return alert("Select a Date");
     if(!eventTime) return alert("Select Time");
-    if(!guestCount) return alert("Select Guests");
-    if(!eventLocation) return alert("Enter Address");
     if(!selectedService) return alert("Please select a service.");
     if(!paymentType) return alert("Please select a payment type.");
     if(!paymentMethod) return alert("Please select payment method.");
@@ -1246,7 +1497,7 @@ completeBtn.addEventListener("click", function() {
     localStorage.setItem("customerContact", contact);
     localStorage.setItem("eventDate", selectedDate);
     localStorage.setItem("eventTime", eventTime);
-    localStorage.setItem("guestCount", guestCount);
+    localStorage.setItem("guestCount", guests);
     localStorage.setItem("eventLocation", eventLocation);
 
     // ✅ REDIRECT
@@ -1257,5 +1508,5 @@ completeBtn.addEventListener("click", function() {
         window.location.href = "Payment.html";
     }
 });
-});
 </script>
+</html>
