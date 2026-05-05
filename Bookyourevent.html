@@ -706,7 +706,7 @@ h1 {
 
 <!-------------------------------- TOPBAR ------------------------------------->
 <div class="topbar">
-      <div class="topbar-center">Planning an event? <a href="Package.html" class="book-link">Book Now</a> and reserve your date with Cafe Bella.</div>
+      <div class="topbar-center">Planning an event? <a href="Bookyourevent.html" class="book-link">Book Now</a> and reserve your date with Cafe Bella.</div>
 
   <div class="topbar-right">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
@@ -952,12 +952,12 @@ h1 {
   <label style="margin-top:20px;">Select Payment Option</label>
   <div class="payment-options rise-item">
     <label class="payment-box">
-      <input type="radio" name="paymentMethod" value="cash">
+      <input type="radio" name="pay" value="cash">
       <span>Cash</span>
     </label>
 
     <label class="payment-box rise-item">
-      <input type="radio" name="paymentMethod" value="gcash">
+      <input type="radio" name="pay" value="gcash">
       <span>GCash</span>
     </label>
   </div>
@@ -1155,11 +1155,14 @@ boxes.forEach(box => {
     box.style.color = "white";
 
     // ✅ DITO MO ILALAGAY
-    selectedService = box
-      .querySelector(".service-title")
+    let rawService = box.querySelector(".service-title")
       .textContent
       .toLowerCase()
       .trim();
+
+    if (rawService.includes("coffee")) selectedService = "coffee";
+    else if (rawService.includes("matcha")) selectedService = "matcha";
+    else if (rawService.includes("tattoo")) selectedService = "tattoo";
 
     // 🔥 DEFAULT PRICE DISPLAY (FIXED)
     if (selectedService.includes("coffee")) {
@@ -1286,11 +1289,46 @@ function closeModal() {
   document.getElementById("serviceModal").classList.remove("show");
 }
 
+function proceedToPayment() {
+
+    const service = document.getElementById("service").value;
+    const total = document.getElementById("totalPrice").innerText;
+    const paymentType = document.querySelector('input[name="pay"]:checked')?.value;
+
+    // VALIDATION
+    if (!service) {
+        alert("Please select a service.");
+        return;
+    }
+
+    if (!total) {
+        alert("Missing total price.");
+        return;
+    }
+
+    if (!paymentType) {
+        alert("Please select payment method (Cash or GCash).");
+        return;
+    }
+
+    // SAVE DATA
+    localStorage.setItem("total", totalPrice);
+    localStorage.setItem("service", selectedService);
+    localStorage.setItem("paymentType", paymentType);
+
+    // 🔥 REDIRECT LOGIC (IMPORTANT FIX)
+    if (paymentType === "gcash") {
+        window.location.href = "Payment.html";
+    } 
+    else if (paymentType === "cash") {
+        window.location.href = "Paymentcash.html";
+    }
+}
 
 function computeTotal() {
 
   const guestInput = document.getElementById("guest-count");
-  const guests = parseInt(guestInput.value);
+  const guests = parseInt(document.getElementById("guest-count").value);
   const totalDisplay = document.querySelector(".total");
 
   // ❗ if no number yet → show base price on select
@@ -1375,6 +1413,8 @@ function computeTotal() {
       Final price subject to confirmation by Cafe Bella
     </small>
   `;
+
+  window.finalTotal = total;
 }
 
 /******************************** CALENDAR FLATPICKR **************************/
@@ -1462,15 +1502,23 @@ completeBtn.addEventListener("click", function() {
     const facebook = document.querySelector('input[placeholder*="@username"]').value.trim();
     const contact = contactInput.value.trim();
     const eventTime = document.getElementById("event-time").value;
-    const province = document.getElementById("province").value;
-    const city = document.getElementById("city").value;
-    const barangay = document.getElementById("barangay").value;
-    const street = document.getElementById("street").value;
-    const eventLocation = `${street}, ${barangay}, ${city}, ${province}`;
-    const paymentType = document.querySelector('input[name="payment_type"]:checked')?.value;
 
-    // ✅ FIXED NAME HERE
-    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+    const provinceSelect = document.getElementById("province");
+    const citySelect = document.getElementById("city");
+    const barangaySelect = document.getElementById("barangay");
+    const street = document.getElementById("street").value;
+
+    // ✔ GET REAL NAMES (hindi code)
+    const province = provinceSelect.options[provinceSelect.selectedIndex].dataset.name;
+    const city = citySelect.options[citySelect.selectedIndex].dataset.name;
+    const barangay = barangaySelect.value;
+
+    // ✔ FINAL FORMAT
+    const eventLocation = `Province: ${province}, City: ${city}, Barangay: ${barangay}, Street: ${street}`;
+
+
+    const paymentType = document.querySelector('input[name="payment_type"]:checked')?.value;
+    const paymentMethod = document.querySelector('input[name="pay"]:checked')?.value;
 
     const agree = document.getElementById("agree").checked;
 
@@ -1487,20 +1535,35 @@ completeBtn.addEventListener("click", function() {
     if(!agree) return alert("You must agree to the terms.");
 
     // ✅ SAVE DATA
-    localStorage.setItem("service", selectedService);
+    let serviceName = "";
+
+    if(selectedService === "coffee") serviceName = "Coffee Booth";
+    else if(selectedService === "matcha") serviceName = "Matcha Booth";
+    else if(selectedService === "tattoo") serviceName = "Tattoo Event";
+
+    localStorage.setItem("service", serviceName);
     localStorage.setItem("paymentMethod", paymentMethod);
     localStorage.setItem("paymentType", paymentType);
-    localStorage.setItem("total", document.querySelector(".total").textContent);
+    localStorage.setItem("total", window.finalTotal);
     localStorage.setItem("customerName", fullName);
     localStorage.setItem("customerEmail", email);
     localStorage.setItem("customerFacebook", facebook);
     localStorage.setItem("customerContact", contact);
     localStorage.setItem("eventDate", selectedDate);
     localStorage.setItem("eventTime", eventTime);
+
+
+    const guests = parseInt(document.getElementById("guest-count").value);
+
     localStorage.setItem("guestCount", guests);
-    localStorage.setItem("eventLocation", eventLocation);
+
+    const formattedLocation = `Province: ${province}, City: ${city}, Barangay: ${barangay}, Street: ${street}`;
+
+    localStorage.setItem("eventLocation", formattedLocation);
 
     // ✅ REDIRECT
+    console.log("METHOD:", paymentMethod);
+
     if(paymentMethod === "cash") {
         window.location.href = "Paymentcash.html";
     } 
@@ -1508,5 +1571,87 @@ completeBtn.addEventListener("click", function() {
         window.location.href = "Payment.html";
     }
 });
+
+/******************************** PHILIPPINE AUTO-LOAD ADDRESS (MODIFIED FOR CALABARZON) **********/    
+/******************************** PHILIPPINE AUTO-LOAD ADDRESS (MODIFIED FOR CALABARZON) **********/
+    const provinceSelect = document.getElementById("province");
+    const citySelect = document.getElementById("city");
+    const barangaySelect = document.getElementById("barangay");
+
+// Load Provinces - Filtered for CALABARZON (Region Code: 040000000)
+fetch("https://psgc.gitlab.io/api/provinces/")
+  .then(res => res.json())
+  .then(data => {
+    // Filter for CALABARZON region (regionCode: '040000000')
+    const calabarzonProvinces = data.filter(province => province.regionCode === '040000000');
+    
+    calabarzonProvinces.sort((a, b) => a.name.localeCompare(b.name));
+    provinceSelect.innerHTML = `<option value="">Select Province</option>`; // Reset options
+    calabarzonProvinces.forEach(province => {
+      provinceSelect.innerHTML += `<option value="${province.code}" data-name="${province.name}">${province.name}</option>`;
+    });
+  })
+  .catch(error => {
+      console.error("Error fetching provinces:", error);
+      provinceSelect.innerHTML = `<option value="">Error loading provinces</option>`;
+  });
+
+// When Province changes → load Cities
+provinceSelect.addEventListener("change", function () {
+  const provinceCode = this.value;
+  const provinceName = this.options[this.selectedIndex].dataset.name; // Get the name
+
+  citySelect.innerHTML = `<option value="">Loading...</option>`;
+  barangaySelect.innerHTML = `<option value="">Select Barangay</option>`; // Reset barangay when province changes
+
+  if (!provinceCode) { // If no province is selected
+      citySelect.innerHTML = `<option value="">Select City</option>`;
+      return;
+  }
+
+  fetch(`https://psgc.gitlab.io/api/provinces/${provinceCode}/cities-municipalities/`)
+    .then(res => res.json())
+    .then(data => {
+      citySelect.innerHTML = `<option value="">Select City</option>`;
+      data.sort((a, b) => a.name.localeCompare(b.name));
+
+      data.forEach(city => {
+        citySelect.innerHTML += `<option value="${city.code}" data-name="${city.name}">${city.name}</option>`; // Store name
+      });
+    })
+    .catch(error => {
+        console.error("Error fetching cities:", error);
+        citySelect.innerHTML = `<option value="">Error loading cities</option>`;
+    });
+});
+
+// When City changes → load Barangays
+citySelect.addEventListener("change", function () {
+  const cityCode = this.value;
+  const cityName = this.options[this.selectedIndex].dataset.name; // Get the name
+
+  barangaySelect.innerHTML = `<option value="">Loading...</option>`;
+
+  if (!cityCode) { // If no city is selected
+      barangaySelect.innerHTML = `<option value="">Select Barangay</option>`;
+      return;
+  }
+
+  fetch(`https://psgc.gitlab.io/api/cities-municipalities/${cityCode}/barangays/`)
+    .then(res => res.json())
+    .then(data => {
+      barangaySelect.innerHTML = `<option value="">Select Barangay</option>`;
+      data.sort((a, b) => a.name.localeCompare(b.name));
+
+      data.forEach(brgy => {
+        barangaySelect.innerHTML += `<option value="${brgy.name}">${brgy.name}</option>`;
+      });
+    })
+    .catch(error => {
+        console.error("Error fetching barangays:", error);
+        barangaySelect.innerHTML = `<option value="">Error loading barangays</option>`;
+    });
+});
+
 </script>
 </html>
